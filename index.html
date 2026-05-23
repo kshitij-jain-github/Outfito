@@ -1,0 +1,633 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>OUTFITO — Gen Z Style. Made To Stand Out.</title>
+  <meta name="description"
+    content="OUTFITO - Premium Gen-Z Streetwear. Oversized tees, graphic drops, minimal collections. Wear your vibe.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link
+    href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Syne:wght@400;500;600;700;800&family=Space+Mono:wght@400;700&display=swap"
+    rel="stylesheet">
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+  <link rel="stylesheet" href="public/css/style.css" class="rel">
+</head>
+
+<body>
+
+  <!-- Noise Overlay -->
+  <div class="noise-overlay"></div>
+
+  <!-- Scroll Progress -->
+  <div class="scroll-progress" id="scrollProgress"></div>
+
+  <!-- Custom Cursor -->
+  <div class="cursor" id="cursor"></div>
+  <div class="cursor-follower" id="cursorFollower"></div>
+
+  <!-- Page Transition -->
+  <div class="page-transition" id="pageTransition"></div>
+
+  <!-- Loading Screen -->
+  <div id="loader">
+    <div class="loader-logo">OUTFITO</div>
+    <div class="loader-bar">
+      <div class="loader-bar-fill" id="loaderFill"></div>
+    </div>
+    <div class="loader-tagline">GEN Z STYLE. MADE TO STAND OUT.</div>
+  </div>
+
+  <!-- Mobile Menu -->
+  <nav class="mobile-menu" id="mobileMenu">
+    <a href="#" onclick="navigateTo('home')">Home</a>
+    <a href="#" onclick="navigateTo('shop')">Shop</a>
+    <a href="#" onclick="navigateTo('about')">About</a>
+    <a href="#" onclick="navigateTo('contact')">Contact</a>
+    <a href="https://wa.me/918448908359?text=Hi%20OUTFITO%2C%20I%20want%20to%20know%20more%20about%20your%20collection!"
+      target="_blank">WhatsApp</a>
+  </nav>
+
+  <!-- Navbar -->
+  <nav id="navbar">
+    <a href="#" class="nav-logo" onclick="navigateTo('home')">
+      <span class="nav-logo-icon">OF</span>
+      OUTFITO
+    </a>
+    <ul class="nav-links" id="navLinks">
+      <li><a href="#" onclick="navigateTo('home')">Home</a></li>
+      <li><a href="#" onclick="navigateTo('shop')">Shop</a></li>
+      <li><a href="#collections">Collections</a></li>
+      <li><a href="#" onclick="navigateTo('about')">About</a></li>
+      <li><a href="#" onclick="navigateTo('contact')">Contact</a></li>
+    </ul>
+    <div class="nav-right">
+      <div class="nav-social">
+        <a href="https://instagram.com" target="_blank">IG</a>
+      </div>
+      <div class="hamburger" id="hamburger" onclick="toggleMenu()">
+        <span></span><span></span><span></span>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Floating WhatsApp -->
+  <div class="whatsapp-float">
+    <span class="whatsapp-label">Order on WhatsApp</span>
+    <a class="whatsapp-btn" href="https://wa.me/918448908359?text=Hi%20OUTFITO%2C%20I%20want%20to%20place%20an%20order!"
+      target="_blank">
+      <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+        <path
+          d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z" />
+      </svg>
+    </a>
+  </div>
+
+  <!-- ============ HOME PAGE ============ -->
+  <div id="home-page">
+
+    <!-- HERO -->
+    <section id="hero">
+      <div class="hero-bg"></div>
+      <div class="hero-grid-lines"></div>
+      <div class="hero-content">
+        <div class="hero-left">
+          <p class="hero-eyebrow" id="heroEyebrow">★ New Drop — SS26 Collection</p>
+          <h1 class="hero-title">
+            <span class="line"><span id="heroLine1">WEAR YOUR</span></span>
+            <span class="line"><span id="heroLine2">VIBE.</span></span>
+            <span class="line"><span id="heroLine3">STAND OUT.</span></span>
+          </h1>
+          <p class="hero-desc" id="heroDesc">Not just clothing. It's identity, confidence, and modern youth culture.
+            Gen-Z streetwear made to define you.</p>
+          <div class="hero-buttons" id="heroBtns">
+            <a href="#" class="btn-primary" onclick="navigateTo('shop')"><span>SHOP NOW</span></a>
+            <a href="#collections" class="btn-outline"><span>VIEW COLLECTION</span></a>
+          </div>
+        </div>
+        <div class="hero-right">
+          <div class="hero-card-mini hero-card-mini-1">
+            <div class="mini-card-label">New Drop</div>
+            <div class="mini-card-value">SS26</div>
+            <div style="margin-top:10px;"><span class="mini-card-dot"></span><span
+                style="font-family:'Space Mono',monospace;font-size:9px;color:var(--silver);letter-spacing:0.1em;">LIVE
+                NOW</span></div>
+          </div>
+          <div class="hero-product-card">
+            <img src="https://images.unsplash.com/photo-1521572163474-6864f9cf17ab?w=600&q=80" alt="Hero Product"
+              class="hero-product-img">
+            <div class="hero-product-tag">
+              <span class="hero-product-name">SHADOW TEE</span>
+              <span class="hero-product-price">₹999</span>
+            </div>
+          </div>
+          <div class="hero-card-mini hero-card-mini-2">
+            <div class="mini-card-label">Happy Customers</div>
+            <div class="mini-card-value">2K+</div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- MARQUEE -->
+    <div class="marquee-section">
+      <div class="marquee-track" id="marquee">
+        <div class="marquee-item">WEAR YOUR VIBE <span class="marquee-dot"></span> GEN Z STREETWEAR <span
+            class="marquee-dot"></span> MADE TO STAND OUT <span class="marquee-dot"></span> OVERSIZED FITS <span
+            class="marquee-dot"></span> OUTFITO SS26 <span class="marquee-dot"></span> LIMITED DROPS <span
+            class="marquee-dot"></span> WEAR YOUR VIBE <span class="marquee-dot"></span> GEN Z STREETWEAR <span
+            class="marquee-dot"></span> MADE TO STAND OUT <span class="marquee-dot"></span> OVERSIZED FITS <span
+            class="marquee-dot"></span> OUTFITO SS26 <span class="marquee-dot"></span> LIMITED DROPS</div>
+      </div>
+    </div>
+
+    <!-- FEATURED COLLECTION -->
+    <section id="collections">
+      <div class="section-label reveal">Featured Collection</div>
+      <div
+        style="display:flex;justify-content:space-between;align-items:flex-end;margin-bottom:48px;flex-wrap:wrap;gap:24px;">
+        <h2 class="section-title reveal">BEST<br>SELLERS</h2>
+        <a href="#" onclick="navigateTo('shop')" class="btn-outline reveal" style="align-self:flex-end;"><span>VIEW
+            ALL</span></a>
+      </div>
+      <div class="product-grid">
+        <div class="product-card reveal"
+          onclick="openProduct('shadow-tee','SHADOW OVERSIZED TEE','₹999','A heavyweight 280gsm oversized tee with a raw, lived-in edge. Washed in shadow black for that perfectly worn look.','https://images.unsplash.com/photo-1521572163474-6864f9cf17ab?w=600&q=80')">
+          <img src="https://images.unsplash.com/photo-1521572163474-6864f9cf17ab?w=600&q=80" alt="Shadow Tee"
+            loading="lazy">
+          <div class="product-overlay"></div>
+          <div class="product-info">
+            <div class="product-category">Oversized Tees</div>
+            <div class="product-sizes">
+              <span class="size-tag">S</span><span class="size-tag">M</span><span class="size-tag">L</span><span
+                class="size-tag">XL</span>
+            </div>
+            <div class="product-name">SHADOW TEE</div>
+            <div class="product-price-row">
+              <span class="product-price">₹999</span>
+              <button class="product-quick-btn">QUICK VIEW</button>
+            </div>
+          </div>
+        </div>
+        <div class="product-card reveal reveal-delay-1"
+          onclick="openProduct('void-graphic','VOID GRAPHIC TEE','₹1,199','Bold distressed graphics printed on a premium 260gsm cotton base. Urban expression at its finest.','https://images.unsplash.com/photo-1583743814966-8936f5b7be1a?w=600&q=80')">
+          <img src="https://images.unsplash.com/photo-1583743814966-8936f5b7be1a?w=600&q=80" alt="Void Graphic Tee"
+            loading="lazy">
+          <div class="product-overlay"></div>
+          <div class="product-info">
+            <div class="product-category">Graphic Tees</div>
+            <div class="product-sizes">
+              <span class="size-tag">S</span><span class="size-tag">M</span><span class="size-tag">L</span><span
+                class="size-tag">XL</span>
+            </div>
+            <div class="product-name">VOID GRAPHIC</div>
+            <div class="product-price-row">
+              <span class="product-price">₹1,199</span>
+              <button class="product-quick-btn">QUICK VIEW</button>
+            </div>
+          </div>
+        </div>
+        <div class="product-card reveal reveal-delay-2"
+          onclick="openProduct('mono-drop','MONO DROP TEE','₹899','Clean, minimal, powerful. The Mono Drop Tee is for those who speak in silence.','https://images.unsplash.com/photo-1596755094514-f87e34085b2c?w=600&q=80')">
+          <img src="https://images.unsplash.com/photo-1596755094514-f87e34085b2c?w=600&q=80" alt="Mono Drop"
+            loading="lazy">
+          <div class="product-overlay"></div>
+          <div class="product-info">
+            <div class="product-category">Minimal Collection</div>
+            <div class="product-sizes">
+              <span class="size-tag">XS</span><span class="size-tag">S</span><span class="size-tag">M</span><span
+                class="size-tag">L</span>
+            </div>
+            <div class="product-name">MONO DROP</div>
+            <div class="product-price-row">
+              <span class="product-price">₹899</span>
+              <button class="product-quick-btn">QUICK VIEW</button>
+            </div>
+          </div>
+        </div>
+        <div class="product-card reveal reveal-delay-3"
+          onclick="openProduct('urban-core','URBAN CORE TEE','₹1,099','The foundation piece of every fit. Raw edges, relaxed shoulder, maximum presence.','https://images.unsplash.com/photo-1503341504253-dff4815485f1?w=600&q=80')">
+          <img src="https://images.unsplash.com/photo-1503341504253-dff4815485f1?w=600&q=80" alt="Urban Core"
+            loading="lazy">
+          <div class="product-overlay"></div>
+          <div class="product-info">
+            <div class="product-category">New Arrivals</div>
+            <div class="product-sizes">
+              <span class="size-tag">S</span><span class="size-tag">M</span><span class="size-tag">L</span><span
+                class="size-tag">XL</span><span class="size-tag">XXL</span>
+            </div>
+            <div class="product-name">URBAN CORE</div>
+            <div class="product-price-row">
+              <span class="product-price">₹1,099</span>
+              <button class="product-quick-btn">QUICK VIEW</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- CAMPAIGN BANNER -->
+    <div class="campaign-banner">
+      <div class="campaign-text">
+        <div class="section-label reveal">The Movement</div>
+        <h2 class="section-title reveal" style="color:var(--black);">WEAR<br>YOUR<br>STORY.</h2>
+        <p class="campaign-body reveal">OUTFITO is not just a brand. It's a movement for those who refuse to blend in.
+          Every piece is designed for the ones who turn heads, not follow trends.</p>
+        <a href="#" onclick="navigateTo('about')" class="btn-primary reveal"
+          style="background:var(--black);color:var(--white);"><span>OUR STORY</span></a>
+      </div>
+      <div class="campaign-image reveal">
+        <img src="https://images.unsplash.com/photo-1529139574466-a303027c1d8b?w=600&q=80" alt="Campaign"
+          loading="lazy">
+      </div>
+    </div>
+
+    <!-- BRAND PHILOSOPHY -->
+    <div class="philosophy-section">
+      <p class="section-label reveal" style="justify-content:center;margin-bottom:40px;">Brand Philosophy</p>
+      <h2 class="philosophy-quote reveal">OUTFITO IS NOT JUST <em>CLOTHING.</em><br>IT'S YOUR <em>IDENTITY.</em></h2>
+      <p class="reveal"
+        style="font-family:'Space Mono',monospace;font-size:11px;letter-spacing:0.3em;color:var(--silver);text-transform:uppercase;">
+        EST. 2024 — INDIA</p>
+    </div>
+
+    <!-- REVIEWS -->
+    <section>
+      <div class="section-label reveal">Customer Reviews</div>
+      <h2 class="section-title reveal" style="margin-bottom:48px;">WHAT THEY<br>SAY.</h2>
+      <div class="reviews-grid">
+        <div class="review-card reveal">
+          <div class="review-stars">★★★★★</div>
+          <p class="review-text">"Quality is actually insane for this price. The Shadow Tee fits perfectly oversized and
+            the fabric is so heavy and premium. Already ordered 3 more."</p>
+          <div class="review-author">— Arjun S., Delhi</div>
+        </div>
+        <div class="review-card reveal reveal-delay-1">
+          <div class="review-stars">★★★★★</div>
+          <p class="review-text">"Got so many compliments in college. OUTFITO hits different — feels like a luxury brand
+            but actually affordable. The graphics are unique fr."</p>
+          <div class="review-author">— Priya K., Mumbai</div>
+        </div>
+        <div class="review-card reveal reveal-delay-2">
+          <div class="review-stars">★★★★★</div>
+          <p class="review-text">"Delivery was super fast and packaging was clean. The tee looks even better in person.
+            This is my go-to brand now no cap."</p>
+          <div class="review-author">— Rohan M., Bangalore</div>
+        </div>
+      </div>
+    </section>
+
+    <!-- NEWSLETTER -->
+    <div class="newsletter-section">
+      <p class="section-label reveal" style="justify-content:center;">Stay Connected</p>
+      <h2 class="section-title reveal" style="font-size:clamp(32px,5vw,64px);">GET EARLY ACCESS<br>TO NEW DROPS</h2>
+      <p class="reveal" style="font-size:14px;color:var(--silver);margin-top:8px;">No spam. Just exclusive drops, early
+        access and streetwear culture.</p>
+      <div class="newsletter-form reveal">
+        <input type="email" class="newsletter-input" placeholder="your@email.com">
+        <button class="newsletter-btn">JOIN</button>
+      </div>
+    </div>
+
+    <!-- FOOTER -->
+    <footer>
+      <div class="footer-top">
+        <div>
+          <div class="footer-brand-name">OUTFITO</div>
+          <p class="footer-brand-desc">Gen Z style made to stand out. Premium Indian streetwear for those who wear their
+            identity with confidence.</p>
+          <div class="footer-social">
+            <a href="https://instagram.com" target="_blank" class="social-icon">IG</a>
+            <a href="https://wa.me/918448908359" target="_blank" class="social-icon">WA</a>
+            <a href="https://pinterest.com" target="_blank" class="social-icon">PT</a>
+            <a href="https://youtube.com" target="_blank" class="social-icon">YT</a>
+            <a href="https://threads.net" target="_blank" class="social-icon">TH</a>
+          </div>
+        </div>
+        <div>
+          <div class="footer-col-title">Shop</div>
+          <ul class="footer-links">
+            <li><a href="#" onclick="navigateTo('shop')">All Products</a></li>
+            <li><a href="#">Oversized Tees</a></li>
+            <li><a href="#">Graphic Tees</a></li>
+            <li><a href="#">Minimal Collection</a></li>
+            <li><a href="#">New Arrivals</a></li>
+          </ul>
+        </div>
+        <div>
+          <div class="footer-col-title">Company</div>
+          <ul class="footer-links">
+            <li><a href="#" onclick="navigateTo('about')">About Us</a></li>
+            <li><a href="#" onclick="navigateTo('contact')">Contact</a></li>
+            <li><a href="#">FAQ</a></li>
+            <li><a href="#">Shipping & Returns</a></li>
+            <li><a href="#">Size Guide</a></li>
+          </ul>
+        </div>
+        <div>
+          <div class="footer-col-title">Legal</div>
+          <ul class="footer-links">
+            <li><a href="#">Privacy Policy</a></li>
+            <li><a href="#">Terms & Conditions</a></li>
+            <li><a href="#">Cookie Policy</a></li>
+          </ul>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <span class="footer-copy">© 2024 OUTFITO. ALL RIGHTS RESERVED.</span>
+        <span class="footer-copy">GEN Z STYLE. MADE TO STAND OUT.</span>
+      </div>
+    </footer>
+
+  </div>
+
+  <!-- ============ SHOP PAGE ============ -->
+  <div id="shop-page">
+    <div style="border-bottom:1px solid rgba(245,245,245,0.06);padding-bottom:40px;margin-bottom:0;">
+      <p class="section-label">Explore All</p>
+      <h1 class="section-title">THE<br>COLLECTION.</h1>
+    </div>
+    <div style="padding-top:48px;">
+      <div class="shop-filters">
+        <button class="filter-btn active" onclick="filterProducts('all',this)">ALL</button>
+        <button class="filter-btn" onclick="filterProducts('oversized',this)">OVERSIZED TEES</button>
+        <button class="filter-btn" onclick="filterProducts('graphic',this)">GRAPHIC TEES</button>
+        <button class="filter-btn" onclick="filterProducts('minimal',this)">MINIMAL</button>
+        <button class="filter-btn" onclick="filterProducts('new',this)">NEW ARRIVALS</button>
+      </div>
+      <div class="product-grid" id="shopGrid">
+        <div class="product-card" data-cat="oversized"
+          onclick="openProduct('shadow-tee','SHADOW OVERSIZED TEE','₹999','A heavyweight 280gsm oversized tee with a raw, lived-in edge. Washed in shadow black for that perfectly worn look.','https://images.unsplash.com/photo-1521572163474-6864f9cf17ab?w=600&q=80')">
+          <img src="https://images.unsplash.com/photo-1521572163474-6864f9cf17ab?w=600&q=80" alt="Shadow Tee"
+            loading="lazy">
+          <div class="product-overlay"></div>
+          <div class="product-info">
+            <div class="product-category">Oversized Tees</div>
+            <div class="product-sizes"><span class="size-tag">S</span><span class="size-tag">M</span><span
+                class="size-tag">L</span><span class="size-tag">XL</span></div>
+            <div class="product-name">SHADOW TEE</div>
+            <div class="product-price-row"><span class="product-price">₹999</span><button
+                class="product-quick-btn">QUICK VIEW</button></div>
+          </div>
+        </div>
+        <div class="product-card" data-cat="graphic"
+          onclick="openProduct('void-graphic','VOID GRAPHIC TEE','₹1,199','Bold distressed graphics printed on a premium 260gsm cotton base. Urban expression at its finest.','https://images.unsplash.com/photo-1583743814966-8936f5b7be1a?w=600&q=80')">
+          <img src="https://images.unsplash.com/photo-1583743814966-8936f5b7be1a?w=600&q=80" alt="Void Graphic"
+            loading="lazy">
+          <div class="product-overlay"></div>
+          <div class="product-info">
+            <div class="product-category">Graphic Tees</div>
+            <div class="product-sizes"><span class="size-tag">S</span><span class="size-tag">M</span><span
+                class="size-tag">L</span><span class="size-tag">XL</span></div>
+            <div class="product-name">VOID GRAPHIC</div>
+            <div class="product-price-row"><span class="product-price">₹1,199</span><button
+                class="product-quick-btn">QUICK VIEW</button></div>
+          </div>
+        </div>
+        <div class="product-card" data-cat="minimal"
+          onclick="openProduct('mono-drop','MONO DROP TEE','₹899','Clean, minimal, powerful. The Mono Drop Tee is for those who speak in silence.','https://images.unsplash.com/photo-1596755094514-f87e34085b2c?w=600&q=80')">
+          <img src="https://images.unsplash.com/photo-1596755094514-f87e34085b2c?w=600&q=80" alt="Mono Drop"
+            loading="lazy">
+          <div class="product-overlay"></div>
+          <div class="product-info">
+            <div class="product-category">Minimal Collection</div>
+            <div class="product-sizes"><span class="size-tag">XS</span><span class="size-tag">S</span><span
+                class="size-tag">M</span><span class="size-tag">L</span></div>
+            <div class="product-name">MONO DROP</div>
+            <div class="product-price-row"><span class="product-price">₹899</span><button
+                class="product-quick-btn">QUICK VIEW</button></div>
+          </div>
+        </div>
+        <div class="product-card" data-cat="new"
+          onclick="openProduct('urban-core','URBAN CORE TEE','₹1,099','The foundation piece of every fit. Raw edges, relaxed shoulder, maximum presence.','https://images.unsplash.com/photo-1503341504253-dff4815485f1?w=600&q=80')">
+          <img src="https://images.unsplash.com/photo-1503341504253-dff4815485f1?w=600&q=80" alt="Urban Core"
+            loading="lazy">
+          <div class="product-overlay"></div>
+          <div class="product-info">
+            <div class="product-category">New Arrivals</div>
+            <div class="product-sizes"><span class="size-tag">S</span><span class="size-tag">M</span><span
+                class="size-tag">L</span><span class="size-tag">XL</span><span class="size-tag">XXL</span></div>
+            <div class="product-name">URBAN CORE</div>
+            <div class="product-price-row"><span class="product-price">₹1,099</span><button
+                class="product-quick-btn">QUICK VIEW</button></div>
+          </div>
+        </div>
+        <div class="product-card" data-cat="graphic"
+          onclick="openProduct('dark-wave','DARK WAVE GRAPHIC','₹1,299','Abstract wave prints meet oversized comfort. Our most expressive graphic piece.','https://images.unsplash.com/photo-1618354691373-d851c5c3a990?w=600&q=80')">
+          <img src="https://images.unsplash.com/photo-1618354691373-d851c5c3a990?w=600&q=80" alt="Dark Wave"
+            loading="lazy">
+          <div class="product-overlay"></div>
+          <div class="product-info">
+            <div class="product-category">Graphic Tees</div>
+            <div class="product-sizes"><span class="size-tag">M</span><span class="size-tag">L</span><span
+                class="size-tag">XL</span></div>
+            <div class="product-name">DARK WAVE</div>
+            <div class="product-price-row"><span class="product-price">₹1,299</span><button
+                class="product-quick-btn">QUICK VIEW</button></div>
+          </div>
+        </div>
+        <div class="product-card" data-cat="oversized"
+          onclick="openProduct('ghost-drop','GHOST DROP TEE','₹1,099','Soft-washed mineral effect. Barely there, impossible to forget.','https://images.unsplash.com/photo-1556821840-3a63f15732ce?w=600&q=80')">
+          <img src="https://images.unsplash.com/photo-1556821840-3a63f15732ce?w=600&q=80" alt="Ghost Drop"
+            loading="lazy">
+          <div class="product-overlay"></div>
+          <div class="product-info">
+            <div class="product-category">Oversized Tees</div>
+            <div class="product-sizes"><span class="size-tag">S</span><span class="size-tag">M</span><span
+                class="size-tag">L</span><span class="size-tag">XL</span></div>
+            <div class="product-name">GHOST DROP</div>
+            <div class="product-price-row"><span class="product-price">₹1,099</span><button
+                class="product-quick-btn">QUICK VIEW</button></div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <footer style="margin-top:80px;">
+      <div class="footer-bottom">
+        <span class="footer-copy">© 2024 OUTFITO. ALL RIGHTS RESERVED.</span>
+        <span class="footer-copy">GEN Z STYLE. MADE TO STAND OUT.</span>
+      </div>
+    </footer>
+  </div>
+
+  <!-- ============ PRODUCT DETAIL PAGE ============ -->
+  <div id="product-page">
+    <div class="product-detail-grid">
+      <div class="product-gallery">
+        <div class="gallery-main">
+          <img src="" alt="Product" id="galleryMain">
+        </div>
+        <div class="gallery-thumbs">
+          <div class="gallery-thumb active"><img src="" alt="Thumb 1" id="galleryThumb1"></div>
+          <div class="gallery-thumb"><img src="https://images.unsplash.com/photo-1562157873-818bc0726f68?w=200&q=80"
+              alt="Thumb 2"
+              onclick="switchImage('https://images.unsplash.com/photo-1562157873-818bc0726f68?w=600&q=80',this)"></div>
+          <div class="gallery-thumb"><img src="https://images.unsplash.com/photo-1523381210434-271e8be1f52b?w=200&q=80"
+              alt="Thumb 3"
+              onclick="switchImage('https://images.unsplash.com/photo-1523381210434-271e8be1f52b?w=600&q=80',this)">
+          </div>
+        </div>
+      </div>
+      <div class="product-detail-info">
+        <p class="section-label" style="margin-bottom:12px;">OUTFITO ORIGINALS</p>
+        <h1 class="product-detail-name" id="pdpName">SHADOW OVERSIZED TEE</h1>
+        <div class="product-detail-price" id="pdpPrice">₹999</div>
+        <div class="size-selector">
+          <div class="size-selector-label">Select Size</div>
+          <div class="size-options">
+            <button class="size-option" onclick="selectSize(this,'XS')">XS</button>
+            <button class="size-option" onclick="selectSize(this,'S')">S</button>
+            <button class="size-option selected" onclick="selectSize(this,'M')">M</button>
+            <button class="size-option" onclick="selectSize(this,'L')">L</button>
+            <button class="size-option" onclick="selectSize(this,'XL')">XL</button>
+            <button class="size-option" onclick="selectSize(this,'XXL')">XXL</button>
+          </div>
+        </div>
+        <a class="whatsapp-order-btn" id="whatsappOrderBtn" href="#" target="_blank">
+          <svg viewBox="0 0 24 24" width="20" height="20" fill="white">
+            <path
+              d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z" />
+          </svg>
+          ORDER NOW ON WHATSAPP
+        </a>
+        <button class="btn-outline" style="width:100%;justify-content:center;display:flex;align-items:center;"
+          onclick="navigateTo('shop')"><span>← BACK TO SHOP</span></button>
+        <div class="product-description">
+          <div class="product-desc-title">About This Piece</div>
+          <p class="product-desc-text" id="pdpDesc">A heavyweight 280gsm oversized tee with a raw, lived-in edge.</p>
+          <div style="margin-top:24px;">
+            <div class="product-desc-title">Details</div>
+            <p class="product-desc-text">280gsm premium cotton · Oversized fit · Drop shoulders · Ribbed collar ·
+              Pre-washed finish · Made in India</p>
+          </div>
+          <div style="margin-top:24px;">
+            <div class="product-desc-title">Delivery</div>
+            <p class="product-desc-text">Ships in 2–5 business days across India. COD & UPI accepted.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ============ ABOUT PAGE ============ -->
+  <div id="about-page">
+    <div class="about-hero">
+      <div class="hero-bg"></div>
+      <div class="about-content">
+        <p class="section-label">Our Story</p>
+        <h1 class="about-big-text">WE ARE<br><em>OUTFITO.</em></h1>
+        <p class="about-body">Born from the streets and raised on identity. OUTFITO started with one idea: Indian Gen-Z
+          deserves premium streetwear that actually speaks their language. We're not chasing trends — we're setting
+          them.</p>
+      </div>
+    </div>
+    <div class="about-stats">
+      <div class="stat-card">
+        <div class="stat-number">2K+</div>
+        <div class="stat-label">Happy Customers</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-number">15+</div>
+        <div class="stat-label">Unique Designs</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-number">100%</div>
+        <div class="stat-label">Made In India</div>
+      </div>
+    </div>
+    <section style="max-width:800px;margin:0 auto;">
+      <p class="section-label">The Mission</p>
+      <h2 class="section-title" style="font-size:clamp(36px,5vw,64px);margin-bottom:32px;">MORE THAN<br>A TEE.</h2>
+      <p style="font-size:16px;line-height:1.9;color:var(--silver);margin-bottom:24px;">Every piece from OUTFITO is
+        crafted with intent. We use premium 280gsm fabrics, oversized silhouettes that actually flatter, and graphics
+        that say something. Not fast fashion. Not disposable.</p>
+      <p style="font-size:16px;line-height:1.9;color:var(--silver);">We believe in slow drops, high quality, and
+        building a community of people who wear their vibe unapologetically. When you wear OUTFITO, you're not just
+        wearing a brand — you're making a statement.</p>
+    </section>
+    <div class="philosophy-section" style="margin-top:80px;">
+      <h2 class="philosophy-quote">"MADE FOR THE <em>FEARLESS.</em><br>DESIGNED FOR THE <em>DIFFERENT.</em>"</h2>
+    </div>
+    <footer style="margin-top:0;">
+      <div class="footer-bottom">
+        <span class="footer-copy">© 2024 OUTFITO. ALL RIGHTS RESERVED.</span>
+        <a href="#" onclick="navigateTo('home')"
+          style="font-family:'Space Mono',monospace;font-size:10px;letter-spacing:0.15em;color:rgba(191,192,194,0.5);text-decoration:none;">←
+          BACK TO HOME</a>
+      </div>
+    </footer>
+  </div>
+
+  <!-- ============ CONTACT PAGE ============ -->
+  <div id="contact-page">
+    <p class="section-label">Get In Touch</p>
+    <h1 class="section-title" style="margin-bottom:60px;">LET'S<br>TALK.</h1>
+    <div class="contact-grid">
+      <div class="contact-form">
+        <div class="form-group">
+          <label class="form-label">Your Name</label>
+          <input type="text" class="form-input" placeholder="John Doe">
+        </div>
+        <div class="form-group">
+          <label class="form-label">Email Address</label>
+          <input type="email" class="form-input" placeholder="you@email.com">
+        </div>
+        <div class="form-group">
+          <label class="form-label">Subject</label>
+          <input type="text" class="form-input" placeholder="Order inquiry / Collab / Other">
+        </div>
+        <div class="form-group">
+          <label class="form-label">Message</label>
+          <textarea class="form-textarea" placeholder="Your message here..."></textarea>
+        </div>
+        <button class="btn-primary" style="width:100%;justify-content:center;"><span>SEND MESSAGE</span></button>
+      </div>
+      <div>
+        <div class="contact-info-block">
+          <div class="contact-info-title">OUTFITO</div>
+          <p class="contact-info-text">Have questions about an order, collab requests, or just want to say hi? Reach out
+            — we actually reply.</p>
+          <div class="contact-detail">
+            <span class="contact-detail-icon">WA</span>
+            <span class="contact-detail-text"><a href="https://wa.me/918448908359" target="_blank"
+                style="color:var(--white);text-decoration:none;">+91 99999 99999</a><br>Usually replies in under 30
+              mins</span>
+          </div>
+          <div class="contact-detail">
+            <span class="contact-detail-icon">IG</span>
+            <span class="contact-detail-text"><a href="https://instagram.com" target="_blank"
+                style="color:var(--white);text-decoration:none;">@outfito.in</a><br>DMs open for collab inquiries</span>
+          </div>
+          <div class="contact-detail">
+            <span class="contact-detail-icon">MAIL</span>
+            <span class="contact-detail-text">hello@outfito.in</span>
+          </div>
+        </div>
+        <a href="https://wa.me/918448908359?text=Hi%20OUTFITO%2C%20I%20want%20to%20place%20an%20order!" target="_blank"
+          class="whatsapp-order-btn" style="width:auto;display:inline-flex;">
+          <svg viewBox="0 0 24 24" width="18" height="18" fill="white">
+            <path
+              d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z" />
+          </svg>
+          CHAT WITH US
+        </a>
+      </div>
+    </div>
+    <footer style="margin-top:80px;">
+      <div class="footer-bottom">
+        <span class="footer-copy">© 2024 OUTFITO. ALL RIGHTS RESERVED.</span>
+        <a href="#" onclick="navigateTo('home')"
+          style="font-family:'Space Mono',monospace;font-size:10px;letter-spacing:0.15em;color:rgba(191,192,194,0.5);text-decoration:none;">←
+          BACK TO HOME</a>
+      </div>
+    </footer>
+  </div>
+
+  <script src="app.js"></script>
+</body>
+
+</html>
