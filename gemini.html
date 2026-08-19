@@ -1,0 +1,2631 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>OUTFITO — Gen Z Style. Made To Stand Out.</title>
+    <meta name="description"
+        content="OUTFITO - Premium Gen-Z Streetwear. Oversized tees, graphic drops, minimal collections. Wear your vibe.">
+
+    <link rel="icon" type="image/png" href="https://i.ibb.co/6R2vPZ0/outfito-logo.png">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Syne:wght@400;500;600;700;800&family=Space+Mono:wght@400;700&display=swap"
+        rel="stylesheet">
+
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+
+    <style>
+        :root {
+            --black: #050505;
+            --charcoal: #111111;
+            --white: #F5F5F5;
+            --silver: #BFC0C2;
+            --glow-blue: #4FC3F7;
+            --glow-purple: #CE93D8;
+            --cream: #E8E0D0;
+            --accent: #F5F5F5;
+        }
+
+        *,
+        *::before,
+        *::after {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+            background: var(--black);
+        }
+
+        body {
+            background: var(--black);
+            color: var(--white);
+            font-family: 'Syne', sans-serif;
+            overflow-x: hidden;
+            cursor: none;
+        }
+
+        /* CUSTOM HIGH-END DESIGN CURSOR MOUSE ENGINE */
+        .cursor {
+            width: 12px;
+            height: 12px;
+            background: var(--white);
+            border-radius: 50%;
+            position: fixed;
+            top: 0;
+            left: 0;
+            pointer-events: none;
+            z-index: 9999;
+            mix-blend-mode: difference;
+            transform: translate(-50%, -50%);
+            will-change: transform;
+        }
+
+        .cursor-follower {
+            width: 40px;
+            height: 40px;
+            border: 1px solid rgba(245, 245, 245, 0.4);
+            border-radius: 50%;
+            position: fixed;
+            top: 0;
+            left: 0;
+            pointer-events: none;
+            z-index: 9998;
+            transform: translate(-50%, -50%);
+            will-change: transform;
+            transition: transform 0.08s cubic-bezier(0.25, 0.46, 0.45, 0.94), border-color 0.3s ease;
+        }
+
+        /* GRAIN NOISE COMPOSITING OVERLAY */
+        .noise-overlay {
+            position: fixed;
+            inset: 0;
+            z-index: 9990;
+            pointer-events: none;
+            opacity: 0.035;
+            background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)'/%3E%3C/svg%3E");
+        }
+
+        /* INTRO PRELOADER FRAME SYSTEM */
+        #loader {
+            position: fixed;
+            inset: 0;
+            background: var(--black);
+            z-index: 9995;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-direction: column;
+            gap: 24px;
+        }
+
+        .loader-logo {
+            font-family: 'Bebas Neue', cursive;
+            font-size: clamp(48px, 10vw, 120px);
+            letter-spacing: 0.3em;
+            color: var(--white);
+            opacity: 0;
+            transform: translateY(30px);
+        }
+
+        .loader-bar {
+            width: 200px;
+            height: 1px;
+            background: rgba(245, 245, 245, 0.1);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .loader-bar-fill {
+            height: 100%;
+            background: var(--white);
+            width: 0%;
+        }
+
+        .loader-tagline {
+            font-family: 'Space Mono', monospace;
+            font-size: 11px;
+            letter-spacing: 0.4em;
+            color: var(--silver);
+            opacity: 0;
+            text-transform: uppercase;
+        }
+
+        /* STICKY GLASS NAVIGATION PATTERNS */
+        nav#navbar {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            z-index: 100;
+            padding: 24px 48px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            transition: padding 0.4s cubic-bezier(0.25, 1, 0.5, 1), background-color 0.4s ease, border-color 0.4s ease;
+            border-bottom: 1px solid transparent;
+        }
+
+        nav#navbar.scrolled {
+            background: rgba(5, 5, 5, 0.85);
+            backdrop-filter: blur(24px);
+            -webkit-backdrop-filter: blur(24px);
+            border-bottom: 1px solid rgba(245, 245, 245, 0.06);
+            padding: 16px 48px;
+        }
+
+        .nav-logo {
+            font-family: 'Bebas Neue', cursive;
+            font-size: 28px;
+            letter-spacing: 0.25em;
+            color: var(--white);
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .nav-logo-icon {
+            width: 32px;
+            height: 32px;
+            border: 1.5px solid var(--white);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 13px;
+            font-weight: 700;
+            letter-spacing: -0.05em;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 40px;
+            list-style: none;
+        }
+
+        .nav-links a {
+            font-family: 'Space Mono', monospace;
+            font-size: 11px;
+            letter-spacing: 0.2em;
+            text-transform: uppercase;
+            color: var(--silver);
+            text-decoration: none;
+            position: relative;
+            transition: color 0.3s ease;
+        }
+
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            bottom: -4px;
+            left: 0;
+            width: 0;
+            height: 1px;
+            background: var(--white);
+            transition: width 0.3s ease;
+        }
+
+        .nav-links a:hover {
+            color: var(--white);
+        }
+
+        .nav-links a:hover::after {
+            width: 100%;
+        }
+
+        .nav-right {
+            display: flex;
+            align-items: center;
+            gap: 24px;
+        }
+
+        .nav-social a {
+            font-family: 'Space Mono', monospace;
+            color: var(--silver);
+            font-size: 11px;
+            letter-spacing: 0.15em;
+            text-decoration: none;
+        }
+
+        .hamburger {
+            width: 32px;
+            height: 20px;
+            display: none;
+            flex-direction: column;
+            justify-content: space-between;
+            cursor: pointer;
+            z-index: 200;
+        }
+
+        .hamburger span {
+            display: block;
+            height: 1px;
+            background: var(--white);
+            transition: transform 0.4s cubic-bezier(0.23, 1, 0.32, 1), opacity 0.3s ease;
+        }
+
+        .hamburger.open span:nth-child(1) {
+            transform: translateY(9.5px) rotate(45deg);
+        }
+
+        .hamburger.open span:nth-child(2) {
+            opacity: 0;
+            transform: scaleX(0);
+        }
+
+        .hamburger.open span:nth-child(3) {
+            transform: translateY(-9.5px) rotate(-45deg);
+        }
+
+        /* MOBILE INTERFACE DROPDOWN LAYER */
+        .mobile-menu {
+            position: fixed;
+            inset: 0;
+            background: var(--black);
+            z-index: 150;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            gap: 32px;
+            transform: translateX(100%);
+            transition: transform 0.6s cubic-bezier(0.23, 1, 0.32, 1);
+        }
+
+        .mobile-menu.open {
+            transform: translateX(0);
+        }
+
+        .mobile-menu a {
+            font-family: 'Bebas Neue', cursive;
+            font-size: clamp(36px, 8vw, 64px);
+            letter-spacing: 0.12em;
+            color: var(--white);
+            text-decoration: none;
+            opacity: 0;
+            transform: translateY(30px);
+        }
+
+        .mobile-menu.open a {
+            animation: menuItemIn 0.5s cubic-bezier(0.25, 1, 0.5, 1) forwards;
+        }
+
+        .mobile-menu.open a:nth-child(1) {
+            animation-delay: 0.1s;
+        }
+
+        .mobile-menu.open a:nth-child(2) {
+            animation-delay: 0.15s;
+        }
+
+        .mobile-menu.open a:nth-child(3) {
+            animation-delay: 0.2s;
+        }
+
+        .mobile-menu.open a:nth-child(4) {
+            animation-delay: 0.25s;
+        }
+
+        .mobile-menu.open a:nth-child(5) {
+            animation-delay: 0.3s;
+        }
+
+        .mobile-menu.open a:nth-child(6) {
+            animation-delay: 0.35s;
+        }
+
+        .mobile-menu.open a:nth-child(7) {
+            animation-delay: 0.4s;
+        }
+
+        @keyframes menuItemIn {
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* KINETIC HERO COMPONENT SYSTEM */
+        #hero {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            position: relative;
+            overflow: hidden;
+            padding: 120px 48px 80px;
+        }
+
+        .hero-bg {
+            position: absolute;
+            inset: 0;
+            background: radial-gradient(ellipse 70% 60% at 75% 50%, rgba(79, 195, 247, 0.05) 0%, transparent 60%),
+                radial-gradient(ellipse 50% 70% at 20% 80%, rgba(206, 147, 216, 0.04) 0%, transparent 50%);
+        }
+
+        .hero-grid-lines {
+            position: absolute;
+            inset: 0;
+            background-image: linear-gradient(rgba(245, 245, 245, 0.015) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(245, 245, 245, 0.015) 1px, transparent 1px);
+            background-size: 80px 80px;
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 2;
+            width: 100%;
+            display: grid;
+            grid-template-columns: 1.1fr 0.9fr;
+            gap: 40px;
+            align-items: center;
+        }
+
+        .hero-eyebrow {
+            font-family: 'Space Mono', monospace;
+            font-size: 11px;
+            letter-spacing: 0.4em;
+            color: var(--silver);
+            text-transform: uppercase;
+            margin-bottom: 24px;
+            opacity: 0;
+            transform: translateY(20px);
+        }
+
+        .hero-title {
+            font-family: 'Bebas Neue', cursive;
+            font-size: clamp(54px, 8.5vw, 130px);
+            line-height: 0.92;
+            letter-spacing: 0.02em;
+            color: var(--white);
+            margin-bottom: 32px;
+        }
+
+        .hero-title .line {
+            display: block;
+            overflow: hidden;
+        }
+
+        .hero-title .line span {
+            display: block;
+            transform: translateY(100%);
+        }
+
+        .hero-desc {
+            font-size: 15px;
+            line-height: 1.7;
+            color: var(--silver);
+            max-width: 440px;
+            margin-bottom: 48px;
+            opacity: 0;
+            transform: translateY(20px);
+        }
+
+        .hero-buttons {
+            display: flex;
+            gap: 16px;
+            flex-wrap: wrap;
+            opacity: 0;
+            transform: translateY(20px);
+        }
+
+        /* HIGH CONTENT TEXTURE BUTTON INTERFACE ELEMENTS */
+        .btn-primary {
+            padding: 16px 40px;
+            background: var(--white);
+            color: var(--black);
+            font-family: 'Space Mono', monospace;
+            font-size: 11px;
+            letter-spacing: 0.25em;
+            text-transform: uppercase;
+            text-decoration: none;
+            border: none;
+            cursor: none;
+            position: relative;
+            overflow: hidden;
+            transition: transform 0.3s cubic-bezier(0.25, 1, 0.5, 1), color 0.3s ease;
+            display: inline-block;
+        }
+
+        .btn-primary::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: #000;
+            transform: translateY(100%);
+            transition: transform 0.4s cubic-bezier(0.23, 1, 0.32, 1);
+        }
+
+        .btn-primary:hover {
+            color: var(--white);
+            transform: translateY(-2px);
+        }
+
+        .btn-primary:hover::before {
+            transform: translateY(0);
+        }
+
+        .btn-primary span {
+            position: relative;
+            z-index: 1;
+        }
+
+        .btn-outline {
+            padding: 16px 40px;
+            background: transparent;
+            color: var(--white);
+            font-family: 'Space Mono', monospace;
+            font-size: 11px;
+            letter-spacing: 0.25em;
+            text-transform: uppercase;
+            text-decoration: none;
+            border: 1px solid rgba(245, 245, 245, 0.2);
+            cursor: none;
+            position: relative;
+            overflow: hidden;
+            transition: border-color 0.3s ease, transform 0.3s cubic-bezier(0.25, 1, 0.5, 1);
+            display: inline-block;
+        }
+
+        .btn-outline::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: rgba(245, 245, 245, 0.05);
+            transform: translateX(-100%);
+            transition: transform 0.4s cubic-bezier(0.23, 1, 0.32, 1);
+        }
+
+        .btn-outline:hover {
+            border-color: var(--white);
+            transform: translateY(-2px);
+        }
+
+        .btn-outline:hover::before {
+            transform: translateX(0);
+        }
+
+        .btn-outline span {
+            position: relative;
+            z-index: 1;
+        }
+
+        /* CINEMATIC FLOATING HERO HERO RIGHT MEDIA EMBED CARD */
+        .hero-right {
+            position: relative;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            height: 580px;
+        }
+
+        .hero-product-card {
+            position: relative;
+            width: 340px;
+            height: 440px;
+            background: var(--charcoal);
+            border: 1px solid rgba(245, 245, 245, 0.08);
+            overflow: hidden;
+            animation: floatCard 6s ease-in-out infinite;
+            cursor: none;
+        }
+
+        @keyframes floatCard {
+
+            0%,
+            100% {
+                transform: translateY(0px) rotate(-1.5deg);
+            }
+
+            50% {
+                transform: translateY(-16px) rotate(-1.5deg);
+            }
+        }
+
+        .hero-product-card::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(135deg, rgba(79, 195, 247, 0.06), transparent 60%);
+            z-index: 1;
+        }
+
+        .hero-product-img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            filter: grayscale(10%);
+            transition: transform 0.8s cubic-bezier(0.25, 1, 0.5, 1);
+        }
+
+        .hero-product-card:hover .hero-product-img {
+            transform: scale(1.05);
+        }
+
+        .hero-product-tag {
+            position: absolute;
+            bottom: 20px;
+            left: 20px;
+            right: 20px;
+            background: rgba(5, 5, 5, 0.85);
+            backdrop-filter: blur(12px);
+            border: 1px solid rgba(245, 245, 245, 0.1);
+            padding: 14px 18px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            z-index: 2;
+        }
+
+        .hero-product-name {
+            font-family: 'Space Mono', monospace;
+            font-size: 10px;
+            letter-spacing: 0.15em;
+            color: var(--white);
+        }
+
+        .hero-product-price {
+            font-family: 'Bebas Neue', cursive;
+            font-size: 20px;
+            letter-spacing: 0.05em;
+            color: var(--white);
+        }
+
+        .hero-card-mini {
+            position: absolute;
+            width: 190px;
+            background: rgba(17, 17, 17, 0.95);
+            backdrop-filter: blur(20px);
+            border: 1px solid rgba(245, 245, 245, 0.08);
+            padding: 16px;
+            z-index: 3;
+        }
+
+        .hero-card-mini-1 {
+            top: 50px;
+            right: -10px;
+            animation: floatMini1 5s ease-in-out infinite;
+        }
+
+        .hero-card-mini-2 {
+            bottom: 60px;
+            left: -20px;
+            animation: floatMini2 7s ease-in-out infinite;
+        }
+
+        @keyframes floatMini1 {
+
+            0%,
+            100% {
+                transform: translateY(0px);
+            }
+
+            50% {
+                transform: translateY(-10px);
+            }
+        }
+
+        @keyframes floatMini2 {
+
+            0%,
+            100% {
+                transform: translateY(0px);
+            }
+
+            50% {
+                transform: translateY(12px);
+            }
+        }
+
+        .mini-card-label {
+            font-family: 'Space Mono', monospace;
+            font-size: 9px;
+            letter-spacing: 0.2em;
+            color: var(--silver);
+            text-transform: uppercase;
+            margin-bottom: 4px;
+        }
+
+        .mini-card-value {
+            font-family: 'Bebas Neue', cursive;
+            font-size: 24px;
+            letter-spacing: 0.05em;
+            color: var(--white);
+            line-height: 1;
+        }
+
+        .mini-card-dot {
+            width: 6px;
+            height: 6px;
+            background: #25D366;
+            border-radius: 50%;
+            display: inline-block;
+            margin-right: 6px;
+            animation: pulse 2s infinite;
+        }
+
+        @keyframes pulse {
+
+            0%,
+            100% {
+                opacity: 1;
+            }
+
+            50% {
+                opacity: 0.3;
+            }
+        }
+
+        /* HORIZONTAL SCROLLER TICKER TEXT */
+        .marquee-section {
+            border-top: 1px solid rgba(245, 245, 245, 0.08);
+            border-bottom: 1px solid rgba(245, 245, 245, 0.08);
+            padding: 24px 0;
+            overflow: hidden;
+            background: var(--charcoal);
+        }
+
+        .marquee-track {
+            display: flex;
+            gap: 40px;
+            animation: marqueeAnimation 28s linear infinite;
+            white-space: nowrap;
+        }
+
+        @keyframes marqueeAnimation {
+            from {
+                transform: translateX(0);
+            }
+
+            to {
+                transform: translateX(-50%);
+            }
+        }
+
+        .marquee-item {
+            font-family: 'Bebas Neue', cursive;
+            font-size: 20px;
+            letter-spacing: 0.25em;
+            color: var(--silver);
+            text-transform: uppercase;
+            display: flex;
+            align-items: center;
+            gap: 40px;
+        }
+
+        .marquee-dot {
+            width: 6px;
+            height: 6px;
+            background: var(--white);
+            border-radius: 50%;
+            opacity: 0.3;
+        }
+
+        /* GLOBAL STRUCTURAL STRUCT COMPONENT VIEWPORTS */
+        section {
+            padding: 120px 48px;
+        }
+
+        .section-label {
+            font-family: 'Space Mono', monospace;
+            font-size: 10px;
+            letter-spacing: 0.4em;
+            color: var(--silver);
+            text-transform: uppercase;
+            margin-bottom: 20px;
+            display: flex;
+            align-items: center;
+            gap: 16px;
+        }
+
+        .section-label::before {
+            content: '';
+            width: 32px;
+            height: 1px;
+            background: var(--silver);
+        }
+
+        .section-title {
+            font-family: 'Bebas Neue', cursive;
+            font-size: clamp(44px, 6.5vw, 88px);
+            line-height: 0.95;
+            letter-spacing: 0.02em;
+            color: var(--white);
+        }
+
+        /* CENTRALIZED INJECTOR PRODUCT GRID INTERFACES */
+        .product-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            gap: 24px;
+        }
+
+        .product-card {
+            position: relative;
+            overflow: hidden;
+            background: var(--charcoal);
+            aspect-ratio: 3/4;
+            cursor: none;
+            border: 1px solid rgba(255, 255, 255, 0.02);
+        }
+
+        .product-card img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.8s cubic-bezier(0.16, 1, 0.3, 1), filter 0.4s ease;
+            filter: grayscale(15%);
+        }
+
+        .product-card:hover img {
+            transform: scale(1.06);
+            filter: grayscale(0%);
+        }
+
+        .product-overlay {
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(to top, rgba(5, 5, 5, 0.95) 0%, rgba(5, 5, 5, 0.3) 50%, transparent 100%);
+            opacity: 0.9;
+            transition: opacity 0.4s ease;
+        }
+
+        .product-info {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            padding: 24px;
+            transform: translateY(0px);
+            transition: transform 0.4s cubic-bezier(0.25, 1, 0.5, 1);
+            z-index: 2;
+        }
+
+        .product-category {
+            font-family: 'Space Mono', monospace;
+            font-size: 9px;
+            letter-spacing: 0.25em;
+            color: var(--silver);
+            text-transform: uppercase;
+            margin-bottom: 6px;
+        }
+
+        .product-name {
+            font-family: 'Bebas Neue', cursive;
+            font-size: 28px;
+            letter-spacing: 0.04em;
+            color: var(--white);
+            margin-bottom: 10px;
+            line-height: 1.1;
+        }
+
+        .product-price-row {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .product-price {
+            font-family: 'Space Mono', monospace;
+            font-size: 13px;
+            color: var(--white);
+            font-weight: 700;
+        }
+
+        .product-quick-btn {
+            padding: 8px 16px;
+            background: var(--white);
+            color: var(--black);
+            font-family: 'Space Mono', monospace;
+            font-size: 9px;
+            letter-spacing: 0.15em;
+            text-transform: uppercase;
+            border: none;
+            cursor: none;
+            opacity: 0;
+            transform: translateY(10px);
+            transition: opacity 0.3s ease, transform 0.3s cubic-bezier(0.25, 1, 0.5, 1), background-color 0.2s ease;
+            font-weight: bold;
+        }
+
+        .product-card:hover .product-quick-btn {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .product-quick-btn:hover {
+            background: var(--silver);
+        }
+
+        .product-sizes {
+            display: flex;
+            gap: 4px;
+            margin-bottom: 12px;
+            opacity: 0.6;
+            transition: opacity 0.3s ease;
+        }
+
+        .product-card:hover .product-sizes {
+            opacity: 1;
+        }
+
+        .size-tag {
+            padding: 2px 6px;
+            border: 1px solid rgba(245, 245, 245, 0.15);
+            font-family: 'Space Mono', monospace;
+            font-size: 8px;
+            color: var(--silver);
+            background: rgba(0, 0, 0, 0.3);
+        }
+
+        /* CAMPAIGN EDITORIAL STRUCT CONTAINER */
+        .campaign-banner {
+            background: var(--white);
+            padding: 120px 48px;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 80px;
+            align-items: center;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .campaign-text .section-label {
+            color: rgba(5, 5, 5, 0.6);
+        }
+
+        .campaign-text .section-label::before {
+            background: rgba(5, 5, 5, 0.4);
+        }
+
+        .campaign-text .section-title {
+            color: var(--black);
+        }
+
+        .campaign-body {
+            font-size: 15px;
+            line-height: 1.8;
+            color: rgba(5, 5, 5, 0.6);
+            margin-bottom: 40px;
+        }
+
+        .campaign-image {
+            aspect-ratio: 4/5;
+            background: var(--charcoal);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .campaign-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        /* ATMOSPHERIC PHILOSOPHY LAYER */
+        .philosophy-section {
+            background: var(--charcoal);
+            text-align: center;
+            padding: 160px 48px;
+            position: relative;
+            overflow: hidden;
+            border-top: 1px solid rgba(245, 245, 245, 0.04);
+        }
+
+        .philosophy-section::before {
+            content: 'OUTFITO';
+            position: absolute;
+            font-family: 'Bebas Neue', cursive;
+            font-size: clamp(100px, 22vw, 320px);
+            letter-spacing: 0.05em;
+            color: transparent;
+            -webkit-text-stroke: 1px rgba(245, 245, 245, 0.025);
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            white-space: nowrap;
+            pointer-events: none;
+            z-index: 0;
+        }
+
+        .philosophy-quote {
+            font-family: 'Bebas Neue', cursive;
+            font-size: clamp(34px, 5.5vw, 76px);
+            line-height: 1.1;
+            letter-spacing: 0.02em;
+            color: var(--white);
+            max-width: 1000px;
+            margin: 0 auto 32px;
+            position: relative;
+            z-index: 1;
+        }
+
+        .philosophy-quote em {
+            font-style: normal;
+            color: transparent;
+            -webkit-text-stroke: 1px var(--white);
+        }
+
+        /* CUSTOMER RATING LAYOUT TIERS */
+        .reviews-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 24px;
+            margin-top: 48px;
+        }
+
+        .review-card {
+            background: var(--charcoal);
+            padding: 40px;
+            border: 1px solid rgba(245, 245, 245, 0.04);
+            transition: border-color 0.3s ease, background-color 0.3s ease;
+        }
+
+        .review-card:hover {
+            border-color: rgba(245, 245, 245, 0.12);
+            background: #161616;
+        }
+
+        .review-stars {
+            font-size: 13px;
+            margin-bottom: 24px;
+            letter-spacing: 3px;
+        }
+
+        .review-text {
+            font-size: 14px;
+            line-height: 1.8;
+            color: var(--silver);
+            margin-bottom: 24px;
+        }
+
+        .review-author {
+            font-family: 'Space Mono', monospace;
+            font-size: 10px;
+            letter-spacing: 0.15em;
+            color: var(--white);
+            text-transform: uppercase;
+        }
+
+        /* FOOTER ARCHITECTURE FRAMEWORKS */
+        footer {
+            background: #090909;
+            border-top: 1px solid rgba(245, 245, 245, 0.06);
+            padding: 80px 48px 40px;
+        }
+
+        .footer-top {
+            display: grid;
+            grid-template-columns: 1.8fr 1fr 1fr 1fr;
+            gap: 48px;
+            margin-bottom: 60px;
+        }
+
+        .footer-brand-name {
+            font-family: 'Bebas Neue', cursive;
+            font-size: 48px;
+            letter-spacing: 0.15em;
+            color: var(--white);
+            margin-bottom: 16px;
+        }
+
+        .footer-brand-desc {
+            font-size: 13px;
+            line-height: 1.7;
+            color: var(--silver);
+            max-width: 320px;
+            margin-bottom: 32px;
+        }
+
+        .footer-social {
+            display: flex;
+            gap: 12px;
+        }
+
+        .social-icon {
+            width: 40px;
+            height: 40px;
+            border: 1px solid rgba(245, 245, 245, 0.1);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-decoration: none;
+            color: var(--silver);
+            transition: all 0.3s cubic-bezier(0.25, 1, 0.5, 1);
+            font-family: 'Space Mono', monospace;
+            font-size: 10px;
+            background: rgba(255, 255, 255, 0.01);
+        }
+
+        .social-icon:hover {
+            border-color: var(--white);
+            color: var(--white);
+            background: rgba(245, 245, 245, 0.06);
+            transform: translateY(-2px);
+        }
+
+        .footer-col-title {
+            font-family: 'Space Mono', monospace;
+            font-size: 10px;
+            letter-spacing: 0.25em;
+            color: var(--white);
+            text-transform: uppercase;
+            margin-bottom: 24px;
+            font-weight: 700;
+        }
+
+        .footer-links {
+            list-style: none;
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+        }
+
+        .footer-links a {
+            font-size: 13px;
+            color: var(--silver);
+            text-decoration: none;
+            transition: color 0.2s ease;
+        }
+
+        .footer-links a:hover {
+            color: var(--white);
+        }
+
+        .footer-bottom {
+            border-top: 1px solid rgba(245, 245, 245, 0.06);
+            padding-top: 32px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .footer-copy {
+            font-family: 'Space Mono', monospace;
+            font-size: 10px;
+            letter-spacing: 0.1em;
+            color: rgba(191, 192, 194, 0.4);
+        }
+
+        /* FIXED PERSISTENT FLOATING WHATSAPP SYSTEM ANCHOR */
+        .whatsapp-float {
+            position: fixed;
+            bottom: 32px;
+            right: 32px;
+            z-index: 500;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .whatsapp-btn {
+            width: 56px;
+            height: 56px;
+            background: #25D366;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-decoration: none;
+            box-shadow: 0 8px 24px rgba(37, 211, 102, 0.3);
+            animation: whatsappPulse 2.5s infinite;
+            transition: transform 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+        }
+
+        .whatsapp-btn:hover {
+            transform: scale(1.1);
+        }
+
+        .whatsapp-btn svg {
+            width: 26px;
+            height: 26px;
+            fill: white;
+        }
+
+        @keyframes whatsappPulse {
+            0% {
+                box-shadow: 0 0 0 0 rgba(37, 211, 102, 0.5);
+            }
+
+            70% {
+                box-shadow: 0 0 0 16px rgba(37, 211, 102, 0);
+            }
+
+            100% {
+                box-shadow: 0 0 0 0 rgba(37, 211, 102, 0);
+            }
+        }
+
+        .whatsapp-label {
+            background: rgba(17, 17, 17, 0.95);
+            backdrop-filter: blur(12px);
+            border: 1px solid rgba(245, 245, 245, 0.1);
+            padding: 8px 16px;
+            font-family: 'Space Mono', monospace;
+            font-size: 10px;
+            letter-spacing: 0.15em;
+            color: var(--white);
+            text-transform: uppercase;
+            opacity: 0;
+            transform: translateX(10px);
+            transition: opacity 0.3s ease, transform 0.3s ease;
+            white-space: nowrap;
+            pointer-events: none;
+        }
+
+        .whatsapp-float:hover .whatsapp-label {
+            opacity: 1;
+            transform: translateX(0);
+        }
+
+        /* PROGRESS ROUTING TOP LOADING GRAPHICS BAR */
+        .scroll-progress {
+            position: fixed;
+            top: 0;
+            left: 0;
+            height: 2px;
+            background: var(--white);
+            z-index: 9999;
+            width: 0%;
+        }
+
+        /* CONTEXT CORE STATES VIA PAGE SINGLE ENGINE SWITCHER */
+        .page-context {
+            display: none;
+            padding: 120px 48px 80px;
+        }
+
+        .page-context.active {
+            display: block;
+        }
+
+        #home-page.page-context {
+            padding: 0;
+        }
+
+        /* PRODUCT DETAILS ARCHITECTURE METRIC PACKETS (PDP) */
+        .product-detail-grid {
+            display: grid;
+            grid-template-columns: 1.1fr 0.9fr;
+            gap: 64px;
+            align-items: start;
+        }
+
+        .gallery-main {
+            aspect-ratio: 3/4;
+            background: var(--charcoal);
+            overflow: hidden;
+            margin-bottom: 16px;
+            border: 1px solid rgba(255, 255, 255, 0.02);
+        }
+
+        .gallery-main img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .gallery-thumbs {
+            display: flex;
+            gap: 12px;
+        }
+
+        .gallery-thumb {
+            width: 80px;
+            aspect-ratio: 3/4;
+            background: var(--charcoal);
+            overflow: hidden;
+            cursor: none;
+            border: 1px solid rgba(245, 245, 245, 0.1);
+            transition: border-color 0.3s ease, opacity 0.3s ease;
+            opacity: 0.5;
+        }
+
+        .gallery-thumb.active,
+        .gallery-thumb:hover {
+            border-color: var(--white);
+            opacity: 1;
+        }
+
+        .gallery-thumb img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .product-detail-name {
+            font-family: 'Bebas Neue', cursive;
+            font-size: clamp(36px, 5vw, 68px);
+            letter-spacing: 0.02em;
+            color: var(--white);
+            line-height: 1;
+            margin-bottom: 12px;
+        }
+
+        .product-detail-price {
+            font-family: 'Space Mono', monospace;
+            font-size: 22px;
+            color: var(--white);
+            margin-bottom: 32px;
+            font-weight: 700;
+        }
+
+        .size-selector {
+            margin-bottom: 36px;
+        }
+
+        .size-selector-label {
+            font-family: 'Space Mono', monospace;
+            font-size: 10px;
+            letter-spacing: 0.25em;
+            color: var(--silver);
+            text-transform: uppercase;
+            margin-bottom: 14px;
+        }
+
+        .size-options {
+            display: flex;
+            gap: 8px;
+            flex-wrap: wrap;
+        }
+
+        .size-option {
+            width: 52px;
+            height: 52px;
+            border: 1px solid rgba(245, 245, 245, 0.15);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-family: 'Space Mono', monospace;
+            font-size: 11px;
+            color: var(--silver);
+            cursor: none;
+            transition: all 0.2s cubic-bezier(0.25, 1, 0.5, 1);
+            background: transparent;
+        }
+
+        .size-option:hover,
+        .size-option.selected {
+            border-color: var(--white);
+            color: var(--white);
+            background: rgba(245, 245, 245, 0.06);
+        }
+
+        .whatsapp-order-btn {
+            width: 100%;
+            padding: 20px;
+            background: #25D366;
+            color: white;
+            font-family: 'Space Mono', monospace;
+            font-size: 12px;
+            letter-spacing: 0.25em;
+            text-transform: uppercase;
+            border: none;
+            cursor: none;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 12px;
+            margin-bottom: 16px;
+            transition: background-color 0.3s ease, transform 0.2s ease;
+            text-decoration: none;
+            font-weight: 700;
+            box-shadow: 0 4px 16px rgba(37, 211, 102, 0.15);
+        }
+
+        .whatsapp-order-btn:hover {
+            background: #1fb754;
+            transform: translateY(-2px);
+        }
+
+        .product-description {
+            border-top: 1px solid rgba(245, 245, 245, 0.08);
+            padding-top: 32px;
+            margin-top: 40px;
+        }
+
+        .product-desc-title {
+            font-family: 'Space Mono', monospace;
+            font-size: 10px;
+            letter-spacing: 0.25em;
+            color: var(--white);
+            text-transform: uppercase;
+            margin-bottom: 12px;
+            font-weight: bold;
+        }
+
+        .product-desc-text {
+            font-size: 14px;
+            line-height: 1.75;
+            color: var(--silver);
+            font-weight: 400;
+        }
+
+        /* REUSABLE SELECTION FILTER BUTTONS FOR SHOP METRICS */
+        .shop-filters {
+            display: flex;
+            gap: 8px;
+        }
+
+        .filter-btn {
+            padding: 10px 24px;
+            background: transparent;
+            border: 1px solid rgba(245, 245, 245, 0.12);
+            color: var(--silver);
+            font-family: 'Space Mono', monospace;
+            font-size: 10px;
+            letter-spacing: 0.15em;
+            text-transform: uppercase;
+            cursor: none;
+            transition: all 0.3s ease;
+        }
+
+        .filter-btn:hover,
+        .filter-btn.active {
+            border-color: var(--white);
+            color: var(--white);
+            background: rgba(245, 245, 245, 0.05);
+        }
+
+        /* ABOUT BRAND ARCHITECTURE HERO SPECIFICS */
+        .about-hero {
+            min-height: 85vh;
+            display: flex;
+            align-items: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .about-content {
+            max-width: 850px;
+            position: relative;
+            z-index: 2;
+        }
+
+        .about-big-text {
+            font-family: 'Bebas Neue', cursive;
+            font-size: clamp(54px, 9.5vw, 150px);
+            line-height: 0.9;
+            letter-spacing: 0.02em;
+            color: var(--white);
+            margin-bottom: 36px;
+        }
+
+        .about-big-text em {
+            font-style: normal;
+            color: transparent;
+            -webkit-text-stroke: 1px var(--white);
+        }
+
+        .about-body {
+            font-size: 17px;
+            line-height: 1.85;
+            color: var(--silver);
+            max-width: 640px;
+        }
+
+        .about-stats {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 1px;
+            background: rgba(245, 245, 245, 0.08);
+        }
+
+        .stat-card {
+            background: var(--charcoal);
+            padding: 60px 40px;
+            text-align: center;
+        }
+
+        .stat-number {
+            font-family: 'Bebas Neue', cursive;
+            font-size: clamp(40px, 7vw, 88px);
+            letter-spacing: 0.02em;
+            color: var(--white);
+            line-height: 1;
+            margin-bottom: 8px;
+        }
+
+        .stat-label {
+            font-family: 'Space Mono', monospace;
+            font-size: 10px;
+            letter-spacing: 0.2em;
+            color: var(--silver);
+            text-transform: uppercase;
+        }
+
+        /* DATA CONTACT CHANNEL FORMS PLATFORMS */
+        .contact-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 64px;
+            items: start;
+        }
+
+        .contact-form {
+            background: var(--charcoal);
+            border: 1px solid rgba(245, 245, 245, 0.06);
+            padding: 48px;
+        }
+
+        .form-group {
+            margin-bottom: 24px;
+        }
+
+        .form-label {
+            font-family: 'Space Mono', monospace;
+            font-size: 10px;
+            letter-spacing: 0.25em;
+            color: var(--silver);
+            text-transform: uppercase;
+            display: block;
+            margin-bottom: 10px;
+        }
+
+        .form-input,
+        .form-textarea {
+            width: 100%;
+            padding: 16px;
+            background: var(--black);
+            border: 1px solid rgba(245, 245, 245, 0.08);
+            color: var(--white);
+            font-family: 'Syne', sans-serif;
+            font-size: 14px;
+            outline: none;
+            transition: border-color 0.3s ease;
+            border-radius: 0;
+        }
+
+        .form-input:focus,
+        .form-textarea:focus {
+            border-color: rgba(245, 245, 245, 0.25);
+        }
+
+        .form-textarea {
+            height: 140px;
+            resize: vertical;
+        }
+
+        .contact-info-block {
+            margin-bottom: 40px;
+        }
+
+        .contact-info-title {
+            font-family: 'Bebas Neue', cursive;
+            font-size: 44px;
+            letter-spacing: 0.05em;
+            color: var(--white);
+            margin-bottom: 16px;
+        }
+
+        .contact-info-text {
+            font-size: 14px;
+            line-height: 1.75;
+            color: var(--silver);
+            margin-bottom: 36px;
+        }
+
+        .contact-detail {
+            display: flex;
+            align-items: flex-start;
+            gap: 16px;
+            margin-bottom: 32px;
+        }
+
+        .contact-detail-icon {
+            font-family: 'Space Mono', monospace;
+            font-size: 10px;
+            letter-spacing: 0.15em;
+            color: var(--white);
+            text-transform: uppercase;
+            min-width: 70px;
+            padding-top: 2px;
+        }
+
+        .contact-detail-text {
+            font-size: 14px;
+            color: var(--silver);
+            line-height: 1.6;
+        }
+
+        /* HARD CURTAIN PAGE TRANSITIONS FRAME */
+        .page-transition {
+            position: fixed;
+            inset: 0;
+            background: #0d0d0d;
+            z-index: 9980;
+            transform: translateY(-100%);
+            pointer-events: none;
+        }
+
+        /* GSAP INTERSECTION OBSERVER HIDDEN ENGINE ANIMATIONS RULES */
+        .reveal {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: opacity 0.8s cubic-bezier(0.25, 1, 0.5, 1), transform 0.8s cubic-bezier(0.25, 1, 0.5, 1);
+        }
+
+        .reveal.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .reveal-delay-1 {
+            transition-delay: 0.1s;
+        }
+
+        .reveal-delay-2 {
+            transition-delay: 0.2s;
+        }
+
+        /* RESPONSIVE RESPONSIVENESS OVERRIDES STYLES DECK */
+        @media (max-width: 1024px) {
+
+            section,
+            .page-context {
+                padding-left: 24px;
+                padding-right: 24px;
+            }
+
+            nav#navbar,
+            nav#navbar.scrolled {
+                padding-left: 24px;
+                padding-right: 24px;
+            }
+
+            .product-detail-grid,
+            .contact-grid,
+            .hero-content {
+                grid-template-columns: 1fr;
+                gap: 48px;
+            }
+
+            .hero-right {
+                height: 420px;
+            }
+
+            .footer-top {
+                grid-template-columns: 1fr 1fr;
+                gap: 32px;
+            }
+        }
+
+        @media (max-width: 768px) {
+
+            .nav-links,
+            .nav-social {
+                display: none;
+            }
+
+            .hamburger {
+                display: flex;
+            }
+
+            .product-grid {
+                grid-template-columns: repeat(2, 1fr);
+                gap: 12px;
+            }
+
+            .campaign-banner {
+                grid-template-columns: 1fr;
+                gap: 40px;
+                padding: 60px 24px;
+            }
+
+            .reviews-grid,
+            .about-stats {
+                grid-template-columns: 1fr;
+                gap: 16px;
+            }
+
+            .footer-top {
+                grid-template-columns: 1fr;
+                gap: 40px;
+            }
+
+            .footer-bottom {
+                flex-direction: column;
+                gap: 16px;
+                text-align: center;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .product-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .size-option {
+                width: 44px;
+                height: 44px;
+                font-size: 10px;
+            }
+
+            .btn-primary,
+            .btn-outline {
+                width: 100%;
+                text-align: center;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="noise-overlay"></div>
+
+    <div class="scroll-progress" id="scrollProgress"></div>
+
+    <div class="cursor" id="cursor"></div>
+    <div class="cursor-follower" id="cursorFollower"></div>
+
+    <div class="page-transition" id="pageTransition"></div>
+
+    <div id="loader">
+        <div class="loader-logo">OUTFITO</div>
+        <div class="loader-bar">
+            <div class="loader-bar-fill" id="loaderFill"></div>
+        </div>
+        <div class="loader-tagline">GEN Z STYLE. MADE TO STAND OUT.</div>
+    </div>
+
+    <nav class="mobile-menu" id="mobileMenu">
+        <a href="#" onclick="navigateTo('home')">Home</a>
+        <a href="#" onclick="navigateTo('shop')">Shop All</a>
+        <a href="#"
+            onclick="navigateTo('home'); setTimeout(() => document.getElementById('categories-section').scrollIntoView({behavior:'smooth'}), 600)">Categories</a>
+        <a href="#" onclick="navigateTo('about')">About</a>
+        <a href="#" onclick="navigateTo('contact')">Contact</a>
+        <a href="https://instagram.com/outfito.in" target="_blank">Instagram</a>
+        <a href="https://wa.me/918448908359?text=Hi%20OUTFITO%2C%20I%20want%20to%20view%20your%20latest%20streetwear%20catalogue!"
+            target="_blank" class="text-[#25D366]">WhatsApp Order Desk</a>
+    </nav>
+
+    <nav id="navbar">
+        <a href="#" class="nav-logo" onclick="navigateTo('home')">
+            <span class="nav-logo-icon">OF</span>
+            OUTFITO
+        </a>
+        <ul class="nav-links" id="navLinks">
+            <li><a href="#" onclick="navigateTo('home')">Home</a></li>
+            <li><a href="#" onclick="navigateTo('shop')">Shop</a></li>
+            <li><a href="#"
+                    onclick="navigateTo('home'); setTimeout(() => document.getElementById('categories-section').scrollIntoView({behavior:'smooth'}), 600)">Categories</a>
+            </li>
+            <li><a href="#" onclick="navigateTo('about')">About</a></li>
+            <li><a href="#" onclick="navigateTo('contact')">Contact</a></li>
+        </ul>
+        <div class="nav-right">
+            <div class="nav-social">
+                <a href="https://instagram.com/outfito.in" target="_blank"
+                    class="hover:text-white transition-colors duration-300">INSTAGRAM</a>
+            </div>
+            <div class="hamburger" id="hamburger" onclick="toggleMenu()">
+                <span></span><span></span><span></span>
+            </div>
+        </div>
+    </nav>
+
+    <div class="whatsapp-float">
+        <span class="whatsapp-label">Order on WhatsApp</span>
+        <a class="whatsapp-btn"
+            href="https://wa.me/918448908359?text=Hi%20OUTFITO%2C%20I%20want%20to%20place%20an%20order!"
+            target="_blank">
+            <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                <path
+                    d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z" />
+            </svg>
+        </a>
+    </div>
+
+    <div id="home-page" class="page-context active">
+
+        <section id="hero">
+            <div class="hero-bg"></div>
+            <div class="hero-grid-lines"></div>
+            <div class="hero-content">
+                <div class="hero-left">
+                    <p class="hero-eyebrow" id="heroEyebrow">★ DROP SEASON — SS26 ARRIVALS</p>
+                    <h1 class="hero-title">
+                        <span class="line"><span id="heroLine1">WEAR YOUR</span></span>
+                        <span class="line"><span id="heroLine2">VIBE.</span></span>
+                        <span class="line"><span id="heroLine3">STAND OUT.</span></span>
+                    </h1>
+                    <p class="hero-desc" id="heroDesc">Not just clothing. It's identity, raw confidence, and modern
+                        street expression. Premium hyper-weight unisex oversized drops tailored for the generation born
+                        to lead.</p>
+                    <div class="hero-buttons" id="heroBtns">
+                        <a href="#" class="btn-primary" onclick="navigateTo('shop')"><span>EXPLORE SHOP</span></a>
+                        <a href="#" class="btn-outline"
+                            onclick="document.getElementById('hot-sellers').scrollIntoView({behavior:'smooth'})"><span>BEST
+                                SELLERS</span></a>
+                    </div>
+                </div>
+                <div class="hero-right">
+                    <div class="hero-card-mini hero-card-mini-1">
+                        <div class="mini-card-label">Premium Cotton</div>
+                        <div class="mini-card-value">280 GSM</div>
+                        <div style="margin-top:10px;">
+                            <span class="mini-card-dot"></span>
+                            <span
+                                style="font-family:'Space Mono',monospace;font-size:9px;color:var(--silver);letter-spacing:0.1em;">HEAVYWEIGHT
+                                REINFORCED</span>
+                        </div>
+                    </div>
+                    <div class="hero-product-card" onclick="openProduct(1)">
+                        <img src="https://images.unsplash.com/photo-1521572163474-6864f9cf17ab?w=800&q=80"
+                            alt="Featured Urban Product" class="hero-product-img">
+                        <div class="hero-product-tag">
+                            <span class="hero-product-name">SHADOW OVERSIZED TEE</span>
+                            <span class="hero-product-price">₹999</span>
+                        </div>
+                    </div>
+                    <div class="hero-card-mini hero-card-mini-2">
+                        <div class="mini-card-label">Cult Community</div>
+                        <div class="mini-card-value">10K+ FITS</div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <div class="marquee-section">
+            <div class="marquee-track" id="marquee">
+                <div class="marquee-item">WEAR YOUR VIBE <span class="marquee-dot"></span> GEN Z STREETWEAR <span
+                        class="marquee-dot"></span> MADE TO STAND OUT <span class="marquee-dot"></span> OVERSIZED
+                    SILHOUETTES <span class="marquee-dot"></span> OUTFITO ORIGINALS <span class="marquee-dot"></span>
+                    LIMITED EDITION DROPS <span class="marquee-dot"></span> WEAR YOUR VIBE <span
+                        class="marquee-dot"></span> GEN Z STREETWEAR <span class="marquee-dot"></span> MADE TO STAND OUT
+                    <span class="marquee-dot"></span> OVERSIZED SILHOUETTES <span class="marquee-dot"></span> OUTFITO
+                    ORIGINALS <span class="marquee-dot"></span> LIMITED EDITION DROPS</div>
+            </div>
+        </div>
+
+        <section id="categories-section" class="bg-[#0b0b0b] border-b border-zinc-900/50">
+            <div class="section-label reveal">Curated Universes</div>
+            <h2 class="section-title reveal">SHOP BY<br>CATEGORY</h2>
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mt-12">
+                <div class="relative overflow-hidden group aspect-[4/5] cursor-none border border-zinc-900"
+                    onclick="navigateToShopWithFilter('oversized')">
+                    <img src="https://images.unsplash.com/photo-1556821840-3a63f15732ce?w=800&q=80"
+                        class="w-full height-full object-cover grayscale group-hover:grayscale-0 group-hover:scale-105 transition-all duration-700 ease-out"
+                        alt="Oversized Class">
+                    <div
+                        class="absolute inset-0 bg-gradient-to-t from-black via-black/20 to-transparent flex flex-col justify-end p-8">
+                        <span class="font-['Space_Mono'] text-xs text-zinc-400 tracking-widest mb-1">280GSM LOOSE
+                            CUTS</span>
+                        <h3 class="font-['Bebas_Neue'] text-4xl tracking-wider text-white">OVERSIZED TEES</h3>
+                    </div>
+                </div>
+                <div class="relative overflow-hidden group aspect-[4/5] cursor-none border border-zinc-900"
+                    onclick="navigateToShopWithFilter('graphic')">
+                    <img src="https://images.unsplash.com/photo-1583743814966-8936f5b7be1a?w=800&q=80"
+                        class="w-full height-full object-cover grayscale group-hover:grayscale-0 group-hover:scale-105 transition-all duration-700 ease-out"
+                        alt="Graphic Prints">
+                    <div
+                        class="absolute inset-0 bg-gradient-to-t from-black via-black/20 to-transparent flex flex-col justify-end p-8">
+                        <span class="font-['Space_Mono'] text-xs text-zinc-400 tracking-widest mb-1">HIGH DEFINITION
+                            EXPRESSIVE</span>
+                        <h3 class="font-['Bebas_Neue'] text-4xl tracking-wider text-white">GRAPHIC DROPS</h3>
+                    </div>
+                </div>
+                <div class="relative overflow-hidden group aspect-[4/5] cursor-none border border-zinc-900"
+                    onclick="navigateToShopWithFilter('minimal')">
+                    <img src="https://images.unsplash.com/photo-1596755094514-f87e34085b2c?w=800&q=80"
+                        class="w-full height-full object-cover grayscale group-hover:grayscale-0 group-hover:scale-105 transition-all duration-700 ease-out"
+                        alt="Minimal Series">
+                    <div
+                        class="absolute inset-0 bg-gradient-to-t from-black via-black/20 to-transparent flex flex-col justify-end p-8">
+                        <span class="font-['Space_Mono'] text-xs text-zinc-400 tracking-widest mb-1">UNDERSTATED
+                            ARCHITECTURE</span>
+                        <h3 class="font-['Bebas_Neue'] text-4xl tracking-wider text-white">MINIMAL CAPSULES</h3>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="hot-sellers">
+            <div class="section-label reveal">High Volume Velocity Drops</div>
+            <div
+                style="display:flex;justify-content:space-between;align-items:flex-end;margin-bottom:48px;flex-wrap:wrap;gap:24px;">
+                <h2 class="section-title reveal">HOT SELLING<br>PRODUCTS</h2>
+                <a href="#" onclick="navigateTo('shop')" class="btn-outline reveal"><span>VIEW ENTIRE
+                        DROPLIST</span></a>
+            </div>
+            <div class="product-grid" id="homeHotGrid">
+            </div>
+        </section>
+
+        <div class="campaign-banner">
+            <div class="campaign-text">
+                <div class="section-label reveal">The Cultural Framework</div>
+                <h2 class="section-title reveal" style="color:var(--black);">WEAR<br>YOUR<br>STORY.</h2>
+                <p class="campaign-body reveal">OUTFITO rejects generic fast fashion cycles. Every stitch, drop shadow
+                    print design, and raw cotton profile exists to speak a clear statement across urban spaces.</p>
+                <a href="#" onclick="navigateTo('about')" class="btn-primary"
+                    style="background:var(--black);color:var(--white);"><span>READ PHILOSOPHY</span></a>
+            </div>
+            <div class="campaign-image reveal">
+                <img src="https://images.unsplash.com/photo-1529139574466-a303027c1d8b?w=800&q=80"
+                    alt="Creative Campaign Vision" loading="lazy">
+            </div>
+        </div>
+
+        <div class="philosophy-section">
+            <p class="section-label reveal" style="justify-content:center;margin-bottom:40px;">Brand Architecture
+                Manifesto</p>
+            <h2 class="philosophy-quote reveal">OUTFITO IS NOT AN INVENTORY.<br>IT IS AN <em>IDENTITY SYSTEM.</em></h2>
+            <p class="reveal font-['Space_Mono'] text-xs tracking-[0.4em] text-zinc-500 uppercase">EST. 2024 —
+                HANDCRAFTED IN INDIA FOR THE WORLD</p>
+        </div>
+
+        <section class="bg-[#030303]">
+            <div class="section-label reveal">User Verification Testimony</div>
+            <h2 class="section-title reveal" style="margin-bottom:48px;">WHAT THE<br>CULT SAYS.</h2>
+            <div class="reviews-grid">
+                <div class="review-card reveal">
+                    <div class="review-stars text-white">★★★★★</div>
+                    <p class="review-text">"The weight structure is pure madness. Wash after wash, the knit collar keeps
+                        its structure pristine. Best 280gsm drop inside India hands down."</p>
+                    <div class="review-author">— Kshitij J., Delhi</div>
+                </div>
+                <div class="review-card reveal reveal-delay-1">
+                    <div class="review-stars text-white">★★★★★</div>
+                    <p class="review-text">"Fits look insane for university outfits. Looks, weights, and drops resemble
+                        high-end premium global luxury streetwear houses but engineered at an affordable tier."</p>
+                    <div class="review-author">— Ananya M., Mumbai</div>
+                </div>
+                <div class="review-card reveal reveal-delay-2">
+                    <div class="review-stars text-white">★★★★★</div>
+                    <p class="review-text">"Ordering via WhatsApp felt instantly personal. Response took like 4 minutes,
+                        sizing guide breakdown was accurate, packaging is incredibly minimal and clean."</p>
+                    <div class="review-author">— Hardik P., Bangalore</div>
+                </div>
+            </div>
+        </section>
+
+        <footer class="border-t border-zinc-900">
+            <div class="footer-top">
+                <div>
+                    <div class="footer-brand-name">OUTFITO</div>
+                    <p class="footer-brand-desc">Premium Indian Streetwear System. Unapologetic silhouettes, structural
+                        premium cotton drops, curated for modern identity expression.</p>
+                    <div class="footer-social">
+                        <a href="https://instagram.com/outfito.in" target="_blank" class="social-icon">IG</a>
+                        <a href="https://wa.me/918448908359" target="_blank" class="social-icon">WA</a>
+                    </div>
+                </div>
+                <div>
+                    <div class="footer-col-title">Collections</div>
+                    <ul class="footer-links">
+                        <li><a href="#" onclick="navigateToShopWithFilter('all')">All Garments</a></li>
+                        <li><a href="#" onclick="navigateToShopWithFilter('oversized')">Oversized Basics</a></li>
+                        <li><a href="#" onclick="navigateToShopWithFilter('graphic')">Graphic Concept Series</a></li>
+                        <li><a href="#" onclick="navigateToShopWithFilter('minimal')">Minimal Monoliths</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <div class="footer-col-title">Studio Core</div>
+                    <ul class="footer-links">
+                        <li><a href="#" onclick="navigateTo('about')">Our Narrative</a></li>
+                        <li><a href="#" onclick="navigateTo('contact')">Contact Center</a></li>
+                        <li><a href="#" onclick="navigateTo('contact')">WhatsApp Verification Desk</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <div class="footer-col-title">Legal Architecture</div>
+                    <ul class="footer-links">
+                        <li><a href="#">Privacy Framework</a></li>
+                        <li><a href="#">Operational Terms</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <span class="footer-copy">© 2026 OUTFITO SYSTEMS. ALL OBJECT RIGHTS PRESERVED.</span>
+                <span class="footer-copy">GEN Z ARCHITECTURE. MADE TO STAND OUT.</span>
+            </div>
+        </footer>
+    </div>
+
+    <div id="shop-page" class="page-context">
+        <div style="border-bottom:1px solid rgba(245,245,245,0.06);padding-bottom:40px;margin-bottom:0;">
+            <p class="section-label">Droplist Catalog</p>
+            <h1 class="section-title">THE COMPLETE<br>COLLECTION SYSTEM.</h1>
+        </div>
+
+        <div class="pt-12 pb-6 flex flex-col md:flex-row md:items-center justify-between gap-6">
+            <div class="shop-filters mb-0 flex-wrap">
+                <button class="filter-btn active" id="filter-btn-all" onclick="filterProductsEngine('all')">ALL
+                    DROPS</button>
+                <button class="filter-btn" id="filter-btn-oversized"
+                    onclick="filterProductsEngine('oversized')">OVERSIZED TEES</button>
+                <button class="filter-btn" id="filter-btn-graphic" onclick="filterProductsEngine('graphic')">GRAPHIC
+                    DROPS</button>
+                <button class="filter-btn" id="filter-btn-minimal" onclick="filterProductsEngine('minimal')">MINIMAL
+                    CAPSULES</button>
+            </div>
+
+            <div
+                class="flex items-center gap-3 border border-zinc-800 bg-[#0c0c0c] px-4 py-2 text-xs font-['Space_Mono']">
+                <span class="text-zinc-500 tracking-wider">SORT:</span>
+                <select id="shopSortSelect" onchange="sortProductsEngine(this.value)"
+                    class="bg-transparent text-white outline-none cursor-pointer tracking-widest font-semibold uppercase">
+                    <option value="default" class="bg-black text-white">LATEST RELEASES</option>
+                    <option value="price-low" class="bg-black text-white">PRICE: LOW TO HIGH</option>
+                    <option value="price-high" class="bg-black text-white">PRICE: HIGH TO LOW</option>
+                    <option value="alpha-asc" class="bg-black text-white">ALPHABETICAL: A-Z</option>
+                </select>
+            </div>
+        </div>
+
+        <div class="product-grid pt-4" id="mainShopGrid">
+        </div>
+
+        <footer class="mt-24 border-t border-zinc-900/40">
+            <div class="footer-bottom">
+                <span class="footer-copy">© 2026 OUTFITO. CATALOG MODE ACTIVE.</span>
+                <span class="footer-copy">REALTIME WHATSAPP ORDER DESK INTEGRATION.</span>
+            </div>
+        </footer>
+    </div>
+
+    <div id="product-page" class="page-context">
+        <div class="product-detail-grid">
+
+            <div class="product-gallery">
+                <div class="gallery-main">
+                    <img src="" alt="Active Selected Image Framework" id="galleryMain">
+                </div>
+                <div class="gallery-thumbs" id="pdpThumbContainer">
+                </div>
+            </div>
+
+            <div class="product-detail-info">
+                <p class="section-label mb-3" id="pdpLabel">OUTFITO MASTER DESIGN</p>
+                <h1 class="product-detail-name" id="pdpName">LOADING STREETWEAR ITEM</h1>
+                <div class="product-detail-price" id="pdpPrice">₹000</div>
+
+                <div class="size-selector">
+                    <div class="size-selector-label">SELECT FRAME SIZE</div>
+                    <div class="size-options" id="pdpSizeGrid">
+                    </div>
+                </div>
+
+                <a class="whatsapp-order-btn" id="whatsappOrderBtn" href="#" target="_blank">
+                    <svg viewBox="0 0 24 24" width="20" height="20" fill="white">
+                        <path
+                            d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z" />
+                    </svg>
+                    SECURE CHECKOUT VIA WHATSAPP
+                </a>
+
+                <button class="btn-outline w-full justify-center flex items-center mb-12" onclick="navigateTo('shop')">
+                    <span>← DISMISS & RETURN TO CATALOG</span>
+                </button>
+
+                <div class="product-description">
+                    <div class="product-desc-title">Garment Architecture Narrative</div>
+                    <p class="product-desc-text" id="pdpDesc">Loading architectural data matrix from dynamic object
+                        parameters...</p>
+
+                    <div class="mt-8">
+                        <div class="product-desc-title">Technical Fabric Blueprint</div>
+                        <p class="product-desc-text text-white font-medium">280 GSM Premium Long-Stitch Combed Cotton
+                            Knit · Structural Drop-Shoulder Blueprint Silhouette · High-Density Anti-Cracking
+                            Micro-Print Graphics · Pre-Shrunk Industrial Enzyme Double Washed Finish · Hand-Tailored in
+                            India</p>
+                    </div>
+
+                    <div class="mt-8">
+                        <div class="product-desc-title">Fulfillment Metrics</div>
+                        <p class="product-desc-text">Dispatched via elite domestic express couriers within 24–48 hours.
+                            Estimated delivery 2–5 operational days across India. Live real-time automated tracking link
+                            appended straight to WhatsApp checkout verification protocols.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div id="about-page" class="page-context">
+        <div class="about-hero">
+            <div class="hero-bg"></div>
+            <div class="about-content">
+                <p class="section-label">The Studio Narrative</p>
+                <h1 class="about-big-text">WE ARCHITECT<br><em>OUTFITO.</em></h1>
+                <p class="about-body">Forged in creative spaces and optimized for identity. OUTFITO launched to answer a
+                    systemic gap: contemporary youth generations demand hyper-quality premium streetwear textiles that
+                    express authentic individual ideology. We refuse cookie-cutter apparel metrics.</p>
+            </div>
+        </div>
+        <div class="about-stats">
+            <div class="stat-card">
+                <div class="stat-number">10K+</div>
+                <div class="stat-label">Units Deployed</div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-number">280</div>
+                <div class="stat-label">GSM Standard Metric</div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-number">100%</div>
+                <div class="stat-label">Handcrafted in India</div>
+            </div>
+        </div>
+        <section class="max-w-4xl mx-auto py-24 px-6">
+            <p class="section-label">Operational Tenets</p>
+            <h2 class="section-title text-4xl md:text-6xl mb-8">SLOW RELEASES.<br>PERFECT GEOMETRY.</h2>
+            <p class="text-base text-zinc-400 font-normal leading-relaxed mb-6">Every single pattern blueprint from the
+                OUTFITO atelier undergoes deep physical validation before fabrication assembly. We employ complex weave
+                profiles, dense structural ribbed neck configurations, and premium inks to withstand years of active
+                lifestyle abuse.</p>
+            <p class="text-base text-zinc-400 font-normal leading-relaxed">We develop hyper-focused low-batch capsule
+                collections, encouraging deliberate selection over rapid throwaway consumer culture. To sport an OUTFITO
+                profile is to visually register your alignment to uncompromising design integrity.</p>
+        </section>
+        <footer class="border-t border-zinc-900">
+            <div class="footer-bottom">
+                <span class="footer-copy">© 2026 OUTFITO HISTORY.</span>
+                <a href="#" onclick="navigateTo('home')"
+                    class="font-['Space_Mono'] text-[10px] tracking-widest text-zinc-500 hover:text-white transition-colors duration-300 uppercase">←
+                    RETURN HOME</a>
+            </div>
+        </footer>
+    </div>
+
+    <div id="contact-page" class="page-context">
+        <p class="section-label">Communication Center</p>
+        <h1 class="section-title mb-16">ENGAGE THE<br>STUDIO CORE.</h1>
+        <div class="contact-grid">
+            <form class="contact-form" onsubmit="event.preventDefault();">
+                <div class="form-group">
+                    <label class="form-label">IDENTIFICATION / NAME</label>
+                    <input type="text" class="form-input" placeholder="e.g., Kshitij Jain" required>
+                </div>
+                <div class="form-group">
+                    <label class="form-label">ROUTING DIGITAL EMAIL</label>
+                    <input type="email" class="form-input" placeholder="name@domain.com" required>
+                </div>
+                <div class="form-group">
+                    <label class="form-label">METRIC INQUIRY OBJECT TYPE</label>
+                    <input type="text" class="form-input" placeholder="Capsule Drop / Order State / Collaboration">
+                </div>
+                <div class="form-group">
+                    <label class="form-label">MESSAGE DATA MATRICES</label>
+                    <textarea class="form-textarea"
+                        placeholder="Transmit your communication packet sequence here..."></textarea>
+                </div>
+                <button class="btn-primary w-full justify-center text-center"><span>TRANSMIT PACKET</span></button>
+            </form>
+            <div>
+                <div class="contact-info-block">
+                    <div class="contact-info-title">OUTFITO HQ</div>
+                    <p class="contact-info-text">Have critical logistical queries, pattern design pitches, or urgent
+                        dispatch modifications? Message our direct encrypted endpoints for lightning-fast resolutions.
+                    </p>
+                    <div class="contact-detail">
+                        <span class="contact-detail-icon">WHATSAPP</span>
+                        <span class="contact-detail-text"><a href="https://wa.me/918448908359" target="_blank"
+                                class="text-white font-bold underline hover:text-zinc-300">+91 84489 08359</a><br>Live
+                            Order Pipeline Core Desk (Operational 24/7)</span>
+                    </div>
+                    <div class="contact-detail">
+                        <span class="contact-detail-icon">INSTAGRAM</span>
+                        <span class="contact-detail-text"><a href="https://instagram.com/outfito.in" target="_blank"
+                                class="text-white font-bold underline hover:text-zinc-300">@outfito.in</a><br>DMs
+                            constantly monitored for brand collaborations</span>
+                    </div>
+                    <div class="contact-detail">
+                        <span class="contact-detail-icon">CORE MAIL</span>
+                        <span class="contact-detail-text font-semibold text-zinc-300">hello@outfito.in</span>
+                    </div>
+                </div>
+                <a href="https://wa.me/918448908359?text=Hi%20OUTFITO%2C%20I'm%20reaching%20out%20from%20your%20site%20contact%20page!"
+                    target="_blank" class="whatsapp-order-btn md:w-auto inline-flex">
+                    <svg viewBox="0 0 24 24" width="18" height="18" fill="white">
+                        <path
+                            d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z" />
+                    </svg>
+                    OPEN ENCRYPTED CHAT PIPELINE
+                </a>
+            </div>
+        </div>
+        <footer class="mt-24 border-t border-zinc-900/60">
+            <div class="footer-bottom">
+                <span class="footer-copy">© 2026 OUTFITO LOGISTICS.</span>
+                <span class="footer-copy">FAST DISPATCH CHANNELS ASSURED.</span>
+            </div>
+        </footer>
+    </div>
+
+    <script>
+        // ============================================================================
+        // CENTRALIZED DATA MODEL ENGINE (JSON STRUCT) - ADD/EDIT ALL PRODUCTS HERE
+        // ============================================================================
+        const OUTFITO_PRODUCT_DB = [
+            {
+                id: 1,
+                slug: "shadow-tee",
+                name: "SHADOW OVERSIZED TEE",
+                category: "oversized",
+                categoryLabel: "Oversized Tees",
+                price: 999,
+                hotSelling: true,
+                description: "A heavy-weight premium structural basic designed with dropped shoulders and a clean, raw streetwear edge. Finished in deep charcoal shadow black with multi-layer high durability dyes.",
+                mainImage: "https://images.unsplash.com/photo-1521572163474-6864f9cf17ab?w=800&q=80",
+                images: [
+                    "https://images.unsplash.com/photo-1521572163474-6864f9cf17ab?w=800&q=80",
+                    "https://images.unsplash.com/photo-1562157873-818bc0726f68?w=800&q=80",
+                    "https://images.unsplash.com/photo-1523381210434-271e8be1f52b?w=800&q=80"
+                ],
+                sizes: ["S", "M", "L", "XL"]
+            },
+            {
+                id: 2,
+                slug: "void-graphic",
+                name: "VOID GRAPHIC TEE",
+                category: "graphic",
+                categoryLabel: "Graphic Drops",
+                price: 1199,
+                hotSelling: true,
+                description: "Distressed abstract brutalist geometric art vector prints deployed using premium plastisol breathing techniques on a crisp heavyweight raw cotton profile base.",
+                mainImage: "https://images.unsplash.com/photo-1583743814966-8936f5b7be1a?w=800&q=80",
+                images: [
+                    "https://images.unsplash.com/photo-1583743814966-8936f5b7be1a?w=800&q=80",
+                    "https://images.unsplash.com/photo-1562157873-818bc0726f68?w=800&q=80"
+                ],
+                sizes: ["S", "M", "L", "XL", "XXL"]
+            },
+            {
+                id: 3,
+                slug: "mono-drop",
+                name: "MONO DROP TEE",
+                category: "minimal",
+                categoryLabel: "Minimal Collection",
+                price: 899,
+                hotSelling: true,
+                description: "Stripped of all visual noise. Clean luxury tailoring, split-hem tracking alignment accents, and a dense mock collar structure engineered for modern high-end architectural aesthetics.",
+                mainImage: "https://images.unsplash.com/photo-1596755094514-f87e34085b2c?w=800&q=80",
+                images: [
+                    "https://images.unsplash.com/photo-1596755094514-f87e34085b2c?w=800&q=80",
+                    "https://images.unsplash.com/photo-1523381210434-271e8be1f52b?w=800&q=80"
+                ],
+                sizes: ["XS", "S", "M", "L"]
+            },
+            {
+                id: 4,
+                slug: "urban-core",
+                name: "URBAN CORE FADE",
+                category: "oversized",
+                categoryLabel: "Oversized Tees",
+                price: 1099,
+                hotSelling: true,
+                description: "Industrial acid-wash finish profile that shifts tones organically under diverse cinematic ambient light sources. Loose fit architecture that drapes comfortably across all body templates.",
+                mainImage: "https://images.unsplash.com/photo-1503341504253-dff4815485f1?w=800&q=80",
+                images: [
+                    "https://images.unsplash.com/photo-1503341504253-dff4815485f1?w=800&q=80",
+                    "https://images.unsplash.com/photo-1556821840-3a63f15732ce?w=800&q=80"
+                ],
+                sizes: ["S", "M", "L", "XL", "XXL"]
+            },
+            {
+                id: 5,
+                slug: "dark-wave",
+                name: "DARK WAVE GRAPHIC",
+                category: "graphic",
+                categoryLabel: "Graphic Drops",
+                price: 1299,
+                hotSelling: false,
+                description: "Cyberpunk dystopian audio signal graphic arrays screen-printed using premium reflective metallic element inks that flash vibrantly at nighttime urban scenes.",
+                mainImage: "https://images.unsplash.com/photo-1618354691373-d851c5c3a990?w=800&q=80",
+                images: [
+                    "https://images.unsplash.com/photo-1618354691373-d851c5c3a990?w=800&q=80"
+                ],
+                sizes: ["M", "L", "XL"]
+            },
+            {
+                id: 6,
+                slug: "ghost-drop",
+                name: "GHOST PHANTOM WHITE",
+                category: "minimal",
+                categoryLabel: "Minimal Collection",
+                price: 1099,
+                hotSelling: false,
+                description: "An ultra-premium solid alabaster raw off-white variant. Features zero texture deformation properties and dense structural dual-stitching lines across all primary seams.",
+                mainImage: "https://images.unsplash.com/photo-1556821840-3a63f15732ce?w=800&q=80",
+                images: [
+                    "https://images.unsplash.com/photo-1556821840-3a63f15732ce?w=800&q=80",
+                    "https://images.unsplash.com/photo-1596755094514-f87e34085b2c?w=800&q=80"
+                ],
+                sizes: ["S", "M", "L", "XL"]
+            }
+        ];
+
+        // ============================================================================
+        // APP RUNTIME ENGINE STATE MANAGEMENT CONTROL
+        // ============================================================================
+        let AppState = {
+            activePage: "home",
+            activeFilter: "all",
+            activeSort: "default",
+            selectedSize: "M",
+            activeProductContext: null
+        };
+
+        // ============================================================================
+        // INTERFACE INITIALIZATION ENGINE EXECUTION
+        // ============================================================================
+        document.addEventListener("DOMContentLoaded", () => {
+            renderCatalogEngine();
+            executeIntroPreloader();
+        });
+
+        // ============================================================================
+        // INTRO PRELOADER FRAME LOGIC
+        // ============================================================================
+        function executeIntroPreloader() {
+            const loader = document.getElementById("loader");
+            const logo = document.querySelector(".loader-logo");
+            const tagline = document.querySelector(".loader-tagline");
+            const fill = document.getElementById("loaderFill");
+            let progressCount = 0;
+
+            gsap.to(logo, { opacity: 1, y: 0, duration: 0.8, ease: "power3.out", delay: 0.1 });
+            gsap.to(tagline, { opacity: 1, duration: 0.6, delay: 0.4 });
+
+            const loadingInterval = setInterval(() => {
+                progressCount += Math.random() * 18;
+                if (progressCount >= 100) {
+                    progressCount = 100;
+                    clearInterval(loadingInterval);
+                    setTimeout(() => {
+                        gsap.to(loader, {
+                            y: "-100%",
+                            duration: 0.8,
+                            ease: "power4.inOut",
+                            onComplete: () => {
+                                loader.style.display = "none";
+                                executeHeroTimeline();
+                            }
+                        });
+                    }, 300);
+                }
+                fill.style.width = progressCount + "%";
+            }, 60);
+        }
+
+        // ============================================================================
+        // KINETIC HERO GSAP ANIMATION TIMELINE
+        // ============================================================================
+        function executeHeroTimeline() {
+            gsap.registerPlugin(ScrollTrigger);
+            const tl = gsap.timeline();
+            tl.to(["#heroLine1", "#heroLine2", "#heroLine3"], { y: "0%", duration: 1.0, ease: "power4.out", stagger: 0.1 })
+                .to("#heroEyebrow", { opacity: 1, y: 0, duration: 0.6, ease: "power3.out" }, "-=0.5")
+                .to("#heroDesc", { opacity: 1, y: 0, duration: 0.6, ease: "power3.out" }, "-=0.4")
+                .to("#heroBtns", { opacity: 1, y: 0, duration: 0.6, ease: "power3.out" }, "-=0.4");
+
+            initializeIntersectionObservers();
+            initializeScrollProgressTracker();
+        }
+
+        // ============================================================================
+        // GLOBAL DOM LAYOUT CONTROLLERS & DATA INJECTORS
+        // ============================================================================
+        function renderCatalogEngine() {
+            const homeGrid = document.getElementById("homeHotGrid");
+            const shopGrid = document.getElementById("mainShopGrid");
+
+            // Extract and compile filter subsets
+            let computationalArray = [...OUTFITO_PRODUCT_DB];
+
+            // Process Live State Operational Sorting Algorithms
+            if (AppState.activeSort === "price-low") {
+                computationalArray.sort((a, b) => a.price - b.price);
+            } else if (AppState.activeSort === "price-high") {
+                computationalArray.sort((a, b) => b.price - a.price);
+            } else if (AppState.activeSort === "alpha-asc") {
+                computationalArray.sort((a, b) => a.name.localeCompare(b.name));
+            }
+
+            // Construct Dynamic HTML Element Templates
+            let shopHTMLContent = "";
+            let homeHotHTMLContent = "";
+
+            computationalArray.forEach(item => {
+                // Check Multi-Class Filter Routing Status
+                const matchesFilter = AppState.activeFilter === "all" || item.category === AppState.activeFilter;
+
+                // Size string preview tags array assembly
+                let sizeTagsHTML = item.sizes.map(s => `<span class="size-tag">${s}</span>`).join("");
+
+                const modularHTMLCard = `
+    <div class="product-card reveal" style="display: ${matchesFilter ? "block" : "none"};" onclick="openProduct(${item.id})">
+      <img src="${item.mainImage}" alt="${item.name}" loading="lazy">
+      <div class="product-overlay"></div>
+      <div class="product-info">
+        <div class="product-category">${item.categoryLabel}</div>
+        <div class="product-sizes">${sizeTagsHTML}</div>
+        <div class="product-name">${item.name}</div>
+        <div class="product-price-row">
+          <span class="product-price">₹${item.price.toLocaleString("en-IN")}</span>
+          <button class="product-quick-btn">VIEW DROP</button>
+        </div>
+      </div>
+    </div>
+  `;
+
+                if (matchesFilter) {
+                    shopHTMLContent += modularHTMLCard;
+                }
+
+                if (item.hotSelling) {
+                    homeHotHTMLContent += modularHTMLCard;
+                }
+            });
+
+            if (shopGrid) shopGrid.innerHTML = shopHTMLContent || `<div class="col-span-full py-12 text-center text-zinc-500 font-['Space_Mono'] text-xs uppercase tracking-widest">No matching structural drops found inside this specific class.</div>`;
+            if (homeGrid && homeGrid.innerHTML === "") homeGrid.innerHTML = homeHotHTMLContent;
+
+            setTimeout(initializeIntersectionObservers, 100);
+        }
+
+        // ============================================================================
+        // SINGLE PAGE APPLICATION CORE ROUTER WITH ANIMATED CURTAINS
+        // ============================================================================
+        const DOM_PAGE_MAP = {
+            home: "home-page",
+            shop: "shop-page",
+            product: "product-page",
+            about: "about-page",
+            contact: "contact-page"
+        };
+
+        function navigateTo(targetPageKey) {
+            if (AppState.menuOpenStatus) toggleMenu();
+            if (targetPageKey === AppState.activePage && targetPageKey !== "product") return;
+
+            const transitionCurtain = document.getElementById("pageTransition");
+
+            gsap.fromTo(transitionCurtain, { y: "100%" }, {
+                y: "0%",
+                duration: 0.4,
+                ease: "power2.inOut",
+                onComplete: () => {
+                    // Deactivate global view layouts
+                    Object.keys(DOM_PAGE_MAP).forEach(key => {
+                        const targetEl = document.getElementById(DOM_PAGE_MAP[key]);
+                        if (targetEl) {
+                            targetEl.style.display = "none";
+                            targetEl.classList.remove("active");
+                        }
+                    });
+
+                    // Assert active layout targeting elements
+                    const targetView = document.getElementById(DOM_PAGE_MAP[targetPageKey]);
+                    if (targetView) {
+                        targetView.style.display = targetPageKey === "home" ? "block" : "block";
+                        targetView.classList.add("active");
+                    }
+
+                    AppState.activePage = targetPageKey;
+                    window.scrollTo(0, 0);
+
+                    gsap.to(transitionCurtain, { y: "-100%", duration: 0.4, delay: 0.05, ease: "power2.inOut" });
+                    setTimeout(initializeIntersectionObservers, 150);
+                }
+            });
+        }
+
+        function navigateToShopWithFilter(categorySlug) {
+            AppState.activeFilter = categorySlug;
+
+            // Update control state highlight configuration parameters manually
+            document.querySelectorAll(".filter-btn").forEach(btn => {
+                btn.classList.toggle("active", btn.id === `filter-btn-${categorySlug}`);
+            });
+
+            renderCatalogEngine();
+            navigateTo("shop");
+        }
+
+        // ============================================================================
+        // DYNAMIC FILTER & LIVE SORTING MATRIX LOGIC
+        // ============================================================================
+        function filterProductsEngine(categoryValue) {
+            AppState.activeFilter = categoryValue;
+            document.querySelectorAll(".shop-filters .filter-btn").forEach(btn => {
+                btn.classList.toggle("active", btn.id === `filter-btn-${categoryValue}`);
+            });
+            renderCatalogEngine();
+        }
+
+        function sortProductsEngine(sortingSelectValue) {
+            AppState.activeSort = sortingSelectValue;
+            renderCatalogEngine();
+        }
+
+        // ============================================================================
+        // INTERACTIVE DETAILED SYSTEM VIEW ROUTING ENGINE (PDP)
+        // ============================================================================
+        function openProduct(productId) {
+            const matchingObj = OUTFITO_PRODUCT_DB.find(p => p.id === productId);
+            if (!matchingObj) return;
+
+            AppState.activeProductContext = matchingObj;
+            AppState.selectedSize = "M"; // Default selection reset
+
+            // Asserting raw string target text contexts values fields inside elements
+            document.getElementById("pdpLabel").textContent = `OUTFITO ORIGINALS // MODULE ${matchingObj.id}`;
+            document.getElementById("pdpName").textContent = matchingObj.name;
+            document.getElementById("pdpPrice").textContent = `₹${matchingObj.price.toLocaleString("en-IN")}`;
+            document.getElementById("pdpDesc").textContent = matchingObj.description;
+
+            // Set Main Primary Image Context Frame
+            const mainImageEl = document.getElementById("galleryMain");
+            mainImageEl.src = matchingObj.mainImage;
+
+            // Build Thumbnail Clusters Dynamically
+            const container = document.getElementById("pdpThumbContainer");
+            if (container) {
+                container.innerHTML = matchingObj.images.map((imgUrl, index) => `
+    <div class="gallery-thumb ${index === 0 ? "active" : ""}">
+      <img src="${imgUrl}" alt="Thumb Reference Integration Metric ${index}" onclick="switchPdpVisualImage('${imgUrl}', this)">
+    </div>
+  `).join("");
+            }
+
+            // Build Adaptive Size Options Elements Target selectors
+            const sizeGrid = document.getElementById("pdpSizeGrid");
+            if (sizeGrid) {
+                sizeGrid.innerHTML = ["XS", "S", "M", "L", "XL", "XXL"].map(sizeSymbol => {
+                    const availableInProduct = matchingObj.sizes.includes(sizeSymbol);
+                    if (availableInProduct) {
+                        return `<button class="size-option ${sizeSymbol === "M" ? "selected" : ""}" onclick="selectPdpSizeMetricEngine(this, '${sizeSymbol}')">${sizeSymbol}</button>`;
+                    } else {
+                        return `<button class="size-option opacity-20 pointer-events-none line-through" title="Size Asset Completely Exhausted">${sizeSymbol}</button>`;
+                    }
+                }).join("");
+            }
+
+            compileWhatsAppTransactionalMessageLink();
+            navigateTo("product");
+        }
+
+        function switchPdpVisualImage(imgSrcTarget, elementRef) {
+            document.getElementById("galleryMain").src = imgSrcTarget;
+            document.querySelectorAll(".gallery-thumb").forEach(t => t.classList.remove("active"));
+            elementRef.parentElement.classList.add("active");
+        }
+
+        function selectPdpSizeMetricEngine(buttonContext, chosenSizeValue) {
+            AppState.selectedSize = chosenSizeValue;
+            document.querySelectorAll(".size-options .size-option").forEach(b => b.classList.remove("selected"));
+            buttonContext.classList.add("selected");
+            compileWhatsAppTransactionalMessageLink();
+        }
+
+        function compileWhatsAppTransactionalMessageLink() {
+            const item = AppState.activeProductContext;
+            if (!item) return;
+
+            const operationalBaseMessage =
+                `⚡ [NEW LOGISTICAL ORDER COMPILATION SEQUENCE] ⚡
+--------------------------------------------------
+SYSTEM APP PROTOCOL: TARGET SECURE INCOMING CHECKOUT
+
+• PRODUCT UNIQUE ID : SKU-00${item.id}
+• APPAREL CORRE TEXTURE: ${item.name}
+• APPORTIONED CAP FRAME SIZE : [ ${AppState.selectedSize} ]
+• TRANSACTION METRIC UNIT VALUE: ₹${item.price.toLocaleString("en-IN")}
+• PRODUCTION FABRIC: 280 GSM LONG-STITCH COMBED COTTON
+
+--------------------------------------------------
+👉 SYSTEM LOG: REQUESTING ASSET AVAILABILITY VERIFICATION FLUIDITY COMPLIANCE.`;
+
+            const dynamicFormEncodedString = encodeURIComponent(operationalBaseMessage);
+            document.getElementById("whatsappOrderBtn").href = `https://wa.me/918448908359?text=${dynamicFormEncodedString}`;
+        }
+
+        // ============================================================================
+        // CINEMATIC CURSOR INTERSECTION TRANSLATION TRACKING SYSTEM
+        // ============================================================================
+        const pointerCursor = document.getElementById("cursor");
+        const pointerFollower = document.getElementById("cursorFollower");
+        let trackX = 0, trackY = 0;
+        let computedFollowX = 0, computedFollowY = 0;
+
+        document.addEventListener("mousemove", (event) => {
+            trackX = event.clientX;
+            trackY = event.clientY;
+
+            if (pointerCursor) {
+                pointerCursor.style.transform = `translate3d(${trackX}px, ${trackY}px, 0)`;
+            }
+        });
+
+        function coreCursorAnimationLoop() {
+            computedFollowX += (trackX - computedFollowX) * 0.12;
+            computedFollowY += (trackY - computedFollowY) * 0.12;
+
+            if (pointerFollower) {
+                pointerFollower.style.transform = `translate3d(${computedFollowX}px, ${computedFollowY}px, 0)`;
+            }
+            requestAnimationFrame(coreCursorAnimationLoop);
+        }
+        requestAnimationFrame(coreCursorAnimationLoop);
+
+        // Bind Action Pointer Expansion Triggers across active layout interactive surfaces
+        function bindDynamicCursorHoverTriggers() {
+            document.querySelectorAll("a, button, select, option, .product-card, .gallery-thumb").forEach(element => {
+                element.addEventListener("mouseenter", () => {
+                    if (pointerFollower) {
+                        pointerFollower.style.width = "56px";
+                        pointerFollower.style.height = "56px";
+                        pointerFollower.style.borderColor = "rgba(255,255,255,0.8)";
+                        pointerFollower.style.backgroundColor = "rgba(255,255,255,0.03)";
+                    }
+                });
+                element.addEventListener("mouseleave", () => {
+                    if (pointerFollower) {
+                        pointerFollower.style.width = "40px";
+                        pointerFollower.style.height = "40px";
+                        pointerFollower.style.borderColor = "rgba(245, 245, 245, 0.4)";
+                        pointerFollower.style.backgroundColor = "transparent";
+                    }
+                });
+            });
+        }
+
+        // ============================================================================
+        // SCROLL MANAGEMENT ARCHITECTURE & INTERSECTION OBSERVERS
+        // ============================================================================
+        function initializeIntersectionObservers() {
+            const elementsToReveal = document.querySelectorAll(".reveal");
+
+            const viewportObserver = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add("visible");
+                    }
+                });
+            }, { threshold: 0.08, rootMargin: "0px 0px -20px 0px" });
+
+            elementsToReveal.forEach(el => viewportObserver.observe(el));
+            bindDynamicCursorHoverTriggers();
+        }
+
+        function initializeScrollProgressTracker() {
+            constprogressBarElement = document.getElementById("scrollProgress");
+            window.addEventListener("scroll", () => {
+                const computedScrollPositionRatio = (window.scrollY / (document.documentElement.scrollHeight - window.innerHeight)) * 100;
+                if (progressBarElement) progressBarElement.style.width = computedScrollPositionRatio + "%";
+
+                // Navbar visual feedback state modifications
+                const targetNavbarRef = document.getElementById("navbar");
+                if (targetNavbarRef) {
+                    if (window.scrollY > 40) targetNavbarRef.classList.add("scrolled");
+                    else targetNavbarRef.classList.remove("scrolled");
+                }
+            });
+        }
+
+        // ============================================================================
+        // MOBILE MENU NAVIGATION HAMBURGER SYSTEM EMULATION LAYERS
+        // ============================================================================
+        function toggleMenu() {
+            AppState.menuOpenStatus = !AppState.menuOpenStatus;
+            document.getElementById("hamburger").classList.toggle("open", AppState.menuOpenStatus);
+            document.getElementById("mobileMenu").classList.toggle("open", AppState.menuOpenStatus);
+            document.body.style.overflow = AppState.menuOpenStatus ? "hidden" : "";
+        }
+    </script>
+</body>
+
+</html>
