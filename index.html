@@ -7,11 +7,21 @@
     <title>OUTFITO — Gen Z Style. Made To Stand Out.</title>
     <meta name="theme-color" content="#050505">
     <meta name="description"
-        content="OUTFITO - Premium Gen-Z Streetwear. Oversized tees, graphic drops, minimal collections. Wear your vibe.">
-    <link rel="icon" type="image/png" href="public/images /ChatGPT Image May 20, 2026, 07_45_35 PM.png">
+        content="OUTFITO - Premium Gen-Z Streetwear. 31 real oversized graphic tees. WhatsApp ordering, fast India-wide shipping. Wear your vibe.">
+    <link rel="icon" type="image/svg+xml"
+        href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Crect width='100' height='100' fill='%23050505'/%3E%3Ctext x='50' y='68' font-family='Georgia,serif' font-size='58' fill='%23F5F5F5' text-anchor='middle'%3EO%3C/text%3E%3C/svg%3E">
 
-    <link rel="dns-prefetch" href="https://images.unsplash.com">
-    <link rel="preconnect" href="https://images.unsplash.com" crossorigin>
+    <meta property="og:type" content="website">
+    <meta property="og:title" content="OUTFITO — Gen Z Style. Made To Stand Out.">
+    <meta property="og:description"
+        content="Premium Gen-Z streetwear. Oversized tees, graphic drops, minimal collections.">
+    <meta property="og:image" content="public/images/products/product-08.png">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="OUTFITO — Gen Z Style. Made To Stand Out.">
+    <meta name="twitter:description"
+        content="Premium Gen-Z streetwear. Oversized tees, graphic drops, minimal collections.">
+    <meta name="twitter:image" content="public/images/products/product-08.png">
+
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link
@@ -51,7 +61,19 @@
             color: var(--white);
             font-family: 'Syne', sans-serif;
             overflow-x: hidden;
-            cursor: none;
+        }
+
+        a,
+        button,
+        .product-card,
+        .category-card,
+        .ig-item,
+        .gallery-thumb,
+        .size-option,
+        .filter-btn,
+        .grid-btn,
+        .qty-btn {
+            cursor: pointer;
         }
 
         /* SCROLLBAR */
@@ -68,37 +90,15 @@
             border-radius: 2px;
         }
 
-        /* CURSOR */
-        .cursor {
-            width: 12px;
-            height: 12px;
-            background: var(--white);
-            border-radius: 50%;
-            position: fixed;
-            top: 0;
-            left: 0;
-            pointer-events: none;
-            z-index: 9999;
-            will-change: transform;
-            mix-blend-mode: difference;
-            transition: background 0.2s ease;
-        }
-
-        .cursor-follower {
-            width: 40px;
-            height: 40px;
-            border: 1px solid rgba(245, 245, 245, 0.4);
-            border-radius: 50%;
-            position: fixed;
-            top: 0;
-            left: 0;
-            pointer-events: none;
-            z-index: 9998;
-            will-change: transform;
-        }
-
-        .cursor.hover {
-            transform: scale(2.5) !important;
+        /* FOCUS STATES (ACCESSIBILITY) */
+        a:focus-visible,
+        button:focus-visible,
+        input:focus-visible,
+        textarea:focus-visible,
+        select:focus-visible,
+        [tabindex]:focus-visible {
+            outline: 2px solid var(--white);
+            outline-offset: 2px;
         }
 
         /* NOISE */
@@ -201,15 +201,6 @@
             gap: 10px;
         }
 
-        .nav-logo img {
-            width: 36px;
-            height: 36px;
-            object-fit: contain;
-            border-radius: 50%;
-            border: 1px solid rgba(245, 245, 245, 0.2);
-            background: #000;
-        }
-
         .nav-links {
             display: flex;
             gap: 36px;
@@ -266,7 +257,6 @@
             letter-spacing: 0.05em;
             transition: all 0.3s ease;
             background: transparent;
-            cursor: pointer;
         }
 
         .nav-icon-btn:hover {
@@ -298,8 +288,10 @@
             display: none;
             flex-direction: column;
             justify-content: space-between;
-            cursor: pointer;
             z-index: 200;
+            background: transparent;
+            border: none;
+            padding: 0;
         }
 
         .hamburger span {
@@ -500,6 +492,9 @@
             border: 1px solid rgba(245, 245, 245, 0.08);
             overflow: hidden;
             animation: floatCard 6s ease-in-out infinite;
+            border: none;
+            padding: 0;
+            text-align: left;
         }
 
         @keyframes floatCard {
@@ -519,6 +514,7 @@
             position: absolute;
             inset: 0;
             background: linear-gradient(135deg, rgba(79, 195, 247, 0.08), transparent 60%);
+            z-index: 1;
         }
 
         .hero-product-img {
@@ -540,6 +536,7 @@
             display: flex;
             justify-content: space-between;
             align-items: center;
+            z-index: 2;
         }
 
         .hero-product-name {
@@ -734,7 +731,6 @@
             text-transform: uppercase;
             text-decoration: none;
             border: none;
-            cursor: pointer;
             position: relative;
             overflow: hidden;
             transition: transform 0.3s ease;
@@ -775,7 +771,6 @@
             text-transform: uppercase;
             text-decoration: none;
             border: 1px solid rgba(245, 245, 245, 0.3);
-            cursor: pointer;
             position: relative;
             overflow: hidden;
             transition: border-color 0.3s ease;
@@ -817,14 +812,19 @@
             position: relative;
             aspect-ratio: 3/4;
             overflow: hidden;
-            cursor: pointer;
             background: var(--charcoal);
+            border: none;
+            padding: 0;
+            display: block;
+            width: 100%;
+            text-align: left;
         }
 
         .category-card img {
             width: 100%;
             height: 100%;
             object-fit: cover;
+            object-position: top center;
             transition: transform 0.7s cubic-bezier(0.23, 1, 0.32, 1);
             filter: grayscale(20%);
         }
@@ -897,16 +897,24 @@
             overflow: hidden;
             background: var(--charcoal);
             aspect-ratio: 3/4;
-            cursor: pointer;
             contain: layout style;
+            border: none;
+            padding: 0;
+            display: block;
+            width: 100%;
+            text-align: left;
+            font: inherit;
+            color: inherit;
         }
 
         .product-card img {
             width: 100%;
             height: 100%;
             object-fit: cover;
+            object-position: top center;
             transition: transform 0.7s cubic-bezier(0.23, 1, 0.32, 1), filter 0.4s ease;
             filter: grayscale(15%);
+            background: var(--charcoal2);
         }
 
         .product-card:hover img {
@@ -980,13 +988,13 @@
             letter-spacing: 0.2em;
             text-transform: uppercase;
             border: none;
-            cursor: pointer;
             opacity: 0;
             transform: translateY(10px);
             transition: opacity 0.3s ease, transform 0.3s ease;
         }
 
-        .product-card:hover .product-quick-btn {
+        .product-card:hover .product-quick-btn,
+        .product-card:focus-within .product-quick-btn {
             opacity: 1;
             transform: translateY(0);
         }
@@ -1094,6 +1102,7 @@
             width: 100%;
             height: 100%;
             object-fit: cover;
+            object-position: top center;
         }
 
         /* PHILOSOPHY */
@@ -1222,7 +1231,6 @@
             letter-spacing: 0.2em;
             text-transform: uppercase;
             border: none;
-            cursor: pointer;
             transition: background 0.3s ease;
         }
 
@@ -1246,7 +1254,6 @@
             aspect-ratio: 1;
             overflow: hidden;
             position: relative;
-            cursor: pointer;
             background: var(--charcoal);
         }
 
@@ -1254,6 +1261,7 @@
             width: 100%;
             height: 100%;
             object-fit: cover;
+            object-position: top center;
             transition: transform 0.5s ease, filter 0.4s ease;
             filter: grayscale(30%);
         }
@@ -1456,7 +1464,8 @@
             white-space: nowrap;
         }
 
-        .whatsapp-float:hover .whatsapp-label {
+        .whatsapp-float:hover .whatsapp-label,
+        .whatsapp-float:focus-within .whatsapp-label {
             opacity: 1;
             transform: translateX(0);
         }
@@ -1504,7 +1513,6 @@
             font-size: 10px;
             letter-spacing: 0.2em;
             text-transform: uppercase;
-            cursor: pointer;
             transition: all 0.3s ease;
         }
 
@@ -1524,7 +1532,6 @@
             font-size: 10px;
             letter-spacing: 0.15em;
             text-transform: uppercase;
-            cursor: pointer;
             outline: none;
             appearance: none;
             -webkit-appearance: none;
@@ -1555,7 +1562,6 @@
             height: 36px;
             border: 1px solid rgba(245, 245, 245, 0.2);
             background: transparent;
-            cursor: pointer;
             display: flex;
             align-items: center;
             justify-content: center;
@@ -1611,13 +1617,13 @@
             overflow: hidden;
             margin-bottom: 12px;
             position: relative;
-            cursor: zoom-in;
         }
 
         .gallery-main img {
             width: 100%;
             height: 100%;
             object-fit: cover;
+            object-position: top center;
             transition: transform 0.6s ease;
         }
 
@@ -1635,10 +1641,10 @@
             aspect-ratio: 3/4;
             background: var(--charcoal);
             overflow: hidden;
-            cursor: pointer;
             border: 2px solid transparent;
             transition: border-color 0.3s ease;
             flex-shrink: 0;
+            padding: 0;
         }
 
         .gallery-thumb.active {
@@ -1649,6 +1655,7 @@
             width: 100%;
             height: 100%;
             object-fit: cover;
+            object-position: top center;
         }
 
         .product-detail-name {
@@ -1722,7 +1729,12 @@
         .size-guide-link {
             color: var(--silver);
             text-decoration: underline;
-            cursor: pointer;
+            background: none;
+            border: none;
+            font-family: 'Space Mono', monospace;
+            font-size: 10px;
+            letter-spacing: 0.3em;
+            text-transform: uppercase;
             transition: color 0.3s;
         }
 
@@ -1747,7 +1759,6 @@
             font-size: 11px;
             letter-spacing: 0.1em;
             color: var(--silver);
-            cursor: pointer;
             transition: all 0.2s ease;
             background: transparent;
         }
@@ -1781,7 +1792,6 @@
             border: 1px solid rgba(245, 245, 245, 0.2);
             background: transparent;
             color: var(--white);
-            cursor: pointer;
             font-size: 18px;
             transition: all 0.2s ease;
             display: flex;
@@ -1817,7 +1827,6 @@
             letter-spacing: 0.3em;
             text-transform: uppercase;
             border: none;
-            cursor: pointer;
             display: flex;
             align-items: center;
             justify-content: center;
@@ -1886,13 +1895,16 @@
             display: flex;
             justify-content: space-between;
             align-items: center;
+            width: 100%;
             padding: 20px 0;
-            cursor: pointer;
+            background: none;
+            border: none;
             font-family: 'Space Mono', monospace;
             font-size: 10px;
             letter-spacing: 0.3em;
             color: var(--white);
             text-transform: uppercase;
+            text-align: left;
         }
 
         .accordion-icon {
@@ -2121,6 +2133,8 @@
             opacity: 0;
             pointer-events: none;
             transition: opacity 0.4s ease;
+            border: none;
+            padding: 0;
         }
 
         .cart-overlay.open {
@@ -2148,7 +2162,6 @@
             border: 1px solid rgba(245, 245, 245, 0.2);
             background: transparent;
             color: var(--white);
-            cursor: pointer;
             display: flex;
             align-items: center;
             justify-content: center;
@@ -2186,6 +2199,7 @@
             width: 100%;
             height: 100%;
             object-fit: cover;
+            object-position: top center;
         }
 
         .cart-item-info {
@@ -2220,10 +2234,12 @@
             letter-spacing: 0.2em;
             color: var(--silver);
             text-transform: uppercase;
-            cursor: pointer;
             transition: color 0.3s;
             margin-top: 8px;
             display: inline-block;
+            background: none;
+            border: none;
+            padding: 0;
         }
 
         .cart-item-remove:hover {
@@ -2348,7 +2364,6 @@
             border: 1px solid rgba(245, 245, 245, 0.2);
             background: transparent;
             color: var(--white);
-            cursor: pointer;
             display: flex;
             align-items: center;
             justify-content: center;
@@ -2585,15 +2600,13 @@
 
 <body>
 
-    <!-- NOISE + SCROLL PROGRESS + CURSOR -->
+    <!-- NOISE + SCROLL PROGRESS -->
     <div class="noise-overlay"></div>
     <div class="scroll-progress" id="scrollProgress"></div>
-    <div class="cursor" id="cursor"></div>
-    <div class="cursor-follower" id="cursorFollower"></div>
     <div class="page-transition" id="pageTransition"></div>
 
     <!-- TOAST -->
-    <div class="toast" id="toast"></div>
+    <div class="toast" id="toast" role="status" aria-live="polite"></div>
 
     <!-- LOADER -->
     <div id="loader">
@@ -2605,21 +2618,18 @@
     </div>
 
     <!-- MOBILE MENU -->
-    <nav class="mobile-menu" id="mobileMenu">
+    <nav class="mobile-menu" id="mobileMenu" aria-label="Mobile navigation">
         <a href="#" onclick="navigateTo('home');return false;">Home</a>
         <a href="#" onclick="navigateTo('shop');return false;">Shop</a>
         <a href="#" onclick="navigateTo('about');return false;">About</a>
         <a href="#" onclick="navigateTo('contact');return false;">Contact</a>
-        <a href="https://instagram.com/outfito.in" target="_blank">Instagram</a>
-        <a href="https://wa.me/918448908359?text=Hi%20OUTFITO!" target="_blank">WhatsApp</a>
+        <a href="https://www.instagram.com/officialoutfito/" target="_blank" rel="noopener">Instagram</a>
+        <a href="https://wa.me/918595678209?text=Hi%20OUTFITO!" target="_blank" rel="noopener">WhatsApp</a>
     </nav>
 
     <!-- NAVBAR -->
-    <nav id="navbar">
-        <a href="#" class="nav-logo" onclick="navigateTo('home');return false;">
-            <img src="" id="navLogo" alt="OUTFITO">
-            OUTFITO
-        </a>
+    <nav id="navbar" aria-label="Primary navigation">
+        <a href="#" class="nav-logo" onclick="navigateTo('home');return false;">OUTFITO</a>
         <ul class="nav-links">
             <li><a href="#" onclick="navigateTo('home');return false;">Home</a></li>
             <li><a href="#" onclick="navigateTo('shop');return false;">Shop</a></li>
@@ -2630,46 +2640,51 @@
             <li><a href="#" onclick="navigateTo('contact');return false;">Contact</a></li>
         </ul>
         <div class="nav-right">
-            <a href="https://instagram.com/outfito.in" target="_blank" class="nav-icon-btn" title="Instagram">
-                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+            <a href="https://www.instagram.com/officialoutfito/" target="_blank" rel="noopener" class="nav-icon-btn"
+                title="Instagram" aria-label="Visit OUTFITO on Instagram">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"
+                    aria-hidden="true">
                     <rect x="2" y="2" width="20" height="20" rx="5" ry="5" />
                     <circle cx="12" cy="12" r="4" />
                     <circle cx="17.5" cy="6.5" r="1" fill="currentColor" stroke="none" />
                 </svg>
             </a>
-            <a href="https://wa.me/918448908359?text=Hi%20OUTFITO%2C%20I%20want%20to%20know%20more!" target="_blank"
-                class="nav-icon-btn" title="WhatsApp">
-                <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor">
+            <a href="https://wa.me/918595678209?text=Hi%20OUTFITO%2C%20I%20want%20to%20know%20more!" target="_blank"
+                rel="noopener" class="nav-icon-btn" title="WhatsApp" aria-label="Chat with OUTFITO on WhatsApp">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
                     <path
                         d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z" />
                 </svg>
             </a>
-            <button class="nav-icon-btn cart-nav-btn" onclick="toggleCart()" style="position:relative;" title="Cart">
-                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+            <button type="button" class="nav-icon-btn cart-nav-btn" onclick="toggleCart()" style="position:relative;"
+                title="Cart" aria-label="Open shopping bag">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"
+                    aria-hidden="true">
                     <path d="M6 2L3 6v14a2 2 0 002 2h14a2 2 0 002-2V6l-3-4z" />
                     <line x1="3" y1="6" x2="21" y2="6" />
                     <path d="M16 10a4 4 0 01-8 0" />
                 </svg>
                 <span class="cart-count" id="cartCount" style="display:none;">0</span>
             </button>
-            <div class="hamburger" id="hamburger" onclick="toggleMenu()">
+            <button type="button" class="hamburger" id="hamburger" onclick="toggleMenu()" aria-label="Open menu"
+                aria-expanded="false" aria-controls="mobileMenu">
                 <span></span><span></span><span></span>
-            </div>
+            </button>
         </div>
     </nav>
 
     <!-- CART DRAWER -->
-    <div class="cart-overlay" id="cartOverlay" onclick="toggleCart()"></div>
-    <div class="cart-drawer" id="cartDrawer">
+    <button type="button" class="cart-overlay" id="cartOverlay" onclick="toggleCart()" aria-label="Close cart"></button>
+    <div class="cart-drawer" id="cartDrawer" role="dialog" aria-label="Shopping bag" aria-modal="true">
         <div class="cart-header">
             <span class="cart-title">YOUR BAG</span>
-            <button class="cart-close" onclick="toggleCart()">✕</button>
+            <button type="button" class="cart-close" onclick="toggleCart()" aria-label="Close bag">✕</button>
         </div>
         <div class="cart-items" id="cartItems">
             <div class="cart-empty">
                 <div class="cart-empty-text">YOUR BAG IS EMPTY</div>
                 <div class="cart-empty-sub">Add something to get started</div>
-                <button class="btn-outline" style="margin-top:24px;"
+                <button type="button" class="btn-outline" style="margin-top:24px;"
                     onclick="toggleCart();navigateTo('shop')"><span>SHOP NOW</span></button>
             </div>
         </div>
@@ -2678,22 +2693,23 @@
                 <span class="cart-total-label">Total</span>
                 <span class="cart-total-value" id="cartTotal">₹0</span>
             </div>
-            <button class="whatsapp-order-btn" onclick="checkoutWhatsApp()" style="margin-bottom:12px;">
-                <svg viewBox="0 0 24 24" width="20" height="20" fill="white">
+            <button type="button" class="whatsapp-order-btn" onclick="checkoutWhatsApp()" style="margin-bottom:12px;">
+                <svg viewBox="0 0 24 24" width="20" height="20" fill="white" aria-hidden="true">
                     <path
                         d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z" />
                 </svg>
                 ORDER ALL ON WHATSAPP
             </button>
-            <button class="btn-outline" style="width:100%;" onclick="toggleCart()"><span>CONTINUE
+            <button type="button" class="btn-outline" style="width:100%;" onclick="toggleCart()"><span>CONTINUE
                     SHOPPING</span></button>
         </div>
     </div>
 
     <!-- SIZE GUIDE MODAL -->
-    <div class="modal-overlay" id="sizeModal">
+    <div class="modal-overlay" id="sizeModal" role="dialog" aria-modal="true" aria-label="Size guide">
         <div class="modal-box">
-            <button class="modal-close" onclick="closeSizeGuide()">✕</button>
+            <button type="button" class="modal-close" onclick="closeSizeGuide()"
+                aria-label="Close size guide">✕</button>
             <div class="modal-title">SIZE GUIDE</div>
             <table class="size-table">
                 <thead>
@@ -2754,9 +2770,9 @@
     <div class="whatsapp-float">
         <span class="whatsapp-label">Order on WhatsApp</span>
         <a class="whatsapp-btn"
-            href="https://wa.me/918448908359?text=Hi%20OUTFITO%2C%20I%20want%20to%20place%20an%20order!"
-            target="_blank">
-            <svg viewBox="0 0 24 24">
+            href="https://wa.me/918595678209?text=Hi%20OUTFITO%2C%20I%20want%20to%20place%20an%20order!" target="_blank"
+            rel="noopener" aria-label="Order on WhatsApp">
+            <svg viewBox="0 0 24 24" aria-hidden="true">
                 <path
                     d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z" />
             </svg>
@@ -2794,15 +2810,15 @@
                                 style="font-family:'Space Mono',monospace;font-size:9px;color:var(--silver);letter-spacing:0.1em;">LIVE
                                 NOW</span></div>
                     </div>
-                    <div class="hero-product-card" id="heroCard">
-                        <img src="https://images.unsplash.com/photo-1521572163474-6864f9cf17ab?w=600&q=80"
-                            alt="Hero Product" class="hero-product-img" id="heroProductImg" fetchpriority="high"
-                            decoding="async">
+                    <button type="button" class="hero-product-card" id="heroCard">
+                        <img src="public/images/products/product-01.png" alt="Lost Treasure Tee — OUTFITO hero product"
+                            class="hero-product-img" id="heroProductImg" fetchpriority="high" decoding="async"
+                            width="600" height="778">
                         <div class="hero-product-tag">
-                            <span class="hero-product-name" id="heroProductName">SHADOW TEE</span>
-                            <span class="hero-product-price" id="heroProductPrice">₹999</span>
+                            <span class="hero-product-name" id="heroProductName">LOST TREASURE TEE</span>
+                            <span class="hero-product-price" id="heroProductPrice">₹1,099</span>
                         </div>
-                    </div>
+                    </button>
                     <div class="hero-card-mini hero-card-mini-2">
                         <div class="mini-card-label">Happy Customers</div>
                         <div class="mini-card-value">2K+</div>
@@ -2869,8 +2885,8 @@
                     style="background:var(--black);color:var(--white);"><span>OUR STORY</span></a>
             </div>
             <div class="campaign-image reveal">
-                <img src="https://images.unsplash.com/photo-1529139574466-a303027c1d8b?w=600&q=80" alt="Campaign"
-                    loading="lazy">
+                <img src="public/images/products/product-17.png" alt="OUTFITO oversized graphic tee campaign shot"
+                    loading="lazy" decoding="async" width="600" height="750">
             </div>
         </div>
 
@@ -2893,10 +2909,12 @@
                     <h2 class="section-title reveal" style="font-size:clamp(36px,5vw,64px);margin-bottom:0;">@OUTFITO.IN
                     </h2>
                 </div>
-                <a href="https://instagram.com/outfito.in" target="_blank" class="btn-outline reveal">
+                <a href="https://www.instagram.com/officialoutfito/" target="_blank" rel="noopener"
+                    class="btn-outline reveal">
                     <span>
                         <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor"
-                            stroke-width="1.5" style="display:inline;margin-right:8px;vertical-align:middle;">
+                            stroke-width="1.5" style="display:inline;margin-right:8px;vertical-align:middle;"
+                            aria-hidden="true">
                             <rect x="2" y="2" width="20" height="20" rx="5" ry="5" />
                             <circle cx="12" cy="12" r="4" />
                             <circle cx="17.5" cy="6.5" r="1" fill="currentColor" stroke="none" />
@@ -2905,38 +2923,7 @@
                     </span>
                 </a>
             </div>
-            <div class="ig-grid">
-                <a class="ig-item" href="https://instagram.com/outfito.in" target="_blank"><img
-                        src="https://images.unsplash.com/photo-1523381210434-271e8be1f52b?w=400&q=80" alt="IG"
-                        loading="lazy">
-                    <div class="ig-overlay"><span class="ig-icon">VIEW</span></div>
-                </a>
-                <a class="ig-item" href="https://instagram.com/outfito.in" target="_blank"><img
-                        src="https://images.unsplash.com/photo-1556821840-3a63f15732ce?w=400&q=80" alt="IG"
-                        loading="lazy">
-                    <div class="ig-overlay"><span class="ig-icon">VIEW</span></div>
-                </a>
-                <a class="ig-item" href="https://instagram.com/outfito.in" target="_blank"><img
-                        src="https://images.unsplash.com/photo-1503341504253-dff4815485f1?w=400&q=80" alt="IG"
-                        loading="lazy">
-                    <div class="ig-overlay"><span class="ig-icon">VIEW</span></div>
-                </a>
-                <a class="ig-item" href="https://instagram.com/outfito.in" target="_blank"><img
-                        src="https://images.unsplash.com/photo-1618354691373-d851c5c3a990?w=400&q=80" alt="IG"
-                        loading="lazy">
-                    <div class="ig-overlay"><span class="ig-icon">VIEW</span></div>
-                </a>
-                <a class="ig-item" href="https://instagram.com/outfito.in" target="_blank"><img
-                        src="https://images.unsplash.com/photo-1596755094514-f87e34085b2c?w=400&q=80" alt="IG"
-                        loading="lazy">
-                    <div class="ig-overlay"><span class="ig-icon">VIEW</span></div>
-                </a>
-                <a class="ig-item" href="https://instagram.com/outfito.in" target="_blank"><img
-                        src="https://images.unsplash.com/photo-1583743814966-8936f5b7be1a?w=400&q=80" alt="IG"
-                        loading="lazy">
-                    <div class="ig-overlay"><span class="ig-icon">VIEW</span></div>
-                </a>
-            </div>
+            <div class="ig-grid" id="igGrid"></div>
         </div>
 
         <!-- REVIEWS -->
@@ -2946,7 +2933,7 @@
             <div class="reviews-grid">
                 <div class="review-card reveal">
                     <div class="review-stars">★★★★★</div>
-                    <p class="review-text">"Quality is actually insane for this price. The Shadow Tee fits perfectly
+                    <p class="review-text">"Quality is actually insane for this price. The graphic tees fit perfectly
                         oversized and the fabric is so heavy and premium. Already ordered 3 more."</p>
                     <div class="review-author">— Arjun S., Delhi</div>
                 </div>
@@ -2972,10 +2959,12 @@
             </h2>
             <p class="reveal" style="font-size:14px;color:var(--silver);margin-top:8px;">No spam. Just exclusive drops,
                 early access and streetwear culture.</p>
-            <div class="newsletter-form reveal">
-                <input type="email" class="newsletter-input" placeholder="your@email.com">
-                <button class="newsletter-btn" onclick="newsletterJoin()">JOIN</button>
-            </div>
+            <form class="newsletter-form reveal" onsubmit="return newsletterJoin(event)">
+                <label for="newsletterEmail" class="sr-only" style="position:absolute;left:-9999px;">Email
+                    address</label>
+                <input type="email" id="newsletterEmail" class="newsletter-input" placeholder="your@email.com" required>
+                <button type="submit" class="newsletter-btn">JOIN</button>
+            </form>
         </div>
 
         <!-- FOOTER -->
@@ -2986,19 +2975,23 @@
                     <p class="footer-brand-desc">Gen Z style made to stand out. Premium Indian streetwear for those who
                         wear their identity with confidence.</p>
                     <div class="footer-social">
-                        <a href="https://instagram.com/outfito.in" target="_blank" class="social-icon"
-                            title="Instagram">
+                        <a href="https://www.instagram.com/officialoutfito/" target="_blank" rel="noopener"
+                            class="social-icon" title="Instagram" aria-label="Instagram">
                             <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor"
-                                stroke-width="1.5">
+                                stroke-width="1.5" aria-hidden="true">
                                 <rect x="2" y="2" width="20" height="20" rx="5" />
                                 <circle cx="12" cy="12" r="4" />
                                 <circle cx="17.5" cy="6.5" r="1" fill="currentColor" stroke="none" />
                             </svg>
                         </a>
-                        <a href="https://wa.me/918448908359" target="_blank" class="social-icon">WA</a>
-                        <a href="https://pinterest.com" target="_blank" class="social-icon">PT</a>
-                        <a href="https://youtube.com" target="_blank" class="social-icon">YT</a>
-                        <a href="https://threads.net/@outfito.in" target="_blank" class="social-icon">TH</a>
+                        <a href="https://wa.me/918595678209" target="_blank" rel="noopener" class="social-icon"
+                            aria-label="WhatsApp">WA</a>
+                        <a href="https://pinterest.com" target="_blank" rel="noopener" class="social-icon"
+                            aria-label="Pinterest">PT</a>
+                        <a href="https://youtube.com" target="_blank" rel="noopener" class="social-icon"
+                            aria-label="YouTube">YT</a>
+                        <a href="https://threads.net/@outfito.in" target="_blank" rel="noopener" class="social-icon"
+                            aria-label="Threads">TH</a>
                     </div>
                 </div>
                 <div>
@@ -3023,18 +3016,19 @@
                     <ul class="footer-links">
                         <li><a href="#" onclick="navigateTo('about');return false;">About Us</a></li>
                         <li><a href="#" onclick="navigateTo('contact');return false;">Contact</a></li>
-                        <li><a href="#">FAQ</a></li>
-                        <li><a href="#">Shipping & Returns</a></li>
+                        <li><a href="#" onclick="return false;">FAQ</a></li>
+                        <li><a href="#" onclick="return false;">Shipping & Returns</a></li>
                         <li><a href="#" onclick="openSizeGuide();return false;">Size Guide</a></li>
                     </ul>
                 </div>
                 <div>
                     <div class="footer-col-title">Connect</div>
                     <ul class="footer-links">
-                        <li><a href="https://instagram.com/outfito.in" target="_blank">Instagram</a></li>
-                        <li><a href="https://wa.me/918448908359" target="_blank">WhatsApp</a></li>
-                        <li><a href="#">Privacy Policy</a></li>
-                        <li><a href="#">Terms & Conditions</a></li>
+                        <li><a href="https://www.instagram.com/officialoutfito/" target="_blank"
+                                rel="noopener">Instagram</a></li>
+                        <li><a href="https://wa.me/918595678209" target="_blank" rel="noopener">WhatsApp</a></li>
+                        <li><a href="#" onclick="return false;">Privacy Policy</a></li>
+                        <li><a href="#" onclick="return false;">Terms & Conditions</a></li>
                     </ul>
                 </div>
             </div>
@@ -3054,20 +3048,25 @@
         <div class="shop-controls">
             <div style="display:flex;gap:8px;flex-wrap:wrap;align-items:center;">
                 <div class="shop-filters" id="shopFilters">
-                    <button class="filter-btn active" data-cat="all" onclick="filterProducts('all',this)">ALL</button>
-                    <button class="filter-btn" data-cat="oversized"
+                    <button type="button" class="filter-btn active" data-cat="all"
+                        onclick="filterProducts('all',this)">ALL</button>
+                    <button type="button" class="filter-btn" data-cat="oversized"
                         onclick="filterProducts('oversized',this)">OVERSIZED</button>
-                    <button class="filter-btn" data-cat="graphic"
+                    <button type="button" class="filter-btn" data-cat="graphic"
                         onclick="filterProducts('graphic',this)">GRAPHIC</button>
-                    <button class="filter-btn" data-cat="minimal"
+                    <button type="button" class="filter-btn" data-cat="minimal"
                         onclick="filterProducts('minimal',this)">MINIMAL</button>
-                    <button class="filter-btn" data-cat="new" onclick="filterProducts('new',this)">NEW ARRIVALS</button>
-                    <button class="filter-btn" data-cat="women" onclick="filterProducts('women',this)">WOMEN</button>
-                    <button class="filter-btn" data-cat="unisex" onclick="filterProducts('unisex',this)">UNISEX</button>
+                    <button type="button" class="filter-btn" data-cat="new" onclick="filterProducts('new',this)">NEW
+                        ARRIVALS</button>
+                    <button type="button" class="filter-btn" data-cat="women"
+                        onclick="filterProducts('women',this)">WOMEN</button>
+                    <button type="button" class="filter-btn" data-cat="unisex"
+                        onclick="filterProducts('unisex',this)">UNISEX</button>
                 </div>
             </div>
             <div style="display:flex;gap:12px;align-items:center;flex-wrap:wrap;">
-                <span class="product-count" id="productCount">12 Products</span>
+                <span class="product-count" id="productCount">31 Products</span>
+                <label for="sortSelect" class="sr-only" style="position:absolute;left:-9999px;">Sort products</label>
                 <select class="sort-select" id="sortSelect" onchange="sortProducts(this.value)">
                     <option value="default">SORT: DEFAULT</option>
                     <option value="price-low">PRICE: LOW TO HIGH</option>
@@ -3076,8 +3075,10 @@
                     <option value="popular">MOST POPULAR</option>
                 </select>
                 <div class="shop-grid-controls">
-                    <button class="grid-btn" onclick="setGrid(3,this)" title="3 columns">⊞</button>
-                    <button class="grid-btn active" onclick="setGrid(4,this)" title="4 columns">⊟</button>
+                    <button type="button" class="grid-btn" onclick="setGrid(3,this)" title="3 columns"
+                        aria-label="View 3 columns">⊞</button>
+                    <button type="button" class="grid-btn active" onclick="setGrid(4,this)" title="4 columns"
+                        aria-label="View 4 columns">⊟</button>
                 </div>
             </div>
         </div>
@@ -3095,13 +3096,14 @@
     <!-- ========== PRODUCT DETAIL PAGE ========== -->
     <div id="product-page" class="page-section">
         <div style="margin-bottom:32px;">
-            <button onclick="navigateTo('shop')" class="btn-outline" style="padding:10px 24px;"><span>← BACK TO
+            <button type="button" onclick="navigateTo('shop')" class="btn-outline" style="padding:10px 24px;"><span>←
+                    BACK TO
                     SHOP</span></button>
         </div>
         <div class="product-detail-grid">
             <div class="product-gallery">
                 <div class="gallery-main">
-                    <img src="" alt="Product" id="galleryMain">
+                    <img src="" alt="Product" id="galleryMain" width="600" height="800">
                 </div>
                 <div class="gallery-thumbs" id="galleryThumbs"></div>
             </div>
@@ -3114,33 +3116,35 @@
                     <span class="product-detail-save" id="pdpSave" style="display:none;"></span>
                 </div>
                 <div class="product-rating">
-                    <span class="stars">★★★★★</span>
-                    <span class="rating-count">(128 reviews)</span>
+                    <span class="stars" id="pdpStars">★★★★★</span>
+                    <span class="rating-count" id="pdpRatingCount">(128 reviews)</span>
                 </div>
                 <div class="size-selector">
                     <div class="size-selector-label">
                         <span>SELECT SIZE</span>
-                        <span class="size-guide-link" onclick="openSizeGuide()">SIZE GUIDE</span>
+                        <button type="button" class="size-guide-link" onclick="openSizeGuide()">SIZE GUIDE</button>
                     </div>
                     <div class="size-options" id="pdpSizes"></div>
                 </div>
                 <div style="margin-bottom:24px;">
                     <div class="qty-label">QUANTITY</div>
                     <div class="qty-selector">
-                        <button class="qty-btn" onclick="changeQty(-1)">−</button>
-                        <div class="qty-display" id="qtyDisplay">1</div>
-                        <button class="qty-btn" onclick="changeQty(1)">+</button>
+                        <button type="button" class="qty-btn" onclick="changeQty(-1)"
+                            aria-label="Decrease quantity">−</button>
+                        <div class="qty-display" id="qtyDisplay" aria-live="polite">1</div>
+                        <button type="button" class="qty-btn" onclick="changeQty(1)"
+                            aria-label="Increase quantity">+</button>
                     </div>
                 </div>
-                <a class="whatsapp-order-btn" id="whatsappOrderBtn" href="#" target="_blank">
-                    <svg viewBox="0 0 24 24" width="20" height="20" fill="white">
+                <a class="whatsapp-order-btn" id="whatsappOrderBtn" href="#" target="_blank" rel="noopener">
+                    <svg viewBox="0 0 24 24" width="20" height="20" fill="white" aria-hidden="true">
                         <path
                             d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z" />
                     </svg>
                     ORDER NOW ON WHATSAPP
                 </a>
-                <button class="btn-outline" style="width:100%;margin-bottom:24px;" onclick="addToCart()"><span>+ ADD TO
-                        BAG</span></button>
+                <button type="button" class="btn-outline" style="width:100%;margin-bottom:24px;" onclick="addToCart()">
+                    <span>+ ADD TO BAG</span></button>
                 <div style="display:flex;gap:16px;margin-bottom:32px;">
                     <div style="flex:1;background:var(--charcoal2);padding:16px;text-align:center;">
                         <div style="font-size:18px;margin-bottom:4px;">🚚</div>
@@ -3163,22 +3167,25 @@
                 </div>
                 <div class="product-description">
                     <div class="accordion-item open" id="acc1">
-                        <div class="accordion-header" onclick="toggleAccordion('acc1')"><span>ABOUT THIS
-                                PIECE</span><span class="accordion-icon">+</span></div>
+                        <button type="button" class="accordion-header" onclick="toggleAccordion('acc1')"><span>ABOUT
+                                THIS
+                                PIECE</span><span class="accordion-icon">+</span></button>
                         <div class="accordion-body">
                             <p id="pdpDesc"></p>
                         </div>
                     </div>
                     <div class="accordion-item" id="acc2">
-                        <div class="accordion-header" onclick="toggleAccordion('acc2')"><span>DETAILS &
-                                FABRIC</span><span class="accordion-icon">+</span></div>
+                        <button type="button" class="accordion-header" onclick="toggleAccordion('acc2')"><span>DETAILS
+                                &
+                                FABRIC</span><span class="accordion-icon">+</span></button>
                         <div class="accordion-body">
                             <div class="product-features" id="pdpFeatures"></div>
                         </div>
                     </div>
                     <div class="accordion-item" id="acc3">
-                        <div class="accordion-header" onclick="toggleAccordion('acc3')"><span>SHIPPING &
-                                DELIVERY</span><span class="accordion-icon">+</span></div>
+                        <button type="button" class="accordion-header" onclick="toggleAccordion('acc3')"><span>SHIPPING
+                                &
+                                DELIVERY</span><span class="accordion-icon">+</span></button>
                         <div class="accordion-body">
                             <p>Ships in 2–5 business days across India. Free shipping on orders above ₹999. COD & UPI
                                 accepted. Easy 7-day returns.</p>
@@ -3222,7 +3229,7 @@
                 <div class="stat-label">Happy Customers</div>
             </div>
             <div class="stat-card">
-                <div class="stat-number">15+</div>
+                <div class="stat-number">31+</div>
                 <div class="stat-label">Unique Designs</div>
             </div>
             <div class="stat-card">
@@ -3264,15 +3271,16 @@
         <h1 class="section-title" style="margin-bottom:60px;">LET'S<br>TALK.</h1>
         <div class="contact-grid">
             <div class="contact-form">
-                <div class="form-group"><label class="form-label">Your Name</label><input type="text" class="form-input"
-                        placeholder="John Doe" id="contactName"></div>
-                <div class="form-group"><label class="form-label">Email Address</label><input type="email"
-                        class="form-input" placeholder="you@email.com" id="contactEmail"></div>
-                <div class="form-group"><label class="form-label">Subject</label><input type="text" class="form-input"
-                        placeholder="Order inquiry / Collab / Other" id="contactSubject"></div>
-                <div class="form-group"><label class="form-label">Message</label><textarea class="form-textarea"
-                        placeholder="Your message here..." id="contactMessage"></textarea></div>
-                <button class="btn-primary" style="width:100%;" onclick="sendContactWhatsApp()"><span>SEND ON
+                <div class="form-group"><label class="form-label" for="contactName">Your Name</label><input type="text"
+                        class="form-input" placeholder="John Doe" id="contactName"></div>
+                <div class="form-group"><label class="form-label" for="contactEmail">Email Address</label><input
+                        type="email" class="form-input" placeholder="you@email.com" id="contactEmail"></div>
+                <div class="form-group"><label class="form-label" for="contactSubject">Subject</label><input type="text"
+                        class="form-input" placeholder="Order inquiry / Collab / Other" id="contactSubject"></div>
+                <div class="form-group"><label class="form-label" for="contactMessage">Message</label><textarea
+                        class="form-textarea" placeholder="Your message here..." id="contactMessage"></textarea></div>
+                <button type="button" class="btn-primary" style="width:100%;" onclick="sendContactWhatsApp()"><span>SEND
+                        ON
                         WHATSAPP</span></button>
             </div>
             <div>
@@ -3282,21 +3290,25 @@
                         Reach out — we actually reply.</p>
                     <div class="contact-detail">
                         <span class="contact-detail-icon">WA</span>
-                        <span class="contact-detail-text"><a href="https://wa.me/918448908359" target="_blank"
-                                style="color:var(--white);text-decoration:none;">+91 84489 08359</a><br>Usually replies
+                        <span class="contact-detail-text"><a href="https://wa.me/918595678209" target="_blank"
+                                rel="noopener" style="color:var(--white);text-decoration:none;">+91 84489
+                                08359</a><br>Usually
+                            replies
                             in under 30 mins</span>
                     </div>
                     <div class="contact-detail">
                         <span class="contact-detail-icon">
                             <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor"
-                                stroke-width="1.5">
+                                stroke-width="1.5" aria-hidden="true">
                                 <rect x="2" y="2" width="20" height="20" rx="5" />
                                 <circle cx="12" cy="12" r="4" />
                                 <circle cx="17.5" cy="6.5" r="1" fill="currentColor" stroke="none" />
                             </svg>
                         </span>
-                        <span class="contact-detail-text"><a href="https://instagram.com/outfito.in" target="_blank"
-                                style="color:var(--white);text-decoration:none;">@outfito.in</a><br>DMs open for collab
+                        <span class="contact-detail-text"><a href="https://www.instagram.com/officialoutfito/"
+                                target="_blank" rel="noopener"
+                                style="color:var(--white);text-decoration:none;">@outfito.in</a><br>DMs
+                            open for collab
                             inquiries</span>
                     </div>
                     <div class="contact-detail">
@@ -3304,10 +3316,10 @@
                         <span class="contact-detail-text">hello@outfito.in</span>
                     </div>
                 </div>
-                <a href="https://wa.me/918448908359?text=Hi%20OUTFITO%2C%20I%20want%20to%20place%20an%20order!"
-                    target="_blank" class="whatsapp-order-btn"
+                <a href="https://wa.me/918595678209?text=Hi%20OUTFITO%2C%20I%20want%20to%20place%20an%20order!"
+                    target="_blank" rel="noopener" class="whatsapp-order-btn"
                     style="width:auto;display:inline-flex;margin-bottom:12px;">
-                    <svg viewBox="0 0 24 24" width="18" height="18" fill="white">
+                    <svg viewBox="0 0 24 24" width="18" height="18" fill="white" aria-hidden="true">
                         <path
                             d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z" />
                     </svg>
@@ -3335,292 +3347,60 @@
 
     <script>
         // ==================== PRODUCT DATA ====================
-        // To add products: just add a new object to this array
+        // Centralized product catalogue. To add a product: drop a new object in this array
+        // and place its image(s) in public/images/products/. Nothing else needs to change —
+        // home, shop, filters, sorting, cart and WhatsApp ordering all read from PRODUCTS.
+        const IMG_BASE = 'public/products/';
+
         const PRODUCTS = [
+            { id: 'outfito-001', name: 'Lost Treasure Tee', shortName: 'LOST TREASURE', category: 'graphic', gender: 'unisex', price: 1099, ogPrice: null, badge: 'hot', hot: true, featured: true, isNew: false, rating: 4.9, reviews: 156, sizes: ['S', 'M', 'L', 'XL', 'XXL'], images: [IMG_BASE + 'product-01.png'], desc: 'A bold anime-inspired hero print on heavyweight 280gsm black cotton. Oversized drop-shoulder fit with a matte finish print that holds up wash after wash — for those who chase their own treasure.', features: ['280gsm premium cotton', 'Oversized boxy fit', 'Drop shoulders', 'Matte screen print', 'Ribbed collar', 'Made in India'] },
+            { id: 'outfito-002', name: 'Designer God Tee', shortName: 'DESIGNER GOD', category: 'graphic', gender: 'unisex', price: 999, ogPrice: 1299, badge: 'sale', hot: false, featured: false, isNew: false, rating: 4.7, reviews: 88, sizes: ['S', 'M', 'L', 'XL'], images: [IMG_BASE + 'product-02.png'], desc: 'Neon-yellow typography frames a classical silhouette on jet black cotton. A statement piece for the ones who see creation as the highest form of power.', features: ['260gsm cotton', 'High-density neon print', 'Relaxed fit', 'Crew neck', 'Colourfast dye', 'Made in India'] },
+            { id: 'outfito-003', name: 'One Day I Left Tee', shortName: 'ONE DAY I LEFT', category: 'graphic', gender: 'unisex', price: 999, ogPrice: null, badge: null, hot: false, featured: false, isNew: false, rating: 4.6, reviews: 61, sizes: ['S', 'M', 'L', 'XL'], images: [IMG_BASE + 'product-03.png'], desc: 'Bold red typography and a raw graphic cross print on crisp white cotton. A reminder that walking away is sometimes the hardest — and most powerful — move.', features: ['260gsm cotton', 'Front chest + back print', 'Oversized fit', 'Crew neck', 'Pre-shrunk fabric', 'Made in India'] },
+            { id: 'outfito-004', name: 'Lowrider Legacy Tee', shortName: 'LOWRIDER LEGACY', category: 'graphic', gender: 'unisex', price: 1099, ogPrice: null, badge: 'new', hot: false, featured: false, isNew: true, rating: 4.8, reviews: 19, sizes: ['S', 'M', 'L', 'XL', 'XXL'], images: [IMG_BASE + 'product-04.png'], desc: 'Street-art inspired graffiti graphic on white oversized cotton — classic lowrider culture reimagined for the Indian streetwear scene. Fresh off the SS26 drop.', features: ['260gsm cotton', 'Graffiti-style graphic print', 'Oversized fit', 'Crew neck', 'Screen printed', 'Made in India'] },
+            { id: 'outfito-005', name: 'Twin Warriors Tee', shortName: 'TWIN WARRIORS', category: 'graphic', gender: 'unisex', price: 1199, ogPrice: 1599, badge: 'sale', hot: false, featured: false, isNew: false, rating: 4.8, reviews: 47, sizes: ['S', 'M', 'L', 'XL'], images: [IMG_BASE + 'product-05.png'], desc: 'A split-face mythological warrior graphic — two forces, one story, printed in razor-sharp detail on premium white cotton. For those who carry more than one side.', features: ['280gsm premium cotton', 'Split duotone graphic', 'Oversized silhouette', 'Crew neck', 'Fade-resistant ink', 'Made in India'] },
             {
-                id: 'shadow-tee',
-                name: 'SHADOW OVERSIZED TEE',
-                shortName: 'SHADOW TEE',
-                price: 999,
-                ogPrice: 1299,
-                category: 'oversized',
-                gender: 'unisex',
-                badge: 'hot',
-                hot: true,
-                featured: true,
-                isNew: false,
-                rating: 5,
-                reviews: 128,
-                sizes: ['S', 'M', 'L', 'XL'],
-                images: [
-                    'https://images.unsplash.com/photo-1521572163474-6864f9cf17ab?w=800&q=80',
-                    'https://images.unsplash.com/photo-1562157873-818bc0726f68?w=800&q=80',
-                    'https://images.unsplash.com/photo-1523381210434-271e8be1f52b?w=800&q=80'
-                ],
-                desc: 'A heavyweight 280gsm oversized tee with a raw, lived-in edge. Washed in shadow black for that perfectly worn look. Dropped shoulders, boxy fit — built for those who move different.',
-                features: ['280gsm premium cotton', 'Oversized boxy fit', 'Drop shoulders', 'Ribbed collar', 'Pre-washed finish', 'Made in India']
+                id: 'outfito-006', name: 'Realistic Tee', shortName: 'REALISTIC', category: 'oversized', gender: 'women', price: 899, ogPrice: null, badge: null, hot: false, featured: false, isNew: false, rating: 4.5, reviews: 39, sizes: ['XS', 'S', 'M', 'L'], images: [IMG_BASE + 'product-06.png'], desc: '"Do not trust everything you see" — a playful graphic tee with a sharp typographic hook on soft white cotton. Comfortable, easy, everyday oversized fit.', features: ['260gsm cotton', 'Front graphic print', 'Slightly cropped oversized fit', 'Crew neck', 'Soft-hand finish', 'Made in India']
             },
+            { id: 'outfito-007', name: 'Crimson Dragon Tee', shortName: 'CRIMSON DRAGON', category: 'graphic', gender: 'unisex', price: 1199, ogPrice: null, badge: null, hot: false, featured: true, isNew: false, rating: 4.9, reviews: 102, sizes: ['S', 'M', 'L', 'XL', 'XXL'], images: [IMG_BASE + 'product-07.png'], desc: 'A fine-line Japanese dragon coils across a crimson sun on premium white cotton. Intricate linework printed at high resolution for a design that reads as art, not just apparel.', features: ['280gsm premium cotton', 'Fine-line Japanese artwork', 'Oversized fit', 'Crew neck', 'High-resolution print', 'Made in India'] },
+            { id: 'outfito-008', name: 'Legends Never Die Tee', shortName: 'LEGENDS NEVER DIE', category: 'graphic', gender: 'unisex', price: 1199, ogPrice: null, badge: 'hot', hot: true, featured: true, isNew: false, rating: 5.0, reviews: 184, sizes: ['S', 'M', 'L', 'XL', 'XXL'], images: [IMG_BASE + 'product-08.png', IMG_BASE + 'product-08-alt.png'], desc: 'Our best-selling tribute tee — a fractured portrait built entirely from lyrics and typography on soft white cotton. A design that means something different to everyone who wears it.', features: ['280gsm premium cotton', 'Typographic portrait print', 'Oversized fit', 'Crew neck', 'Enzyme washed', 'Made in India'] },
+            { id: 'outfito-009', name: 'Aftermath Survivor Tee', shortName: 'AFTERMATH SURVIVOR', category: 'graphic', gender: 'unisex', price: 1099, ogPrice: 1399, badge: 'sale', hot: false, featured: false, isNew: false, rating: 4.6, reviews: 53, sizes: ['S', 'M', 'L', 'XL'], images: [IMG_BASE + 'product-09.png'], desc: 'A gritty illustrated scene of resilience printed on heavyweight white cotton. Detailed line art with a story-driven, poster-style composition.', features: ['260gsm cotton', 'Illustrated poster-style print', 'Oversized fit', 'Crew neck', 'Screen printed', 'Made in India'] },
+            { id: 'outfito-010', name: 'Guardian Angels Tee', shortName: 'GUARDIAN ANGELS', category: 'graphic', gender: 'women', price: 999, ogPrice: null, badge: null, hot: false, featured: false, isNew: false, rating: 4.7, reviews: 71, sizes: ['XS', 'S', 'M', 'L'], images: [IMG_BASE + 'product-10.png'], desc: '"Angels Guard Our Hearts" — a delicate engraved-style illustration of angels and a heart on soft white cotton. Elegant, detailed, and quietly powerful.', features: ['260gsm cotton', 'Fine engraved-style print', 'Relaxed oversized fit', 'Crew neck', 'Soft-hand finish', 'Made in India'] },
+            { id: 'outfito-011', name: 'Rise Up Tee', shortName: 'RISE UP', category: 'graphic', gender: 'unisex', price: 999, ogPrice: null, badge: 'new', hot: false, featured: false, isNew: true, rating: 4.8, reviews: 14, sizes: ['S', 'M', 'L', 'XL', 'XXL'], images: [IMG_BASE + 'product-11.png'], desc: 'A bold raised-fist illustration in gold and white on premium cotton. Simple, iconic, unmissable — for those who refuse to stay seated.', features: ['260gsm cotton', 'Bold single-graphic print', 'Oversized fit', 'Crew neck', 'Colourfast dye', 'Made in India'] },
             {
-                id: 'void-graphic',
-                name: 'VOID GRAPHIC TEE',
-                shortName: 'VOID GRAPHIC',
-                price: 1199,
-                ogPrice: 1599,
-                category: 'graphic',
-                gender: 'unisex',
-                badge: 'sale',
-                hot: true,
-                featured: true,
-                isNew: false,
-                rating: 5,
-                reviews: 94,
-                sizes: ['S', 'M', 'L', 'XL'],
-                images: [
-                    'https://images.unsplash.com/photo-1583743814966-8936f5b7be1a?w=800&q=80',
-                    'https://images.unsplash.com/photo-1618354691373-d851c5c3a990?w=800&q=80',
-                    'https://images.unsplash.com/photo-1529139574466-a303027c1d8b?w=800&q=80'
-                ],
-                desc: 'Bold distressed graphics printed on a premium 260gsm cotton base. Urban expression at its finest. Every print is unique — no two look exactly the same.',
-                features: ['260gsm cotton', 'Graphic print front', 'Relaxed fit', 'Crew neck', 'Screen printed', 'Made in India']
+                id: 'outfito-012', name: 'Monte Carlo Racing Tee', shortName: 'MONTE CARLO RACING', category: 'graphic', gender: 'unisex', price: 1099, ogPrice: 1399, badge: 'sale', hot: false, featured: false, isNew: false, rating: 4.7, reviews: 44, sizes: ['S', 'M', 'L', 'XL'], images: [IMG_BASE + 'product-12.png'], desc: 'A motorsport-inspired racing graphic with vintage poster typography on white cotton. Channels the speed and glamour of the worlds most iconic street circuit.', features: ['260gsm cotton', 'Racing poster graphic', 'Oversized fit', 'Crew neck', 'Screen printed', 'Made in India']
             },
+            { id: 'outfito-013', name: 'Valuable Tee', shortName: 'VALUABLE', category: 'oversized', gender: 'women', price: 899, ogPrice: null, badge: null, hot: false, featured: false, isNew: false, rating: 4.6, reviews: 33, sizes: ['XS', 'S', 'M', 'L'], images: [IMG_BASE + 'product-13.png'], desc: 'A soaring bird in fine linework paired with delicate script typography on white cotton. Graceful, minimal, and quietly striking.', features: ['260gsm cotton', 'Fine-line illustration', 'Relaxed oversized fit', 'Crew neck', 'Soft-hand finish', 'Made in India'] },
+            { id: 'outfito-014', name: 'The Don Tee', shortName: 'THE DON', category: 'minimal', gender: 'unisex', price: 899, ogPrice: null, badge: null, hot: false, featured: true, isNew: false, rating: 4.7, reviews: 68, sizes: ['S', 'M', 'L', 'XL', 'XXL'], images: [IMG_BASE + 'product-14.png'], desc: 'Classic cinema-inspired script typography on a sand-washed beige tee. Clean, iconic lettering with a vintage acid-wash finish for that broken-in feel from day one.', features: ['280gsm heavyweight cotton', 'Acid-wash beige finish', 'Minimal script typography', 'Oversized fit', 'Garment dyed', 'Made in India'] },
+            { id: 'outfito-015', name: 'Silent Samurai Tee', shortName: 'SILENT SAMURAI', category: 'graphic', gender: 'unisex', price: 1199, ogPrice: null, badge: null, hot: false, featured: false, isNew: false, rating: 4.8, reviews: 29, sizes: ['S', 'M', 'L', 'XL'], images: [IMG_BASE + 'product-15.png'], desc: 'Two samurai figures rendered in detailed illustration with Japanese calligraphy, printed on a sand-washed beige base. Discipline, honour and quiet strength in every stitch.', features: ['280gsm cotton', 'Detailed illustrated print', 'Acid-wash beige finish', 'Oversized fit', 'Garment dyed', 'Made in India'] },
+            { id: 'outfito-016', name: 'Smoke & Style Tee', shortName: 'SMOKE & STYLE', category: 'graphic', gender: 'unisex', price: 1099, ogPrice: null, badge: null, hot: false, featured: false, isNew: false, rating: 4.6, reviews: 22, sizes: ['S', 'M', 'L', 'XL'], images: [IMG_BASE + 'product-16.png'], desc: 'A sharply dressed portrait in monochrome ink on a sand-washed beige tee. Gangster-era style with a modern streetwear cut — sophisticated and unapologetic.', features: ['280gsm cotton', 'Monochrome portrait print', 'Acid-wash beige finish', 'Oversized fit', 'Garment dyed', 'Made in India'] },
+            { id: 'outfito-017', name: 'Legacy Icon Tee', shortName: 'LEGACY ICON', category: 'graphic', gender: 'unisex', price: 1199, ogPrice: null, badge: 'hot', hot: true, featured: false, isNew: false, rating: 4.9, reviews: 137, sizes: ['S', 'M', 'L', 'XL', 'XXL'], images: [IMG_BASE + 'product-17.png'], desc: 'A tribute portrait to a hip-hop legend, rendered in high-detail print on a sand-washed beige tee. One of our most requested designs — built to be worn, not just admired.', features: ['280gsm cotton', 'High-detail tribute print', 'Acid-wash beige finish', 'Oversized fit', 'Garment dyed', 'Made in India'] },
+            { id: 'outfito-018', name: 'Out Of This World Tee', shortName: 'OUT OF THIS WORLD', category: 'graphic', gender: 'unisex', price: 999, ogPrice: null, badge: null, hot: false, featured: false, isNew: false, rating: 4.5, reviews: 26, sizes: ['S', 'M', 'L', 'XL'], images: [IMG_BASE + 'product-18.png'], desc: 'A cinematic earth-and-bench illustration on black cotton, paired with reflective typography. For quiet nights and big thoughts under the stars.', features: ['260gsm cotton', 'Poster-style illustrated print', 'Oversized fit', 'Crew neck', 'Screen printed', 'Made in India'] },
+            { id: 'outfito-019', name: 'Prisoners Tee', shortName: 'PRISONERS', category: 'graphic', gender: 'unisex', price: 1099, ogPrice: null, badge: 'new', hot: false, featured: false, isNew: true, rating: 4.7, reviews: 17, sizes: ['S', 'M', 'L', 'XL', 'XXL'], images: [IMG_BASE + 'product-19.png'], desc: 'Gold-foil-style typography and gripping hands break through prison bars on black cotton — a graphic about breaking free from whatever holds you back.', features: ['280gsm cotton', 'Metallic-tone graphic print', 'Oversized fit', 'Crew neck', 'Colourfast dye', 'Made in India'] },
             {
-                id: 'mono-drop',
-                name: 'MONO DROP TEE',
-                shortName: 'MONO DROP',
-                price: 899,
-                ogPrice: null,
-                category: 'minimal',
-                gender: 'unisex',
-                badge: null,
-                hot: false,
-                featured: true,
-                isNew: false,
-                rating: 4,
-                reviews: 67,
-                sizes: ['XS', 'S', 'M', 'L'],
-                images: [
-                    'https://images.unsplash.com/photo-1596755094514-f87e34085b2c?w=800&q=80',
-                    'https://images.unsplash.com/photo-1503341504253-dff4815485f1?w=800&q=80',
-                    'https://images.unsplash.com/photo-1521572163474-6864f9cf17ab?w=800&q=80'
-                ],
-                desc: 'Clean, minimal, powerful. The Mono Drop Tee is for those who speak in silence. Tonal embroidery on 280gsm cotton — luxury in restraint.',
-                features: ['280gsm premium cotton', 'Minimal tonal branding', 'Straight fit', 'Crew neck', 'Enzyme washed', 'Made in India']
+                id: 'outfito-020', name: 'Party Chronicles Tee', shortName: 'PARTY CHRONICLES', category: 'graphic', gender: 'unisex', price: 999, ogPrice: 1299, badge: 'sale', hot: false, featured: false, isNew: false, rating: 4.5, reviews: 31, sizes: ['S', 'M', 'L', 'XL'], images: [IMG_BASE + 'product-20.png'], desc: 'A collaged portrait print with editorial-style typography on black cotton. Bold, layered, and full of texture — designed for nights you\'ll actually remember.', features: ['260gsm cotton', 'Collage - style print', 'Oversized fit', 'Crew neck', 'Screen printed', 'Made in India']
             },
-            {
-                id: 'urban-core',
-                name: 'URBAN CORE TEE',
-                shortName: 'URBAN CORE',
-                price: 1099,
-                ogPrice: null,
-                category: 'new',
-                gender: 'unisex',
-                badge: 'new',
-                hot: false,
-                featured: true,
-                isNew: true,
-                rating: 5,
-                reviews: 32,
-                sizes: ['S', 'M', 'L', 'XL', 'XXL'],
-                images: [
-                    'https://images.unsplash.com/photo-1503341504253-dff4815485f1?w=800&q=80',
-                    'https://images.unsplash.com/photo-1556821840-3a63f15732ce?w=800&q=80',
-                    'https://images.unsplash.com/photo-1596755094514-f87e34085b2c?w=800&q=80'
-                ],
-                desc: 'The foundation piece of every fit. Raw edges, relaxed shoulder, maximum presence. The Urban Core Tee is your everyday armor.',
-                features: ['280gsm cotton blend', 'Raw edge detailing', 'Relaxed shoulder', 'Drop hem', 'Garment dyed', 'Made in India']
-            },
-            {
-                id: 'dark-wave',
-                name: 'DARK WAVE GRAPHIC TEE',
-                shortName: 'DARK WAVE',
-                price: 1299,
-                ogPrice: 1699,
-                category: 'graphic',
-                gender: 'unisex',
-                badge: 'sale',
-                hot: true,
-                featured: false,
-                isNew: false,
-                rating: 5,
-                reviews: 55,
-                sizes: ['M', 'L', 'XL'],
-                images: [
-                    'https://images.unsplash.com/photo-1618354691373-d851c5c3a990?w=800&q=80',
-                    'https://images.unsplash.com/photo-1583743814966-8936f5b7be1a?w=800&q=80',
-                    'https://images.unsplash.com/photo-1503341504253-dff4815485f1?w=800&q=80'
-                ],
-                desc: 'Abstract wave prints meet oversized comfort. Our most expressive graphic piece — designed for those who want their clothes to speak first.',
-                features: ['260gsm cotton', 'Full front graphic', 'Oversized silhouette', 'Crew neck', 'Water-based ink print', 'Made in India']
-            },
-            {
-                id: 'ghost-drop',
-                name: 'GHOST DROP TEE',
-                shortName: 'GHOST DROP',
-                price: 1099,
-                ogPrice: null,
-                category: 'oversized',
-                gender: 'unisex',
-                badge: null,
-                hot: false,
-                featured: false,
-                isNew: false,
-                rating: 4,
-                reviews: 41,
-                sizes: ['S', 'M', 'L', 'XL'],
-                images: [
-                    'https://images.unsplash.com/photo-1556821840-3a63f15732ce?w=800&q=80',
-                    'https://images.unsplash.com/photo-1521572163474-6864f9cf17ab?w=800&q=80',
-                    'https://images.unsplash.com/photo-1596755094514-f87e34085b2c?w=800&q=80'
-                ],
-                desc: 'Soft-washed mineral effect. Barely there, impossible to forget. The Ghost Drop is our most tactile piece — runs slightly lighter for a floaty, lived-in feel.',
-                features: ['260gsm cotton', 'Mineral wash', 'Elongated hem', 'Ribbed cuffs', 'Soft hand feel', 'Made in India']
-            },
-            {
-                id: 'neon-glitch',
-                name: 'NEON GLITCH TEE',
-                shortName: 'NEON GLITCH',
-                price: 1399,
-                ogPrice: null,
-                category: 'graphic',
-                gender: 'unisex',
-                badge: 'new',
-                hot: false,
-                featured: false,
-                isNew: true,
-                rating: 5,
-                reviews: 18,
-                sizes: ['S', 'M', 'L', 'XL'],
-                images: [
-                    'https://images.unsplash.com/photo-1529139574466-a303027c1d8b?w=800&q=80',
-                    'https://images.unsplash.com/photo-1618354691373-d851c5c3a990?w=800&q=80',
-                    'https://images.unsplash.com/photo-1521572163474-6864f9cf17ab?w=800&q=80'
-                ],
-                desc: 'Glitch art meets streetwear. Neon Glitch features distorted digital typography printed in UV-reactive ink — glows under blacklight. Built for festivals, nights out, and standing out.',
-                features: ['280gsm cotton', 'UV-reactive ink', 'Oversized drop fit', 'Back graphic print', 'Enzyme washed', 'Made in India']
-            },
-            {
-                id: 'minimal-white',
-                name: 'BLANK CANVAS TEE',
-                shortName: 'BLANK CANVAS',
-                price: 799,
-                ogPrice: null,
-                category: 'minimal',
-                gender: 'unisex',
-                badge: null,
-                hot: false,
-                featured: false,
-                isNew: false,
-                rating: 4,
-                reviews: 83,
-                sizes: ['XS', 'S', 'M', 'L', 'XL'],
-                images: [
-                    'https://images.unsplash.com/photo-1562157873-818bc0726f68?w=800&q=80',
-                    'https://images.unsplash.com/photo-1556821840-3a63f15732ce?w=800&q=80',
-                    'https://images.unsplash.com/photo-1503341504253-dff4815485f1?w=800&q=80'
-                ],
-                desc: 'Your canvas. Our cut. The Blank Canvas Tee is the cleanest base in the lineup — no logo, no noise. Just premium cotton in a perfect oversized silhouette.',
-                features: ['300gsm heavyweight cotton', 'Zero branding', 'Boxy oversized fit', 'Double stitched', 'Preshrunk', 'Made in India']
-            },
-            {
-                id: 'femme-crop',
-                name: 'FEMME CROP GRAPHIC',
-                shortName: 'FEMME CROP',
-                price: 999,
-                ogPrice: 1299,
-                category: 'graphic',
-                gender: 'women',
-                badge: 'hot',
-                hot: true,
-                featured: false,
-                isNew: false,
-                rating: 5,
-                reviews: 76,
-                sizes: ['XS', 'S', 'M', 'L'],
-                images: [
-                    'https://images.unsplash.com/photo-1523381210434-271e8be1f52b?w=800&q=80',
-                    'https://images.unsplash.com/photo-1529139574466-a303027c1d8b?w=800&q=80',
-                    'https://images.unsplash.com/photo-1596755094514-f87e34085b2c?w=800&q=80'
-                ],
-                desc: 'A cropped graphic cut for those who set the tone. The Femme Crop has a raw bottom hem, relaxed boxy crop silhouette, and bold front graphic. Pairs with everything.',
-                features: ['240gsm cotton', 'Cropped fit', 'Raw bottom hem', 'Bold front print', 'Ribbed collar', 'Made in India']
-            },
-            {
-                id: 'street-minimal-women',
-                name: 'STREET MINIMAL — WOMEN',
-                shortName: 'STREET MINIMAL',
-                price: 849,
-                ogPrice: null,
-                category: 'minimal',
-                gender: 'women',
-                badge: 'new',
-                hot: false,
-                featured: false,
-                isNew: true,
-                rating: 5,
-                reviews: 22,
-                sizes: ['XS', 'S', 'M', 'L'],
-                images: [
-                    'https://images.unsplash.com/photo-1503341504253-dff4815485f1?w=800&q=80',
-                    'https://images.unsplash.com/photo-1562157873-818bc0726f68?w=800&q=80',
-                    'https://images.unsplash.com/photo-1521572163474-6864f9cf17ab?w=800&q=80'
-                ],
-                desc: 'Minimal energy, maximum presence. Designed for women who let the fit do the talking. Slightly cropped body, dropped shoulders — effortless and clean.',
-                features: ['260gsm cotton', 'Slightly cropped', 'Dropped shoulders', 'Tonal logo', 'Soft enzyme wash', 'Made in India']
-            },
-            {
-                id: 'archive-oversized',
-                name: 'ARCHIVE OVERSIZED TEE',
-                shortName: 'ARCHIVE TEE',
-                price: 1199,
-                ogPrice: null,
-                category: 'oversized',
-                gender: 'unisex',
-                badge: 'new',
-                hot: false,
-                featured: false,
-                isNew: true,
-                rating: 5,
-                reviews: 11,
-                sizes: ['S', 'M', 'L', 'XL', 'XXL'],
-                images: [
-                    'https://images.unsplash.com/photo-1618354691373-d851c5c3a990?w=800&q=80',
-                    'https://images.unsplash.com/photo-1583743814966-8936f5b7be1a?w=800&q=80',
-                    'https://images.unsplash.com/photo-1556821840-3a63f15732ce?w=800&q=80'
-                ],
-                desc: 'The Archive Tee draws from vintage sportswear and turns it into something new. Chest panel stitching, elongated sleeves, and a thick 300gsm body that holds its shape.',
-                features: ['300gsm heavyweight cotton', 'Panel stitching detail', 'Elongated sleeves', 'Woven label', 'Drop fit', 'Made in India']
-            },
-            {
-                id: 'core-black',
-                name: 'CORE BLACK TEE',
-                shortName: 'CORE BLACK',
-                price: 749,
-                ogPrice: null,
-                category: 'minimal',
-                gender: 'unisex',
-                badge: null,
-                hot: false,
-                featured: false,
-                isNew: false,
-                rating: 4,
-                reviews: 147,
-                sizes: ['S', 'M', 'L', 'XL', 'XXL'],
-                images: [
-                    'https://images.unsplash.com/photo-1556821840-3a63f15732ce?w=800&q=80',
-                    'https://images.unsplash.com/photo-1503341504253-dff4815485f1?w=800&q=80',
-                    'https://images.unsplash.com/photo-1521572163474-6864f9cf17ab?w=800&q=80'
-                ],
-                desc: 'The most essential piece in the lineup. Core Black is a 280gsm everyday black tee with an oversized silhouette, ribbed crew neck, and a small woven OUTFITO label at the hem. Keep it simple. Keep it clean.',
-                features: ['280gsm cotton', 'Minimal woven label', 'Oversized fit', 'Ribbed crew neck', 'Pre-washed black', 'Made in India']
-            }
+            { id: 'outfito-021', name: 'Unknown Division Tee', shortName: 'UNKNOWN DIVISION', category: 'graphic', gender: 'unisex', price: 999, ogPrice: null, badge: null, hot: false, featured: false, isNew: false, rating: 4.4, reviews: 20, sizes: ['S', 'M', 'L', 'XL'], images: [IMG_BASE + 'product-21.png'], desc: 'A distressed VHS-static handprint graphic with torn-paper tape details on black cotton. Underground energy for those who move outside the mainstream.', features: ['260gsm cotton', 'Distressed graphic print', 'Oversized fit', 'Crew neck', 'Screen printed', 'Made in India'] },
+            { id: 'outfito-022', name: 'Never The Same Tee', shortName: 'NEVER THE SAME', category: 'graphic', gender: 'unisex', price: 1099, ogPrice: null, badge: null, hot: false, featured: true, isNew: false, rating: 4.6, reviews: 25, sizes: ['S', 'M', 'L', 'XL'], images: [IMG_BASE + 'product-22.png'], desc: 'Ornate floral typography wraps around a bold statement on black cotton — a design that grows on you the longer you wear it.', features: ['260gsm cotton', 'Ornate typography print', 'Oversized fit', 'Crew neck', 'Screen printed', 'Made in India'] },
+            { id: 'outfito-023', name: 'Behind The Mask Tee', shortName: 'BEHIND THE MASK', category: 'graphic', gender: 'unisex', price: 1199, ogPrice: null, badge: 'new', hot: false, featured: false, isNew: true, rating: 4.8, reviews: 12, sizes: ['S', 'M', 'L', 'XL', 'XXL'], images: [IMG_BASE + 'product-23.png'], desc: 'A fragmented marble-bust illustration with gold outline typography on black cotton. A meditation on identity, printed in gallery-grade detail.', features: ['280gsm cotton', 'Fine-detail illustrated print', 'Oversized fit', 'Crew neck', 'Colourfast dye', 'Made in India'] },
+            { id: 'outfito-024', name: 'Night Prowler Tee', shortName: 'NIGHT PROWLER', category: 'oversized', gender: 'unisex', price: 899, ogPrice: null, badge: null, hot: false, featured: false, isNew: false, rating: 4.5, reviews: 18, sizes: ['S', 'M', 'L', 'XL'], images: [IMG_BASE + 'product-24.png'], desc: 'A moody illustrated night scene with a prowling black cat under a full moon, printed on black cotton. Quiet, mysterious, unbothered — just like the design.', features: ['260gsm cotton', 'Illustrated night-scene print', 'Oversized fit', 'Crew neck', 'Screen printed', 'Made in India'] },
+            { id: 'outfito-025', name: 'Cosmic Experience Tee', shortName: 'COSMIC EXPERIENCE', category: 'graphic', gender: 'unisex', price: 1099, ogPrice: 1399, badge: 'sale', hot: false, featured: false, isNew: false, rating: 4.7, reviews: 27, sizes: ['S', 'M', 'L', 'XL'], images: [IMG_BASE + 'product-25.png'], desc: 'A vivid purple cosmic-brain graphic orbited by planetary rings on black cotton. Loud colour, bold type — built for those who think a little differently.', features: ['260gsm cotton', 'Multi-colour graphic print', 'Oversized fit', 'Crew neck', 'Screen printed', 'Made in India'] },
+            { id: 'outfito-026', name: 'The Collective Tee', shortName: 'THE COLLECTIVE', category: 'minimal', gender: 'unisex', price: 899, ogPrice: null, badge: null, hot: false, featured: true, isNew: false, rating: 4.5, reviews: 21, sizes: ['S', 'M', 'L', 'XL', 'XXL'], images: [IMG_BASE + 'product-26.png'], desc: 'Three silhouetted figures in a stark half-tone print on black cotton — a minimal, editorial graphic about standing together.', features: ['260gsm cotton', 'Half-tone graphic print', 'Oversized fit', 'Crew neck', 'Screen printed', 'Made in India'] },
+            { id: 'outfito-027', name: 'Brand Warfare Tee', shortName: 'BRAND WARFARE', category: 'graphic', gender: 'unisex', price: 999, ogPrice: null, badge: 'new', hot: false, featured: false, isNew: true, rating: 4.6, reviews: 9, sizes: ['S', 'M', 'L', 'XL'], images: [IMG_BASE + 'product-27.png'], desc: 'Bold orange collegiate typography over a gritty boxing-glove graphic on black cotton. Loud, competitive, made for the ones who show up to win.', features: ['260gsm cotton', 'Bold two-tone graphic print', 'Oversized fit', 'Crew neck', 'Screen printed', 'Made in India'] },
+            { id: 'outfito-028', name: 'Overthinking Tee', shortName: 'OVERTHINKING', category: 'graphic', gender: 'unisex', price: 1099, ogPrice: null, badge: 'new', hot: false, featured: false, isNew: true, rating: 4.8, reviews: 15, sizes: ['S', 'M', 'L', 'XL', 'XXL'], images: [IMG_BASE + 'product-28.png'], desc: 'A striking suited silhouette on a deep red poster-style print, black cotton base. A design about the noise in your own head — and owning it anyway.', features: ['260gsm cotton', 'Poster-style graphic print', 'Oversized fit', 'Crew neck', 'Screen printed', 'Made in India'] },
+            { id: 'outfito-029', name: 'Where Is My Mind Tee', shortName: 'WHERE IS MY MIND', category: 'minimal', gender: 'unisex', price: 799, ogPrice: null, badge: null, hot: false, featured: false, isNew: false, rating: 4.4, reviews: 34, sizes: ['S', 'M', 'L', 'XL', 'XXL'], images: [IMG_BASE + 'product-29.png'], desc: 'Melting 3D typography spelling out the question we all ask sometimes, on black cotton. Minimal composition, maximum impact.', features: ['260gsm cotton', 'Bold typography print', 'Oversized fit', 'Crew neck', 'Screen printed', 'Made in India'] },
+            { id: 'outfito-030', name: 'Vengeance Tee', shortName: 'VENGEANCE', category: 'minimal', gender: 'women', price: 899, ogPrice: null, badge: null, hot: false, featured: false, isNew: false, rating: 4.5, reviews: 16, sizes: ['XS', 'S', 'M', 'L'], images: [IMG_BASE + 'product-30.png'], desc: 'Bold red-and-black typography with a minimal bat emblem on a stone-washed grey tee. Understated until you get close.', features: ['260gsm cotton', 'Acid-wash grey finish', 'Minimal typography print', 'Relaxed oversized fit', 'Garment dyed', 'Made in India'] },
+            { id: 'outfito-031', name: 'Desire Tee', shortName: 'DESIRE', category: 'minimal', gender: 'women', price: 799, ogPrice: null, badge: null, hot: false, featured: false, isNew: false, rating: 4.4, reviews: 11, sizes: ['XS', 'S', 'M', 'L'], images: [IMG_BASE + 'product-31.png'], desc: 'A blurred, motion-style typographic print reading "Desire" on a stone-washed grey tee. Deliberately understated — the kind of piece that gets noticed slowly.', features: ['260gsm cotton', 'Acid-wash grey finish', 'Motion-blur typography print', 'Relaxed oversized fit', 'Garment dyed', 'Made in India'] }
         ];
 
         const CATEGORIES = [
-            { id: 'oversized', name: 'OVERSIZED TEES', img: 'https://images.unsplash.com/photo-1521572163474-6864f9cf17ab?w=600&q=80', count: () => PRODUCTS.filter(p => p.category === 'oversized').length },
-            { id: 'graphic', name: 'GRAPHIC TEES', img: 'https://images.unsplash.com/photo-1583743814966-8936f5b7be1a?w=600&q=80', count: () => PRODUCTS.filter(p => p.category === 'graphic').length },
-            { id: 'minimal', name: 'MINIMAL', img: 'https://images.unsplash.com/photo-1596755094514-f87e34085b2c?w=600&q=80', count: () => PRODUCTS.filter(p => p.category === 'minimal').length },
-            { id: 'women', name: 'WOMEN', img: 'https://images.unsplash.com/photo-1523381210434-271e8be1f52b?w=600&q=80', count: () => PRODUCTS.filter(p => p.gender === 'women').length },
+            { id: 'oversized', name: 'OVERSIZED TEES', img: IMG_BASE + 'product-06.png' },
+            { id: 'graphic', name: 'GRAPHIC TEES', img: IMG_BASE + 'product-08.png' },
+            { id: 'minimal', name: 'MINIMAL', img: IMG_BASE + 'product-29.png' },
+            { id: 'women', name: 'WOMEN', img: IMG_BASE + 'product-13.png' },
         ];
+
+        // Instagram strip — real product shots standing in for recent posts
+        const IG_IMAGES = [1, 8, 17, 5, 22, 28].map(n => IMG_BASE + 'product-' + String(n).padStart(2, '0') + '.png');
 
         // ==================== STATE ====================
         // Single source of truth — all mutations go through setter functions
@@ -3641,7 +3421,12 @@
         // ==================== SAFE LOCALSTORAGE ====================
         const Store = {
             get(key, fallback = null) {
-                try { const v = localStorage.getItem(key); return v ? JSON.parse(v) : fallback; }
+                try {
+                    const v = localStorage.getItem(key);
+                    if (!v) return fallback;
+                    const parsed = JSON.parse(v);
+                    return Array.isArray(fallback) && !Array.isArray(parsed) ? fallback : parsed;
+                }
                 catch { return fallback; }
             },
             set(key, val) {
@@ -3649,8 +3434,15 @@
             },
         };
 
-        // Load persisted cart once at startup
-        STATE.cart = Store.get('outfito_cart', []);
+        // Load persisted cart once at startup — validate shape defensively
+        function sanitizeCartItem(i) {
+            if (!i || typeof i !== 'object') return null;
+            const prod = PRODUCT_MAP_RAW[i.id];
+            if (!prod) return null;
+            const size = typeof i.size === 'string' && prod.sizes.includes(i.size) ? i.size : prod.sizes[0];
+            const qty = Number.isFinite(i.qty) ? Math.max(1, Math.min(10, Math.round(i.qty))) : 1;
+            return { id: prod.id, name: prod.name, price: prod.price, size, qty, img: prod.images[0], _key: `${prod.id}|${size}` };
+        }
 
         // ==================== DOM CACHE ====================
         // Query once, reuse everywhere — avoids repeated querySelector calls
@@ -3658,8 +3450,6 @@
         const DOM = {
             loader: $('loader'),
             loaderFill: $('loaderFill'),
-            cursor: $('cursor'),
-            cursorFollower: $('cursorFollower'),
             navbar: $('navbar'),
             hamburger: $('hamburger'),
             mobileMenu: $('mobileMenu'),
@@ -3678,7 +3468,7 @@
             homeGrid: $('homeGrid'),
             hotGrid: $('hotGrid'),
             categoriesGrid: $('categoriesGrid'),
-            navLogo: $('navLogo'),
+            igGrid: $('igGrid'),
             heroCard: $('heroCard'),
             heroProductImg: $('heroProductImg'),
             heroProductName: $('heroProductName'),
@@ -3691,6 +3481,8 @@
             pdpDesc: $('pdpDesc'),
             pdpSizes: $('pdpSizes'),
             pdpFeatures: $('pdpFeatures'),
+            pdpStars: $('pdpStars'),
+            pdpRatingCount: $('pdpRatingCount'),
             galleryMain: $('galleryMain'),
             galleryThumbs: $('galleryThumbs'),
             relatedGrid: $('relatedGrid'),
@@ -3700,22 +3492,28 @@
 
         // ==================== PRECOMPUTED DATA ====================
         // Build lookup map once — O(1) product access instead of O(n) find()
-        const PRODUCT_MAP = Object.freeze(
+        const PRODUCT_MAP_RAW = Object.freeze(
             PRODUCTS.reduce((m, p) => { m[p.id] = p; return m; }, {})
         );
+        const PRODUCT_MAP = PRODUCT_MAP_RAW;
         const FEATURED = Object.freeze(PRODUCTS.filter(p => p.featured).slice(0, 4));
         const HOT = Object.freeze(PRODUCTS.filter(p => p.hot).slice(0, 3));
 
+        // Now that PRODUCT_MAP exists, load + sanitize the persisted cart
+        STATE.cart = (Store.get('outfito_cart', []) || []).map(sanitizeCartItem).filter(Boolean);
+
         // ==================== UTILITIES ====================
         function formatPrice(p) {
-            // Use Intl once, cache formatter
             if (!formatPrice._fmt) formatPrice._fmt = new Intl.NumberFormat('en-IN', { style: 'currency', currency: 'INR', minimumFractionDigits: 0 });
             return formatPrice._fmt.format(p);
         }
         function savePct(price, og) { return og ? Math.round((og - price) / og * 100) : 0; }
         function esc(s) { return String(s).replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;'); }
+        function starsFor(rating) {
+            const r = Math.round(rating);
+            return '★★★★★'.slice(0, r) + '☆☆☆☆☆'.slice(0, 5 - r);
+        }
 
-        // Passive-event-safe throttle using RAF — prevents layout thrash on scroll/mousemove
         function rafThrottle(fn) {
             let ticking = false;
             return function (...args) {
@@ -3726,7 +3524,6 @@
             };
         }
 
-        // Debounce for filter/sort (waits until user stops clicking)
         function debounce(fn, ms) {
             let t;
             return (...a) => { clearTimeout(t); t = setTimeout(() => fn(...a), ms); };
@@ -3735,14 +3532,17 @@
         // ==================== LOADER ====================
         {
             let progress = 0;
+            let loaderDone = false;
             gsap.to('.loader-logo', { opacity: 1, y: 0, duration: 0.8, ease: 'power3.out', delay: 0.2 });
             gsap.to('.loader-tagline', { opacity: 1, duration: 0.6, delay: 0.6 });
 
             const tick = () => {
+                if (loaderDone) return;
                 progress += Math.random() * 18;
                 if (progress >= 100) {
                     progress = 100;
                     DOM.loaderFill.style.width = '100%';
+                    loaderDone = true;
                     setTimeout(hideLoader, 300);
                     return;
                 }
@@ -3750,9 +3550,13 @@
                 setTimeout(tick, 70);
             };
             setTimeout(tick, 70);
+            // Safety net: never let a slow environment leave the loader stuck forever
+            setTimeout(() => { if (!loaderDone) { loaderDone = true; hideLoader(); } }, 4000);
         }
 
         function hideLoader() {
+            if (!DOM.loader || DOM.loader.dataset.hidden) return;
+            DOM.loader.dataset.hidden = '1';
             gsap.to(DOM.loader, {
                 y: '-100%', duration: 0.9, ease: 'power4.inOut',
                 onComplete: () => { DOM.loader.style.display = 'none'; initApp(); },
@@ -3760,10 +3564,12 @@
         }
 
         // ==================== INIT ====================
+        let appInitialized = false;
         function initApp() {
+            if (appInitialized) return;
+            appInitialized = true;
             gsap.registerPlugin(ScrollTrigger);
 
-            // Hero entrance — GPU layers via will-change already set via CSS
             gsap.timeline()
                 .to(['#heroLine1', '#heroLine2', '#heroLine3'], { y: '0%', duration: 1.1, ease: 'power4.out', stagger: 0.11 })
                 .to('#heroEyebrow', { opacity: 1, y: 0, duration: 0.6, ease: 'power3.out' }, '-=0.55')
@@ -3773,7 +3579,6 @@
             initScrollReveal();
             initScrollProgress();
             initNavbarScroll();
-            initCursor();
             renderHome();
             renderShopGrid();
             updateCartBadge();
@@ -3781,7 +3586,6 @@
         }
 
         // ==================== SCROLL REVEAL ====================
-        // Single shared IntersectionObserver — no per-page recreation
         let _revealObserver = null;
         function initScrollReveal() {
             if (_revealObserver) _revealObserver.disconnect();
@@ -3789,7 +3593,7 @@
                 entries.forEach(e => {
                     if (e.isIntersecting) {
                         e.target.classList.add('visible');
-                        _revealObserver.unobserve(e.target); // stop watching once visible — frees memory
+                        _revealObserver.unobserve(e.target);
                     }
                 });
             }, { threshold: 0.07, rootMargin: '0px 0px -40px 0px' });
@@ -3814,82 +3618,17 @@
             window.addEventListener('scroll', onScroll, { passive: true });
         }
 
-        // ==================== CURSOR (lag-free) ====================
-        // Key fixes:
-        //  1. Cursor dot: use CSS custom properties + GPU transform — no JS per frame
-        //  2. Follower: single rAF loop, compare to avoid redundant style writes
-        //  3. Hover detection: use event delegation on body once, not per-element listeners
-        //  4. Mobile: skip entirely — no pointer events on touch screens
-        function initCursor() {
-            if (window.matchMedia('(pointer: coarse)').matches) {
-                // Touch device — hide custom cursor, re-enable default
-                DOM.cursor.style.display = 'none';
-                DOM.cursorFollower.style.display = 'none';
-                document.body.style.cursor = 'auto';
-                return;
-            }
-
-            const cur = DOM.cursor;
-            const fol = DOM.cursorFollower;
-
-            // GPU-accelerate both elements once
-            cur.style.willChange = 'transform';
-            fol.style.willChange = 'transform';
-
-            let mx = -100, my = -100;       // start offscreen
-            let fx = -100, fy = -100;
-            let rafId = null;
-            let prevFx = null, prevFy = null;
-
-            // Track raw mouse position — no style writes here, just numbers
-            document.addEventListener('mousemove', e => { mx = e.clientX; my = e.clientY; }, { passive: true });
-
-            // Single rAF loop for follower — cursor dot syncs below
-            function loop() {
-                // Cursor dot: exact position, no lerp (instant = no lag)
-                cur.style.transform = `translate3d(${mx - 6}px,${my - 6}px,0)`;
-
-                // Follower: lerp toward cursor
-                fx += (mx - fx) * 0.1;
-                fy += (my - fy) * 0.1;
-
-                // Only write style when value actually changed (avoids forced reflow on idle)
-                if (Math.abs(fx - prevFx) > 0.05 || Math.abs(fy - prevFy) > 0.05) {
-                    fol.style.transform = `translate3d(${fx - 20}px,${fy - 20}px,0)`;
-                    prevFx = fx; prevFy = fy;
-                }
-
-                rafId = requestAnimationFrame(loop);
-            }
-            rafId = requestAnimationFrame(loop);
-
-            // Hover state: single delegated listener, minimal work
-            const HOVER_SELECTOR = 'A,BUTTON,.product-card,.category-card,.ig-item,.gallery-thumb';
-            document.body.addEventListener('mouseover', e => {
-                if (e.target.closest(HOVER_SELECTOR)) cur.classList.add('hover');
-            }, { passive: true });
-            document.body.addEventListener('mouseout', e => {
-                if (e.target.closest(HOVER_SELECTOR)) cur.classList.remove('hover');
-            }, { passive: true });
-
-            // Stop loop when tab is hidden — saves battery/CPU
-            document.addEventListener('visibilitychange', () => {
-                if (document.hidden) { cancelAnimationFrame(rafId); rafId = null; }
-                else if (!rafId) { rafId = requestAnimationFrame(loop); }
-            });
-        }
-
         // ==================== MOBILE MENU ====================
         function toggleMenu() {
             STATE.menuOpen = !STATE.menuOpen;
             DOM.hamburger.classList.toggle('open', STATE.menuOpen);
+            DOM.hamburger.setAttribute('aria-expanded', String(STATE.menuOpen));
             DOM.mobileMenu.classList.toggle('open', STATE.menuOpen);
             document.body.style.overflow = STATE.menuOpen ? 'hidden' : '';
         }
 
         // ==================== PAGE NAVIGATION ====================
         const PAGE_IDS = ['home', 'shop', 'product', 'about', 'contact'];
-        // Cache page elements once
         const PAGE_ELS = PAGE_IDS.reduce((m, id) => {
             m[id] = $(id + '-page');
             return m;
@@ -3898,13 +3637,13 @@
         function navigateTo(page) {
             if (STATE.menuOpen) toggleMenu();
             if (page === STATE.currentPage && page !== 'product') return;
+            if (!PAGE_ELS[page]) return;
 
             gsap.fromTo(DOM.pageTransition,
                 { y: '100%' },
                 {
                     y: '0%', duration: 0.4, ease: 'power3.inOut',
                     onComplete: () => {
-                        // Hide all pages using cached refs
                         PAGE_IDS.forEach(p => {
                             if (PAGE_ELS[p]) { PAGE_ELS[p].style.display = 'none'; PAGE_ELS[p].classList.remove('active'); }
                         });
@@ -3916,7 +3655,6 @@
 
                         gsap.to(DOM.pageTransition, { y: '-100%', duration: 0.4, delay: 0.04, ease: 'power3.inOut' });
 
-                        // Re-observe new reveal elements on non-home pages
                         if (page !== 'home') requestAnimationFrame(initScrollReveal);
                     },
                 }
@@ -3937,10 +3675,9 @@
                 ? `<span class="product-og-price">${formatPrice(p.ogPrice)}</span>`
                 : '';
             const sizeTags = p.sizes.map(s => `<span class="size-tag">${esc(s)}</span>`).join('');
-            return `<div class="product-card${extraClass ? ' ' + extraClass : ''}" data-cat="${esc(p.category)}" data-gender="${esc(p.gender)}" onclick="openProduct('${esc(p.id)}')">${badge}<img src="${esc(p.images[0])}" alt="${esc(p.name)}" loading="lazy" decoding="async" width="400" height="533"><div class="product-overlay"></div><div class="product-info"><div class="product-category">${categoryLabel(p.category)} · ${p.gender === 'women' ? 'Women' : 'Unisex'}</div><div class="product-sizes">${sizeTags}</div><div class="product-name">${esc(p.shortName)}</div><div class="product-price-row"><div>${formatPrice(p.price)}${ogPrice}</div><button class="product-quick-btn" onclick="event.stopPropagation();openProduct('${esc(p.id)}')">QUICK VIEW</button></div></div></div>`;
+            return `<button type="button" class="product-card${extraClass ? ' ' + extraClass : ''}" data-cat="${esc(p.category)}" data-gender="${esc(p.gender)}" onclick="openProduct('${esc(p.id)}')" aria-label="View ${esc(p.name)}">${badge}<img src="${esc(p.images[0])}" alt="${esc(p.name)} — OUTFITO ${esc(categoryLabel(p.category))} tee" loading="lazy" decoding="async" width="400" height="533"><div class="product-overlay"></div><div class="product-info"><div class="product-category">${categoryLabel(p.category)} · ${p.gender === 'women' ? 'Women' : 'Unisex'}</div><div class="product-sizes">${sizeTags}</div><div class="product-name">${esc(p.shortName)}</div><div class="product-price-row"><div>${formatPrice(p.price)}${ogPrice}</div><span class="product-quick-btn">QUICK VIEW</span></div></div></button>`;
         }
 
-        // DocumentFragment builder — avoids multiple reflows
         function buildGrid(products, extraClassFn) {
             const frag = document.createDocumentFragment();
             const wrapper = document.createElement('div');
@@ -3951,24 +3688,26 @@
 
         // ==================== RENDER HOME ====================
         function renderHome() {
-            // Categories
             if (DOM.categoriesGrid) {
                 DOM.categoriesGrid.innerHTML = CATEGORIES.map(c => {
                     const cnt = c.id === 'women'
                         ? PRODUCTS.filter(p => p.gender === 'women').length
                         : PRODUCTS.filter(p => p.category === c.id).length;
-                    return `<div class="category-card reveal" onclick="navigateTo('shop');setTimeout(()=>filterByCategory('${esc(c.id)}'),500)"><img src="${esc(c.img)}" alt="${esc(c.name)}" loading="lazy" decoding="async" width="400" height="533"><div class="category-overlay"></div><div class="category-arrow">→</div><div class="category-info"><div class="category-name">${esc(c.name)}</div><div class="category-count">${cnt} styles</div></div></div>`;
+                    return `<button type="button" class="category-card reveal" onclick="navigateTo('shop');setTimeout(()=>filterByCategory('${esc(c.id)}'),500)" aria-label="Shop ${esc(c.name)}"><img src="${esc(c.img)}" alt="${esc(c.name)} collection" loading="lazy" decoding="async" width="400" height="533"><div class="category-overlay"></div><div class="category-arrow">→</div><div class="category-info"><div class="category-name">${esc(c.name)}</div><div class="category-count">${cnt} styles</div></div></button>`;
                 }).join('');
             }
-            // Hot grid
             if (DOM.hotGrid) {
                 DOM.hotGrid.innerHTML = '';
                 DOM.hotGrid.appendChild(buildGrid(HOT, (_, i) => `reveal reveal-delay-${i}`));
             }
-            // Home featured grid
             if (DOM.homeGrid) {
                 DOM.homeGrid.innerHTML = '';
                 DOM.homeGrid.appendChild(buildGrid(FEATURED, (_, i) => `reveal reveal-delay-${i}`));
+            }
+            if (DOM.igGrid) {
+                DOM.igGrid.innerHTML = IG_IMAGES.map(src =>
+                    `<a class="ig-item" href="https://www.instagram.com/officialoutfito/" target="_blank" rel="noopener"><img src="${esc(src)}" alt="OUTFITO on Instagram" loading="lazy" decoding="async" width="300" height="300"><div class="ig-overlay"><span class="ig-icon">VIEW</span></div></a>`
+                ).join('');
             }
         }
 
@@ -3981,14 +3720,12 @@
             const list = getFilteredSorted();
             if (!DOM.shopGrid) return;
 
-            // Use DocumentFragment — single DOM insertion, one reflow
             const frag = buildGrid(list);
             DOM.shopGrid.innerHTML = '';
             DOM.shopGrid.appendChild(frag);
 
             if (DOM.productCount) DOM.productCount.textContent = `${list.length} Product${list.length !== 1 ? 's' : ''}`;
 
-            // Animate only if reasonable number of cards (skip on very long lists)
             const cards = DOM.shopGrid.querySelectorAll('.product-card');
             if (cards.length <= 24) {
                 gsap.fromTo(cards, { opacity: 0, y: 20 }, { opacity: 1, y: 0, duration: 0.35, stagger: 0.04, ease: 'power2.out', overwrite: true });
@@ -4018,7 +3755,7 @@
         // ==================== FILTERS & SORT ====================
         function filterProducts(cat, btn) {
             document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
-            btn.classList.add('active');
+            if (btn) btn.classList.add('active');
             STATE.filter = cat;
             renderShopGrid();
         }
@@ -4029,14 +3766,13 @@
             renderShopGrid();
         }
 
-        // Backwards compat alias used in footer links
         function filterProductsByCategory(cat) { filterByCategory(cat); }
 
         function sortProducts(val) { STATE.sort = val; renderShopGrid(); }
 
         function setGrid(cols, btn) {
             document.querySelectorAll('.grid-btn').forEach(b => b.classList.remove('active'));
-            btn.classList.add('active');
+            if (btn) btn.classList.add('active');
             if (DOM.shopGrid) {
                 DOM.shopGrid.classList.remove('grid-2', 'grid-3', 'grid-4');
                 if (cols !== 3) DOM.shopGrid.classList.add('grid-' + cols);
@@ -4046,17 +3782,18 @@
 
         // ==================== PRODUCT DETAIL ====================
         function openProduct(id) {
-            const p = PRODUCT_MAP[id];     // O(1) lookup
-            if (!p) return;
+            const p = PRODUCT_MAP[id];
+            if (!p) { navigateTo('shop'); return; }
 
             STATE.currentProduct = p;
             STATE.selectedSize = p.sizes[0] || '';
             STATE.qty = 1;
 
-            // Batch DOM writes — read nothing in between to avoid layout thrash
             DOM.pdpName.textContent = p.name;
             DOM.pdpPrice.textContent = formatPrice(p.price);
             DOM.qtyDisplay.textContent = '1';
+            DOM.pdpStars.textContent = starsFor(p.rating);
+            DOM.pdpRatingCount.textContent = `(${p.reviews} reviews)`;
 
             if (p.ogPrice) {
                 DOM.pdpOgPrice.textContent = formatPrice(p.ogPrice);
@@ -4068,33 +3805,32 @@
                 DOM.pdpSave.style.display = 'none';
             }
 
-            // Gallery — set main image immediately, thumbs via innerHTML
             DOM.galleryMain.src = p.images[0];
             DOM.galleryMain.alt = p.name;
-            DOM.galleryThumbs.innerHTML = p.images.map((img, i) => {
-                const thumb = img.replace('w=800', 'w=200').replace('w=600', 'w=200');
-                return `<div class="gallery-thumb${i === 0 ? ' active' : ''}" onclick="switchImage('${esc(img)}',this)"><img src="${esc(thumb)}" alt="View ${i + 1}" loading="lazy" decoding="async" width="80" height="107"></div>`;
-            }).join('');
+            if (p.images.length > 1) {
+                DOM.galleryThumbs.style.display = 'flex';
+                DOM.galleryThumbs.innerHTML = p.images.map((img, i) =>
+                    `<button type="button" class="gallery-thumb${i === 0 ? ' active' : ''}" onclick="switchImage('${esc(img)}',this)" aria-label="View image ${i + 1} of ${p.images.length}"><img src="${esc(img)}" alt="${esc(p.name)} — view ${i + 1}" loading="lazy" decoding="async" width="80" height="107"></button>`
+                ).join('');
+            } else {
+                DOM.galleryThumbs.innerHTML = '';
+                DOM.galleryThumbs.style.display = 'none';
+            }
 
-            // Sizes
             DOM.pdpSizes.innerHTML = p.sizes.map(s =>
-                `<button class="size-option${s === STATE.selectedSize ? ' selected' : ''}" onclick="selectSize(this,'${esc(s)}')">${esc(s)}</button>`
+                `<button type="button" class="size-option${s === STATE.selectedSize ? ' selected' : ''}" onclick="selectSize(this,'${esc(s)}')" aria-pressed="${s === STATE.selectedSize}">${esc(s)}</button>`
             ).join('');
 
-            // Description
             DOM.pdpDesc.textContent = p.desc;
 
-            // Features
             DOM.pdpFeatures.innerHTML = p.features.map(f =>
                 `<div class="feature-item"><span class="feature-dot"></span><span>${esc(f)}</span></div>`
             ).join('');
 
-            // Related — same category or gender, exclude self, max 4
             const related = PRODUCTS.filter(x => x.id !== id && (x.category === p.category || x.gender === p.gender)).slice(0, 4);
             DOM.relatedGrid.innerHTML = '';
             DOM.relatedGrid.appendChild(buildGrid(related));
 
-            // Reset accordions
             document.querySelectorAll('.accordion-item').forEach((item, i) => {
                 const body = item.querySelector('.accordion-body');
                 if (i === 0) {
@@ -4112,8 +3848,9 @@
 
         function selectSize(btn, size) {
             STATE.selectedSize = size;
-            DOM.pdpSizes.querySelectorAll('.size-option').forEach(b => b.classList.remove('selected'));
+            DOM.pdpSizes.querySelectorAll('.size-option').forEach(b => { b.classList.remove('selected'); b.setAttribute('aria-pressed', 'false'); });
             btn.classList.add('selected');
+            btn.setAttribute('aria-pressed', 'true');
             _updateWALink();
         }
 
@@ -4128,7 +3865,7 @@
             if (!p) return;
             const total = formatPrice(p.price * STATE.qty);
             const msg = `Hi OUTFITO! 👋\n\nI'd like to order:\n\n🛍 *${p.name}*\n📏 Size: ${STATE.selectedSize}\n🔢 Qty: ${STATE.qty}\n💰 Price: ${formatPrice(p.price)} × ${STATE.qty} = ${total}\n\nPlease confirm availability and payment details. Thank you!`;
-            DOM.waOrderBtn.href = `https://wa.me/918448908359?text=${encodeURIComponent(msg)}`;
+            DOM.waOrderBtn.href = `https://wa.me/918595678209?text=${encodeURIComponent(msg)}`;
         }
 
         function switchImage(src, thumb) {
@@ -4146,12 +3883,10 @@
         }
 
         // ==================== CART ====================
-        // Mutex ensures concurrent clicks (fast double-tap) don't duplicate items
         function _withCartMutex(fn) {
             if (STATE._cartBusy) return;
             STATE._cartBusy = true;
             try { fn(); } finally {
-                // Release on next tick so async saves don't race
                 setTimeout(() => { STATE._cartBusy = false; }, 0);
             }
         }
@@ -4161,6 +3896,7 @@
             DOM.cartDrawer.classList.toggle('open', STATE.cartOpen);
             DOM.cartOverlay.classList.toggle('open', STATE.cartOpen);
             document.body.style.overflow = STATE.cartOpen ? 'hidden' : '';
+            if (STATE.cartOpen) _renderCart();
         }
 
         function addToCart() {
@@ -4200,7 +3936,6 @@
         }
 
         function _persistCart() {
-            // Strip internal _key before persisting so old sessions can load cleanly
             const toSave = STATE.cart.map(({ _key, ...rest }) => rest);
             Store.set('outfito_cart', toSave);
         }
@@ -4213,14 +3948,13 @@
 
         function _renderCart() {
             if (STATE.cart.length === 0) {
-                DOM.cartItems.innerHTML = `<div class="cart-empty"><div class="cart-empty-text">YOUR BAG IS EMPTY</div><div class="cart-empty-sub">Add something to get started</div><button class="btn-outline" style="margin-top:24px;" onclick="toggleCart();navigateTo('shop')"><span>SHOP NOW</span></button></div>`;
+                DOM.cartItems.innerHTML = `<div class="cart-empty"><div class="cart-empty-text">YOUR BAG IS EMPTY</div><div class="cart-empty-sub">Add something to get started</div><button type="button" class="btn-outline" style="margin-top:24px;" onclick="toggleCart();navigateTo('shop')"><span>SHOP NOW</span></button></div>`;
                 DOM.cartFooter.style.display = 'none';
                 return;
             }
 
             const total = STATE.cart.reduce((s, i) => s + i.price * i.qty, 0);
-            // Build with frag to avoid multiple reflows
-            DOM.cartItems.innerHTML = STATE.cart.map(i => `<div class="cart-item"><div class="cart-item-img"><img src="${esc(i.img)}" alt="${esc(i.name)}" loading="lazy" width="80" height="100"></div><div class="cart-item-info"><div class="cart-item-name">${esc(i.name)}</div><div class="cart-item-meta">Size: ${esc(i.size)} · Qty: ${i.qty}</div><div class="cart-item-price">${formatPrice(i.price * i.qty)}</div><span class="cart-item-remove" onclick="removeFromCart('${esc(i._key || i.id + '|' + i.size)}')">Remove</span></div></div>`).join('');
+            DOM.cartItems.innerHTML = STATE.cart.map(i => `<div class="cart-item"><div class="cart-item-img"><img src="${esc(i.img)}" alt="${esc(i.name)}" loading="lazy" width="80" height="100"></div><div class="cart-item-info"><div class="cart-item-name">${esc(i.name)}</div><div class="cart-item-meta">Size: ${esc(i.size)} · Qty: ${i.qty}</div><div class="cart-item-price">${formatPrice(i.price * i.qty)}</div><button type="button" class="cart-item-remove" onclick="removeFromCart('${esc(i._key || i.id + '|' + i.size)}')">Remove</button></div></div>`).join('');
             DOM.cartTotal.textContent = formatPrice(total);
             DOM.cartFooter.style.display = 'block';
         }
@@ -4231,11 +3965,8 @@
             let msg = `Hi OUTFITO! 👋 I'd like to order:\n\n`;
             STATE.cart.forEach(i => { msg += `🛍 *${i.name}*\n   Size: ${i.size} · Qty: ${i.qty} · ${formatPrice(i.price * i.qty)}\n\n`; });
             msg += `💰 *Total: ${formatPrice(total)}*\n\nPlease confirm availability, delivery address, and payment details. Thank you!`;
-            window.open(`https://wa.me/918448908359?text=${encodeURIComponent(msg)}`, '_blank');
+            window.open(`https://wa.me/918595678209?text=${encodeURIComponent(msg)}`, '_blank', 'noopener');
         }
-
-        // Migrate legacy cart entries (no _key) on load
-        STATE.cart = STATE.cart.map(i => ({ ...i, _key: i._key || `${i.id}|${i.size}` }));
 
         // ==================== CONTACT ====================
         function sendContactWhatsApp() {
@@ -4245,7 +3976,7 @@
             const message = ($('contactMessage')?.value || '').trim();
             if (!name || !message) { showToast('Please fill your name and message'); return; }
             const msg = `Hi OUTFITO! 👋\n\n*Name:* ${name}\n*Email:* ${email || 'Not provided'}\n*Subject:* ${subject || 'General Enquiry'}\n\n*Message:*\n${message}`;
-            window.open(`https://wa.me/918448908359?text=${encodeURIComponent(msg)}`, '_blank');
+            window.open(`https://wa.me/918595678209?text=${encodeURIComponent(msg)}`, '_blank', 'noopener');
         }
 
         // ==================== SIZE GUIDE ====================
@@ -4271,22 +4002,23 @@
         }
 
         // ==================== NEWSLETTER ====================
-        // Defined globally so inline onclick can reach it
-        window.newsletterJoin = function () {
-            const input = document.querySelector('.newsletter-input');
-            if (input && input.value && input.value.includes('@')) {
+        window.newsletterJoin = function (e) {
+            if (e) e.preventDefault();
+            const input = $('newsletterEmail');
+            if (input && input.value && /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(input.value)) {
                 showToast("You're on the list! 🔥");
                 input.value = '';
             } else {
                 showToast('Please enter a valid email');
             }
+            return false;
         };
 
         // ==================== HERO PRODUCT ====================
         function setHeroProduct() {
             const hero = FEATURED[0];
             if (!hero) return;
-            if (DOM.heroProductImg) DOM.heroProductImg.src = hero.images[0];
+            if (DOM.heroProductImg) { DOM.heroProductImg.src = hero.images[0]; DOM.heroProductImg.alt = hero.name + ' — OUTFITO hero product'; }
             if (DOM.heroProductName) DOM.heroProductName.textContent = hero.shortName;
             if (DOM.heroProductPrice) DOM.heroProductPrice.textContent = formatPrice(hero.price);
             if (DOM.heroCard) DOM.heroCard.onclick = () => openProduct(hero.id);
@@ -4296,16 +4028,14 @@
         document.addEventListener('keydown', e => {
             if (e.key === 'Escape') {
                 if (STATE.cartOpen) toggleCart();
-                if (document.getElementById('sizeModal')?.classList.contains('open')) closeSizeGuide();
+                if ($('sizeModal')?.classList.contains('open')) closeSizeGuide();
                 if (STATE.menuOpen) toggleMenu();
             }
         });
 
         // ==================== ERROR BOUNDARY ====================
-        // Catch unhandled errors so a single bug doesn't freeze the whole site
         window.addEventListener('error', e => {
             console.warn('[OUTFITO] Caught error:', e.message);
-            // Don't show error to user — site keeps working
         });
         window.addEventListener('unhandledrejection', e => {
             console.warn('[OUTFITO] Unhandled promise:', e.reason);
